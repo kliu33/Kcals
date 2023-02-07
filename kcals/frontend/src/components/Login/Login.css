@@ -1,0 +1,22 @@
+#logo {
+    height: 10%;
+    width: 10%
+}
+
+#block {
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    align-content: center;
+    margin-top: 10%;
+}
+
+.head {
+    font-size: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+#form {
+    margin:auto
+}
