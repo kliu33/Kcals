@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import Login from './components/Login/Login'
+import App from './App'
 import configureStore from './store';
 import { restoreSession } from './store/csrf';
 import * as sessionActions from './store/session.js'
-import csrfFetch from './store/csrf.js'
+import csrfFetch, {restoreCSRF} from './store/csrf.js'
 
 const store = configureStore();
 
@@ -21,30 +21,28 @@ function Root() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Login />
+        <App />
       </BrowserRouter>
     </Provider>
   );
 }
 
-ReactDOM.render(
+
+
+const initializeApp = () => {
+  ReactDOM.render(
   <React.StrictMode>
     <Root />
   </React.StrictMode>,
   document.getElementById('root')
-);
-
-const initializeApp = () => {
-  ReactDOM.render(
-      <React.StrictMode>
-        <Provider store={store}>
-            <Login />
-        </Provider>
-      </React.StrictMode>,
-      document.getElementById('root')
   );
 }
 
+if (sessionStorage.getItem("X-CSRF-Token") === null) {
+  restoreCSRF().then(initializeApp);
+} else {
+  initializeApp();
+}
 
 
 restoreSession().then(initializeApp)

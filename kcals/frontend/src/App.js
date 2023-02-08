@@ -1,6 +1,10 @@
+import Login from './components/Login/Login.js'
+
 function App() {
   return (
-    <h1>Kcals</h1>
+    <>
+      <Login />
+    </>
   );
 }
 
