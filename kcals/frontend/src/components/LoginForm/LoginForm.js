@@ -36,22 +36,22 @@ function LoginFormPage() {
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
+        <label id="label">Email address</label>
         <input
           class="input"
           type="text"
           value={email}
           placeholder="name@work-email.com"
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
+        <label id="label">Password</label>
         <input
           class="input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
-      <button type="submit">Sign In With Email</button>
+      <button type="submit" id="submit">Sign In With Email</button>
     </form>
   );
 }

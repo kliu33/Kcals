@@ -8,15 +8,33 @@
     text-align: center;
     flex-direction: column;
     align-content: center;
-    margin-top: 10%;
+    margin-top: 5%;
+    font-family: 'Lato', sans-serif;
 }
 
 .head {
     font-size: 50px;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+        font-weight: bold;
 }
 
 #form {
     margin:auto
+}
+
+#top {
+    display: flex;
+    justify-content: center;
+}
+
+#new {
+    align-self: flex-end;
+    float: right;
+}
+
+#navlink {
+    color: #1264a3;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
 }

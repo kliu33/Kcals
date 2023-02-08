@@ -6,7 +6,26 @@
 
 .input{
     padding: 11px 12px 13px;
-    height: 44px;
+    height: 30px;
     font-size: 18px;
     line-height: 1.33333333;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+}
+
+#submit{
+    background-color: #4a154b;
+    color: white;
+    padding: 11px 12px 13px;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+
+#label{
+    align-self: start;
+    font-weight: bold;
 }
