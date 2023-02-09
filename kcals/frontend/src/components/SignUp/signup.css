@@ -1,0 +1,24 @@
+#sec {
+    font-weight: bold;
+}
+
+span {
+    font-family: 'Lato', sans-serif;
+}
+
+.already {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.already p {
+    margin-bottom: 1px;
+}
+
+#navlink {
+    color: #1264a3;
+    text-decoration: none;
+    cursor: pointer;
+}

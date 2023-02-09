@@ -1,8 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
     validates :first_name, :last_name, presence: true
-    
-    # validates :username, length: { in: 3..30 }, uniqueness: true, format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email" }
     validates :email, length: {in: 3..255 }, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
     validates :session_token, presence: true, uniqueness: true
     validates :password, length: { in: 6..255 }, allow_nil: true
@@ -27,7 +25,7 @@ class User < ApplicationRecord
     end
   
     def self.find_by_credentials(credential, password)
-      user = User.find_by(username: credential) || User.find_by(email: credential)
+      user = User.find_by(email: credential)
       if user&.authenticate(password)
         return user
       else 

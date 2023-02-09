@@ -10,8 +10,12 @@
     font-size: 18px;
     line-height: 1.33333333;
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(29,28,29,.3);
     font-family: 'Lato', sans-serif;
+    margin: 0 0 20px;
+    transition: border 80ms ease-out,box-shadow 80ms ease-out;
+    outline: initial;
 }
 
 #submit{
@@ -23,9 +27,28 @@
     border-radius: 5px;
     font-weight: bold;
     font-family: 'Lato', sans-serif;
+    cursor: pointer;
 }
 
 #label{
     align-self: start;
     font-weight: bold;
+}
+
+.demo {
+    color: #4285f4;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    font-family: inherit;
+    border: 2px solid #4285f4;
+    height: 44px;
+    min-width: 96px;
+    padding: 0 16px 3px;
+    box-shadow: none;
+    background-color: #fff;
+    border-radius: 5px;
+
 }

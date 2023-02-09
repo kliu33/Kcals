@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import './loginform.css'
+import './signupform.css'
 
-function LoginFormPage() {
+function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -17,7 +19,7 @@ function LoginFormPage() {
     e.preventDefault();
     debugger
     setErrors([]);
-    return dispatch(sessionActions.login({ email, password }))
+    return dispatch(sessionActions.signup({ email, first_name, last_name, password }))
       .catch(async (res) => {
         let data;
         try {
@@ -31,22 +33,11 @@ function LoginFormPage() {
       });
   }
 
-  const demoLogin = (e) => {
-    e.preventDefault()
-    dispatch(sessionActions.login({email: "demo@user.io", password: "password"}))
-  }
-
   return (
     <form onSubmit={handleSubmit} id = "form">
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
-        <button onClick={demoLogin} class='demo'>Demo Login</button>
-        <div class="break">
-          <hr class="hor_line" />
-            <div class="hor_content"> OR </div>
-          <hr class="hor_line" />
-        </div>
         <label id="label">Email address</label>
         <input
           class="input"
@@ -55,6 +46,20 @@ function LoginFormPage() {
           placeholder="name@work-email.com"
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label id="label">First Name</label>
+        <input
+          class="input"
+          type="text"
+          value={first_name}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <label id="label">Last Name</label>
+        <input
+          class="input"
+          type="text"
+          value={last_name}
+          onChange={(e) => setLastName(e.target.value)}
+        />
         <label id="label">Password</label>
         <input
           class="input"
@@ -62,9 +67,9 @@ function LoginFormPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-      <button type="submit" id="submit">Sign In With Email</button>
+      <button type="submit" id="submit">Sign Up</button>
     </form>
   );
 }
 
-export default LoginFormPage;
+export default SignupFormPage;

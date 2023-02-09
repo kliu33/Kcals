@@ -1,25 +1,38 @@
 #logo {
-    height: 10%;
-    width: 10%
+    height: 5%;
+    width: 5%
 }
 
 #block {
-    display: block;
+    display: flex;
     text-align: center;
     flex-direction: column;
     align-content: center;
-    margin-top: 5%;
+    padding-top: 3%;
     font-family: 'Lato', sans-serif;
+}
+
+#suggest {
+    color: #454245;
+    font-size: 18px;
+    line-height: 27px;
+    margin-bottom: 32px;
+    max-width: 700px;
+    text-align: center;
 }
 
 .head {
-    font-size: 50px;
+    font-size: 48px;
     font-family: 'Lato', sans-serif;
-        font-weight: bold;
+    font-weight: 700;
+    letter-spacing: -.75px;
+    line-height: 46px;
+    margin-bottom: 10px;
 }
 
 #form {
-    margin:auto
+    margin: auto;
+    width: 400px;
 }
 
 #top {
@@ -28,8 +41,11 @@
 }
 
 #new {
-    align-self: flex-end;
-    float: right;
+    right: 40px;
+    top: 45px;
+    position: absolute;
+    text-align: right;
+    font-size: 13px;
 }
 
 #navlink {
@@ -37,4 +53,25 @@
     text-decoration: none;
     font-weight: 700;
     font-family: 'Lato', sans-serif;
+}
+
+
+.break {
+    align-items: center;
+    display: flex;
+    box-sizing: inherit;
+}
+.hor_line {
+    border: none;
+    border-top: 1px solid #ddd;
+    clear: both;
+    flex-grow: 1;
+    margin: 0;
+    display: block;
+}
+
+.hor_content{
+    padding: 20px;
+    display: block;
+    font-family: inherit;
 }

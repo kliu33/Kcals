@@ -19,7 +19,6 @@ ApplicationRecord.transaction do
       last_name: "Lition",
       email: "demo@user.io",
       password: "password",
-      username: "DEMO"
     )
     puts "Done!"
 end
