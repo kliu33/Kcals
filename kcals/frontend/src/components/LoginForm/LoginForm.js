@@ -47,7 +47,6 @@ function LoginFormPage() {
             <div class="hor_content"> OR </div>
           <hr class="hor_line" />
         </div>
-        <label id="label">Email address</label>
         <input
           class="input"
           type="text"
@@ -55,11 +54,11 @@ function LoginFormPage() {
           placeholder="name@work-email.com"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label id="label">Password</label>
         <input
           class="input"
           type="password"
           value={password}
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
       <button type="submit" id="submit">Sign In With Email</button>

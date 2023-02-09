@@ -7,6 +7,7 @@ import App from './App'
 import configureStore from './store';
 import { restoreSession } from './store/csrf';
 import * as sessionActions from './store/session.js'
+import * as channelActions from './store/channel.js'
 import csrfFetch, {restoreCSRF} from './store/csrf.js'
 
 const store = configureStore();
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch
   window.sessionActions = sessionActions
+  window.channelActions = channelActions
 }
 
 function Root() {
@@ -26,8 +28,6 @@ function Root() {
     </Provider>
   );
 }
-
-
 
 const initializeApp = () => {
   ReactDOM.render(

@@ -20,5 +20,20 @@ ApplicationRecord.transaction do
       email: "demo@user.io",
       password: "password",
     )
+
+    Channel.create!(
+      name: "App Academy",
+      author_id: 1,
+      description: "App Academy"
+    )
+
+    
+    Channel.create!(
+      name: "The Boys",
+      author_id: 1,
+      description: "The Boys"
+    )
+
+    
     puts "Done!"
 end

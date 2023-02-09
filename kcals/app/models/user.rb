@@ -7,6 +7,11 @@ class User < ApplicationRecord
   
     before_validation :ensure_session_token
   
+    has_many :channels,
+      primary_key: :id,
+      foreign_key: :author_id,
+      class_name: :Channel
+
     def generate_unique_session_token
       while true 
         token = SecureRandom.urlsafe_base64

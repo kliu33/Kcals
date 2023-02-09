@@ -1,0 +1,13 @@
+#main {
+    display: flex;
+}
+
+.channels {
+    background-color: #3F0E40;
+    height: 100vh;
+    width: 200px;
+}
+
+.messaging {
+    background-color: gray
+}

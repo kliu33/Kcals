@@ -38,7 +38,6 @@ function SignupFormPage() {
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
-        <label id="label">Email address</label>
         <input
           class="input"
           type="text"
@@ -46,25 +45,25 @@ function SignupFormPage() {
           placeholder="name@work-email.com"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label id="label">First Name</label>
         <input
           class="input"
           type="text"
           value={first_name}
+          placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
         />
-        <label id="label">Last Name</label>
         <input
           class="input"
           type="text"
           value={last_name}
+          placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
         />
-        <label id="label">Password</label>
         <input
           class="input"
           type="password"
           value={password}
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
       <button type="submit" id="submit">Sign Up</button>

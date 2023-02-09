@@ -1,15 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from './session';
+import channel from './channel'
 
 const rootReducer = combineReducers({
-    session
+    session,
+    channel
 })
 
 let enhancer;
 
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
+  debugger
 } else {
   const logger = require('redux-logger').default;
   const composeEnhancers =
@@ -17,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-const configureStore = (preloadedState) => {
+const configureStore = (preloadedState = {}) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
