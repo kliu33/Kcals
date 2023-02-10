@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import './reset.css';
 import './index.css';
 import App from './App'
 import configureStore from './store';
 import { restoreSession } from './store/csrf';
 import * as sessionActions from './store/session.js'
-import * as channelActions from './store/channel.js'
+import * as channelActions from './store/channels.js'
 import csrfFetch, {restoreCSRF} from './store/csrf.js'
 
 const store = configureStore();

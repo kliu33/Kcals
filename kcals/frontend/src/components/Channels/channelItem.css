@@ -1,0 +1,49 @@
+.channel-div {
+    border-radius: 6px;
+    margin-left: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.channel-div:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.channel-div:focus-within {
+    background-color: #1164A3;
+}
+
+.channel-name {
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    opacity: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: inherit;
+    color: #eaeaea;
+    margin-right: auto;
+    line-height: 28px;
+    font-variant-ligatures: common-ligatures;
+    font-weight: 400;
+}
+
+.add-link {
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    opacity: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: inherit;
+    color: #eaeaea;
+    margin-right: auto;
+    line-height: 28px;
+    font-variant-ligatures: common-ligatures;
+    font-weight: 400;
+}
+
+#channels-bar {
+    margin-top: 50px;
+}

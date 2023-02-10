@@ -1,20 +1,22 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ChannelItem from './channel';
-import { getChannels, fetchChannels } from '../../store/channel';
+import ChannelItem from './channelItem';
+import { fetchChannels } from '../../store/channels';
 
 const ChannelIndex = () => {
     const dispatch = useDispatch();
+    const channels = useSelector(state => Object.values(state.channels))
+    useEffect(()=> dispatch(fetchChannels()), [dispatch])
 
-    useEffect(()=> dispatch(fetchChannels()), [])
-    const channels = useSelector(getChannels)
     debugger
     const channelIndexItems = channels.map((channel) => <ChannelItem key={channel.id} channel={channel}/>)
     return(
-        <ul>
+        <ul id="channels-bar">
             {channelIndexItems}
-            <Link to={`/channel/new`}>New Channel</Link>
+            <div class="channel-div">
+                + Add Channel
+            </div>
         </ul>
     )
 }
