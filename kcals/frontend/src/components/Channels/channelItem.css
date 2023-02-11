@@ -3,6 +3,8 @@
     margin-left: 10px;
     padding-left: 10px;
     cursor: pointer;
+    
+    font-family: 'Lato', sans-serif;
 }
 
 .channel-div:hover {
@@ -15,7 +17,6 @@
 
 .channel-name {
     font-size: 15px;
-    font-family: 'Lato', sans-serif;
     opacity: 1;
     overflow: hidden;
     text-overflow: ellipsis;

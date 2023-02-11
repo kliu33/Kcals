@@ -18,6 +18,7 @@ const removeChannel = channelId => ({
         channelId
     });
 
+
 export const getChannel = (channelId) => (state) => state.channels ? state.channels[channelId] : null
 
 export const getChannels = (state) => state.channels ? Object.values(state.channels) : []
@@ -44,6 +45,20 @@ export const deleteChannel = (channelId) => async dispatch => {
     })
     if(response.ok) {
         dispatch(removeChannel(channelId))
+    }
+}
+
+export const createChannel = (channel) => async dispatch => {
+    const response = await fetch (`/api/channels`, {
+        method: "POST",
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(channel)
+    })
+    if (response.ok) {
+        const channel = await response.json();
+        dispatch(receiveChannel(channel))
     }
 }
 

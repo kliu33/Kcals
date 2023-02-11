@@ -11,3 +11,13 @@
 .messaging {
     background-color: gray
 }
+
+.form {
+    margin:auto
+}
+
+#plus {
+    background-color: gray;
+    padding-left: 1px;
+    border-radius: 3px;
+}

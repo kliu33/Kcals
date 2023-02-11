@@ -12,7 +12,6 @@ let enhancer;
 
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
-  debugger
 } else {
   const logger = require('redux-logger').default;
   const composeEnhancers =
