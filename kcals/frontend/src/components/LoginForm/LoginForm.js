@@ -36,16 +36,17 @@ function LoginFormPage() {
   }
 
   return (
+    <div class='form-div'>
+    <button onClick={demoLogin} class='demo'>Demo Login</button>
     <form onSubmit={handleSubmit} id = "form">
-      <ul>
-        {errors.map(error => <li key={error}>{error}</li>)}
-      </ul>
-        <button onClick={demoLogin} class='demo'>Demo Login</button>
         <div class="break">
           <hr class="hor_line" />
             <div class="hor_content"> OR </div>
           <hr class="hor_line" />
         </div>
+        <ul>
+          {errors.map(error => <li key={error}>{error}</li>)}
+        </ul>
         <input
           class="input"
           type="text"
@@ -62,6 +63,7 @@ function LoginFormPage() {
         />
       <button type="submit" id="submit">Sign In With Email</button>
     </form>
+    </div>
   );
 }
 

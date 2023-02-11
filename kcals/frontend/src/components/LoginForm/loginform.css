@@ -47,9 +47,13 @@
     border: 2px solid #4285f4;
     height: 44px;
     min-width: 96px;
+    width: 100%;
     padding: 0 16px 3px;
     box-shadow: none;
     background-color: #fff;
     border-radius: 5px;
+}
 
+.form-div{
+    width: fit-content;
 }

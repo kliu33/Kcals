@@ -15,20 +15,17 @@ function Home() {
     const dispatch = useDispatch();
     const channels = useSelector(state => Object.values(state.channels))
     useEffect(()=> {dispatch(fetchChannels())}, [dispatch])
+    const sessionUser = useSelector(state => state.session.user);
     const channelIndexItems = channels.map((channel) => <ChannelItem key={channel.id} channel={channel}/>)
+
     const [hidden, setHidden] = useState(true)
     const form = hidden ? null : <ChannelFormPage setHidden={setHidden}/>
-    const sessionUser = useSelector(state => state.session.user);
-    
-    
-
     const handleModal = (e) => {
         e.preventDefault();
         setHidden(!hidden)
     }
 
     const [user_hidden, setuserHidden] = useState(true)
-    
     const handleUserModal = (e) => {
         e.preventDefault();
         setuserHidden(!user_hidden)

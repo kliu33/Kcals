@@ -15,7 +15,6 @@ function HeaderModal(props) {
       }
 
     const sessionUser = useSelector(state => state.session.user);
-    console.log(sessionUser)
     return (
         <div id='modal-back-users' onClick={props.handleUserModal}>
             <div id='modal-users' onClick={stopProp}>

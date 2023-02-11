@@ -1,0 +1,26 @@
+.right-click-bg {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.right-click-menu {
+    position: absolute;
+    display:inline-block;
+    z-index: 99;
+    background-color: white;
+    border: solid 1px gray;
+    height: fit-content;
+    width: 200px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.46668;
+    font-family: 'Lato', sans-serif;
+    border-radius: 6px;
+    padding-left: 20px;
+    padding-top:20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
