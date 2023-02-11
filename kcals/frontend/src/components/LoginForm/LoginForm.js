@@ -11,11 +11,10 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/home" />;
+  if (sessionUser) return <Redirect to="/client" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    debugger
     setErrors([]);
     return dispatch(sessionActions.login({ email, password }))
       .catch(async (res) => {

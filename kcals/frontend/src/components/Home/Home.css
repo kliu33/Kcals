@@ -1,11 +1,16 @@
 #main {
-    display: flex;
+    display: grid;
+    overflow: visible;
+    position: relative;
+    grid-template-areas: 
+    'header-div'
+    'channels';
 }
 
 .channels {
     background-color: #3F0E40;
     height: 100vh;
-    width: 200px;
+    width: 260px;
 }
 
 .messaging {

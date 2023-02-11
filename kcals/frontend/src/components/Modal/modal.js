@@ -13,6 +13,7 @@ function ChannelFormPage(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    closeModal(e);
     const formDataObject = {
         name: name,
         description: description,
@@ -34,12 +35,17 @@ function ChannelFormPage(props) {
 
   const closeModal = (e) => {
     e.preventDefault()
+    e.cancelBubble = true
     props.setHidden(true)
+  }
+  
+  const stopProp = (e) => {
+    e.stopPropagation()
   }
 
   return (
-    <div id='modal-back'>
-    <div id='modal'>
+    <div id='modal-back' onClick={closeModal}>
+    <div id='modal' onClick={stopProp}>
     <form onSubmit={handleSubmit} id = "channel-form">
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
@@ -73,7 +79,7 @@ function ChannelFormPage(props) {
               What's this channel about?
               <br></br>
         </label>
-      <button type="submit" id="create" onClick={closeModal}>Create</button>
+      <button type="submit" id="create">Create</button>
     </form>
     </div>
     </div>

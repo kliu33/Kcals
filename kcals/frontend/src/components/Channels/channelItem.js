@@ -5,7 +5,7 @@ const ChannelItem = (props) => {
 
     return (
         <div class="channel-div">
-            <a class="channel-name"># {props.channel.name}</a>
+            <span class="channel-name"># {props.channel.name}</span>
         </div>
     )
 }

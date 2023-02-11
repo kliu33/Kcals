@@ -1,4 +1,101 @@
-.header-nav {
+.header-div {
+    background: #350d36;
+    box-shadow: 0 1px 0 0 rgb(255 255 255 / 10%);
+    align-items: center;
     display: flex;
-    position: relative
+    justify-content: center;
+    grid-area: header-div;
+    position: relative;
+    height: 45px;
+}
+
+#searchBar{
+    display:flex;
+    color: white;
+    background-color: #603c5c;
+    border-radius: 5px;
+    width: 45%;
+    height: 22px;
+}
+
+#searchBar::placeholder{
+    padding-left: 10px;
+    font-family: 'Lato', sans-serif;
+    color:white;
+    font-weight: 500;
+}
+
+#pfp {
+    height: 60%;
+    border-radius: 5px;
+    position:absolute;
+    right: 20px;
+    cursor: pointer;
+}
+
+#pfp2 {
+    height:40px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+#modal-back-users {
+    position: fixed;
+    z-index : 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal-users {
+    border: gray solid 1px;
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+    height: fit-content;
+    padding-bottom: 20px;
+    width: 300px;
+    position: absolute;
+    top: 43px;
+    right: 5px;
+    background-color: white;
+    display: grid;
+    grid-template-areas: 
+    'pfp2' 'name';
+}
+
+#pfp-name{
+    display:flex;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: rgb(211, 198, 198) solid 1px;
+}
+
+#name {
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+#logout{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    text-align: left;
+}
+
+#logout-div{
+    display:flex;
+    align-items: center;
+    padding-top: 10px;
+}
+
+#logout:hover{
+    background-color: #1864a4;
+    color: white;
 }

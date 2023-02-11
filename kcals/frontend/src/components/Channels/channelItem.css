@@ -3,7 +3,6 @@
     margin-left: 10px;
     padding-left: 10px;
     cursor: pointer;
-    
     font-family: 'Lato', sans-serif;
 }
 
@@ -27,6 +26,7 @@
     line-height: 28px;
     font-variant-ligatures: common-ligatures;
     font-weight: 400;
+
 }
 
 .add-link {
