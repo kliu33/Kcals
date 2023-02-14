@@ -1,34 +1,35 @@
 class Api::ChannelsController < ApplicationController
+  before_action :require_logged_in, except: [:index]
 
-    def index 
-        @channels = Channel.all
-    end
+  def index
+    @channel = Channel.includes(:owner).all
+  end
 
-    def create
-      @channel = Channel.new(channel_params)
-      if @channel.save 
-        render :show
-      else
-        render json: { errors: @channel.errors.full_messages }, status: 418
-      end
-    end
+  def show
+    @channel = Channel.find(params[:id])
+    # Your code here
+  end
 
-    def destroy
-        @channel = Channel.find(params[:id])
-        @channel.destroy
-    end
+  def create
+    @channel = Channel.new(channel_params)
 
-    def update
-      @channel = Channel.find(params[:id])
-      if @channel.update(channel_params)
-        render :show
-      else
-        render json: { errors: @channel.errors.full_messages }, status: 418
-      end
+    if @channel.save
+      render '_channel', locals: { channel: @channel }
+    else
+      render json: @channel.errors.full_messages, status: 422
     end
-    
-    private
-    def channel_params
-      params.require(:channel).permit(:name, :description, :author_id)
-    end
+  end
+
+  def destroy
+    @channel = Channel.find(params[:id])
+    @channel.destroy
+    # Your code here
+    render json: nil, status: :ok
+  end
+
+  private
+
+  def channel_params
+    params.require(:channel).permit(:name, :description, :author_id)
+  end
 end

@@ -3,6 +3,7 @@
     margin-left: 10px;
     padding-left: 10px;
     font-family: 'Lato', sans-serif;
+    cursor: pointer;
 }
 
 .channel-div:hover {
@@ -25,7 +26,6 @@
     line-height: 28px;
     font-variant-ligatures: common-ligatures;
     font-weight: 400;
-
 }
 
 .add-link {

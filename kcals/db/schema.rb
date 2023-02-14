@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_170532) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string "body", null: false
+    t.text "body", null: false
     t.bigint "user_id", null: false
     t.bigint "channel_id", null: false
     t.datetime "created_at", null: false

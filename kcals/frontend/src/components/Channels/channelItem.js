@@ -20,7 +20,7 @@ const ChannelItem = (props) => {
     return (
         <>
         <div class="channel-div" onContextMenu={handleRightClick}>
-            <span class="channel-name"># {channel.name}</span>
+            <a href={`/channels/${channel.id}`} class="channel-name"># {channel.name}</a>
         </div>
         {rightClickForm}
         </>

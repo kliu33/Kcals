@@ -1,3 +1,7 @@
+import { receiveMessages } from './messages';
+import { receiveUsers } from './users';
+import csrfApiFetch from './csrf';
+
 export const RECEIVE_CHANNELS = 'session/receiveChannels'
 export const RECEIVE_CHANNEL = 'session/receiveChannel';
 export const REMOVE_CHANNEL = 'session/removeChannel';
@@ -32,11 +36,13 @@ export const fetchChannel = (channelId) => async dispatch => {
 }
 
 export const fetchChannels = () => async dispatch => {
-    const response = await fetch(`/api/channels`)
-    if (response.ok) {
-        const channels = await response.json();
-        dispatch(receiveChannels(channels))
-    }
+    return csrfApiFetch('channels').then(({ channels, users }) => {
+      dispatch({
+        type: RECEIVE_CHANNELS,
+        channels
+      });
+      dispatch(receiveUsers(users));
+    });
 }
 
 export const deleteChannel = (channelId) => async dispatch => {

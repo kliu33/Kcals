@@ -10,6 +10,7 @@ import { fetchChannels } from '../../store/channels';
 import ChatHeader from '../chatHeader/chatHeader.js';
 import HeaderModal from "../chatHeader/headerModal";
 import { Redirect } from 'react-router-dom';
+import Room from '../Room.js'
 
 function Home() {
     const dispatch = useDispatch();
@@ -46,6 +47,9 @@ function Home() {
                             <span id="plus"> + </span> Add Channel
                         </div>
                     </ul>
+                </div>
+                <div>
+                    <Room />
                 </div>
                 {form}
                 {userInfo}

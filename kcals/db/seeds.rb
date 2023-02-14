@@ -34,6 +34,24 @@ ApplicationRecord.transaction do
       description: "The Boys"
     )
 
+    Message.create!(
+      body: "TESTING",
+      user_id: 1,
+      channel_id: 1
+    )
+
+    Message.create!(
+      body: "TESTING2",
+      user_id: 1,
+      channel_id: 1
+    )
+
+    Message.create!(
+      body: "TESTING3",
+      user_id: 1,
+      channel_id: 1
+    )
+
     
     puts "Done!"
 end

@@ -9,9 +9,9 @@ function App() {
     <Switch>
       <Route path="/login" component={Login}/>
       <Route path="/signup" component={SignUp}/>
-      <Route path="/client" component={Home}/>
+      <Route path="/channels/:channelId" component={Home}/>
       <Route exact path="/">
-        <Redirect to="/client"/>
+        <Redirect to="/channels"/>
       </Route>
     </Switch>
   );

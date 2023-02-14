@@ -1,5 +1,6 @@
 const RECEIVE_USER = 'users/RECEIVE_USER';
 const REMOVE_USER = 'users/REMOVE_USER';
+const RECEIVE_USERS = 'RECEIVE_USERS';
 // ACTION CREATORS
 export const receiveUser = user => ({
     type: RECEIVE_USER,
@@ -9,6 +10,15 @@ export const removeUser = userId => ({
     type: REMOVE_USER,
     userId // userId: userId
 });
+
+
+export const receiveUsers = users => {
+    return {
+      type: RECEIVE_USERS,
+      users
+    };
+  };
+  
 // REDUCER
 const userReducer = ( state = {}, action ) => {
     const nextState = { ...state };
@@ -16,6 +26,8 @@ const userReducer = ( state = {}, action ) => {
         case RECEIVE_USER:
             nextState[action.payload.id] = action.payload;
             return nextState;
+        case RECEIVE_USERS:
+            return { ...state, ...action.users };
         case REMOVE_USER:
             delete nextState[action.userId];
             return nextState;
