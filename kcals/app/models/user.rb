@@ -10,7 +10,14 @@ class User < ApplicationRecord
     has_many :channels,
       primary_key: :id,
       foreign_key: :author_id,
-      class_name: :Channel
+      class_name: :Channel,
+      dependent: :destroy
+
+    has_many :messages,
+      primary_key: :id,
+      foreign_key: :user_id,
+      class_name: :Message,
+      dependent: :destroy
 
     def generate_unique_session_token
       while true 

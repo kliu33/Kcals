@@ -83,21 +83,20 @@ export const updateChannel = (channel) => async dispatch => {
     }
 }
 
-const channelsReducer = (state={}, actions) => {
-    const newState = {...state}
-    switch(actions.type) {
-        case RECEIVE_CHANNELS:
-            return {...state, ...actions.channels}
-        case RECEIVE_CHANNEL:
-            newState[actions.channel.id] = actions.channel
-            return newState
-        case REMOVE_CHANNEL:
-            delete newState[actions.channelId]
-            return newState
-        default:
-            return state
+const channelsReducer = (state = {}, action) => {
+    switch (action.type) {
+      case RECEIVE_CHANNEL:
+        const { channel } = action;
+        return { ...state, [channel.id]: channel };
+      case RECEIVE_CHANNELS:
+        return { ...state, ...action.channels };
+      case REMOVE_CHANNEL:
+        const newState = { ...state };
+        delete newState[action.channelId];
+        return newState;
+      default:
+        return state;
     }
-}
-
+  };
 
 export default channelsReducer;
