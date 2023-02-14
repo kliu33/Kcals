@@ -4,7 +4,7 @@ import "./Home.css"
 import ChannelFormPage from "../Modal/modal";
 import { useState } from "react";
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import ChannelItem from '../Channels/channelItem';
 import { fetchChannels } from '../../store/channels';
 import ChatHeader from '../chatHeader/chatHeader.js';
@@ -38,17 +38,17 @@ function Home() {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <main id='main'>
-            <ChatHeader handleUserModal={handleUserModal}/>
-            <div class='channels'>
-                <ul id="channels-bar">
-                    {channelIndexItems}
-                    <div class="channel-name channel-div" onClick={handleModal}>
-                        <span id="plus"> + </span> Add Channel
-                    </div>
-                </ul>
-            </div>
-            {form}
-            {userInfo}
+                <ChatHeader handleUserModal={handleUserModal}/>
+                <div class='channels'>
+                    <ul id="channels-bar">
+                        {channelIndexItems}
+                        <div class="channel-name channel-div" onClick={handleModal}>
+                            <span id="plus"> + </span> Add Channel
+                        </div>
+                    </ul>
+                </div>
+                {form}
+                {userInfo}
         </main>
     );
   }

@@ -17,7 +17,6 @@ function SignupFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    debugger
     setErrors([]);
     return dispatch(sessionActions.signup({ email, first_name, last_name, password }))
       .catch(async (res) => {

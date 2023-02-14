@@ -4,10 +4,6 @@ class Api::ChannelsController < ApplicationController
         @channels = Channel.all
     end
 
-    def show
-      
-    end
-
     def create
       @channel = Channel.new(channel_params)
       if @channel.save 
@@ -20,6 +16,15 @@ class Api::ChannelsController < ApplicationController
     def destroy
         @channel = Channel.find(params[:id])
         @channel.destroy
+    end
+
+    def update
+      @channel = Channel.find(params[:id])
+      if @channel.update(channel_params)
+        render :show
+      else
+        render json: { errors: @channel.errors.full_messages }, status: 418
+      end
     end
     
     private

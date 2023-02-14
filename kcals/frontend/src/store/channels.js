@@ -62,6 +62,21 @@ export const createChannel = (channel) => async dispatch => {
     }
 }
 
+export const updateChannel = (channel) => async dispatch => {
+    debugger
+    const response = await fetch(`/api/channels/${channel.id}`, {
+        method: "PATCH",
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(channel)
+    })
+    if (response.ok) {
+        const channel = await response.json();
+        dispatch(receiveChannel(channel))
+    }
+}
+
 const channelsReducer = (state={}, actions) => {
     const newState = {...state}
     switch(actions.type) {
@@ -71,7 +86,7 @@ const channelsReducer = (state={}, actions) => {
             newState[actions.channel.id] = actions.channel
             return newState
         case REMOVE_CHANNEL:
-            delete newState[actions.channelsId]
+            delete newState[actions.channelId]
             return newState
         default:
             return state

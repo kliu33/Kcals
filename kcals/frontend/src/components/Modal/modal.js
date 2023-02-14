@@ -5,21 +5,28 @@ import './modal.css'
 
 
 function ChannelFormPage(props) {
+
+  const def_name = props.channel ? props.channel.name : ''
+  const def_description = props.channel ? props.channel.description : ''
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState(def_name);
+  const [description, setDescription] = useState(def_description);
   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     closeModal(e);
+
     const formDataObject = {
         name: name,
         description: description,
-        author_id: sessionUser.id
+        author_id: sessionUser.id,
+        id: (props.channel ? props.channel.id : null)
     }
-    return dispatch(channelActions.createChannel(formDataObject))
+
+    const act = props.channel ? channelActions.updateChannel(formDataObject) : channelActions.createChannel(formDataObject)
+    return dispatch(act)
       .catch(async (res) => {
         let data;
         try {
@@ -51,7 +58,7 @@ function ChannelFormPage(props) {
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
       <a class="close-modal" onClick = {closeModal}> X </a>
-      <h1> Create a channel </h1>
+      <h1> {props.channel ? "Update Channel" : "Create Channel"} </h1>
       <p id="space"> Channels are where your team comminicates. They're best when organized around
         a topic -- #marketing, for example. </p>
       <label>
@@ -79,7 +86,7 @@ function ChannelFormPage(props) {
               What's this channel about?
               <br></br>
         </label>
-      <button type="submit" id="create">Create</button>
+      <button type="submit" id="create">{props.channel ? "Update" : "Create"}</button>
     </form>
     </div>
     </div>
