@@ -5,7 +5,8 @@ class Api::MessagesController < ApplicationController
       @message = Message.new(message_params)
     
       if @message.save
-        # Your code here
+        RoomsChannel.broadcast_to @message.room,
+          from_template('api/messages/show', message: @message)
         render :show, locals: { message: @message }
       else
         render json: @message.errors.full_messages, status: 422

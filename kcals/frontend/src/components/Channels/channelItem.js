@@ -2,6 +2,7 @@ import React from 'react';
 import './channelItem.css'
 import RightClickMenu from './rightClickMenu';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const ChannelItem = (props) => {
     const channel = props.channel
@@ -20,7 +21,7 @@ const ChannelItem = (props) => {
     return (
         <>
         <div class="channel-div" onContextMenu={handleRightClick}>
-            <a href={`/channels/${channel.id}`} class="channel-name"># {channel.name}</a>
+            <NavLink to={`/channels/${channel.id}`} class="channel-name"># {channel.name}</NavLink>
         </div>
         {rightClickForm}
         </>

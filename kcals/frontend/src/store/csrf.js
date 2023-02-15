@@ -43,7 +43,7 @@ export function storeCSRFToken(response) {
         sessionStorage.setItem('currentUser', JSON.stringify(data.user));
     }
   
-  export  const csrfAPIFetch = async (url, { data, headers = {}, ...options } = {}) => {
+  export const csrfAPIFetch = async (url, { data, headers = {}, ...options } = {}) => {
       headers = {
         ...headers,
         'X-CSRF-Token': localStorage.getItem("X-CSRF-Token"),
@@ -55,7 +55,6 @@ export function storeCSRFToken(response) {
         body: JSON.stringify(data),
         headers
       });
-    
       const success = response.ok;
     
       storeCSRFToken(response);
@@ -67,4 +66,4 @@ export function storeCSRFToken(response) {
     };
     
 
-  export default csrfFetch;
+  export default csrfAPIFetch;

@@ -5,6 +5,7 @@ import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessa
 import { fetchChannel } from '../store/channels.js';
 import { receiveUser } from '../store/users';
 import Message from './Message';
+import consumer from '../consumer.js';
 
 function Room() {
   const dispatch = useDispatch();
@@ -13,10 +14,9 @@ function Room() {
   const [usersInRoom, setUsersInRoom] = useState({});
 
   const { channelId } = useParams();
-  const messages = useSelector(getMessages(channelId));
-  const currentUserId = useSelector(state => state.currentUserId)
-  const room = useSelector(state => state.channels[channelId]);
-
+  // const messages = useSelector(getMessages(channelId));
+  const currentUserId = useSelector(state => state.session.user.id)
+  const channel = useSelector(state => state.channels[channelId]);
   const activeMessageRef = useRef(null);
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
@@ -31,15 +31,15 @@ function Room() {
   }, [activeMessageId]);
 
   // Scroll to new messages as they come in
-  useEffect(() => {
-    if (channelId === prevRoom.current && numMessages.current < messages.length) {
-      // Remove any hash values from the URL
-      if (history.location.hash)
-        history.push(history.location.pathname);
-      scrollToBottom();
-    }
-    numMessages.current = messages.length;
-  }, [messages, channelId, history]);
+  // useEffect(() => {
+  //   if (channelId === prevRoom.current && numMessages.current < messages.length) {
+  //     // Remove any hash values from the URL
+  //     if (history.location.hash)
+  //       history.push(history.location.pathname);
+  //     scrollToBottom();
+  //   }
+  //   numMessages.current = messages.length;
+  // }, [messages, channelId, history]);
 
   // Effect to run when entering a room
   useEffect(() => {
@@ -51,6 +51,20 @@ function Room() {
       }
       prevRoom.current = channelId;
     });
+  }, [channelId, dispatch]);
+
+  useEffect(() => {
+    const subscription = consumer.subscriptions.create(
+      { channel: 'RoomsChannel', id: channelId },
+      {
+        received: ({ message, user }) => {
+          dispatch(receiveMessage(message));
+          dispatch(receiveUser(user));
+        }
+      }
+    );
+
+    return () => subscription?.unsubscribe();
   }, [channelId, dispatch]);
 
   const scrollToMessage = () => {
@@ -68,9 +82,7 @@ function Room() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createMessage({ body, channelId, authorId: currentUserId }).then(({ message, user }) => {
-      dispatch(receiveMessage(message));
-      dispatch(receiveUser(user));
+    createMessage({ body, channelId, userId: currentUserId }).then(() => {
       setBody('');
     });
   };
@@ -96,10 +108,10 @@ function Room() {
   return (
     <>
       <section className='room home-section'>
-        <h1>{room?.name}</h1>
+        <h1>{channel?.name}</h1>
 
         <ul ref={messageUlRef}>
-          {messages.map(message => (
+          {/* {messages.map(message => (
             <li
               key={message.id}
               ref={activeMessageId === message.id ? activeMessageRef : null}
@@ -115,7 +127,7 @@ function Room() {
                 </button>
               )}
             </li>
-          ))}
+          ))} */}
         </ul>
         <form onSubmit={handleSubmit}>
           <textarea

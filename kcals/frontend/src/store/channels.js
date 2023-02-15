@@ -12,9 +12,9 @@ const receiveChannels = channels => ({
     channels
   });
 
-const receiveChannel = channel => ({
+const receiveChannel = payload => ({
     type: RECEIVE_CHANNEL,
-    channel
+    payload
 })
 
 const removeChannel = channelId => ({
@@ -31,16 +31,14 @@ export const fetchChannel = (channelId) => async dispatch => {
     const response = await fetch(`/api/channels/${channelId}`)
     if (response.ok) {
         const data = await response.json();
-        dispatch(receiveChannel(data.channel))
+        dispatch(receiveChannel(data))
     }
 }
 
 export const fetchChannels = () => async dispatch => {
     return csrfApiFetch('channels').then(({ channels, users }) => {
-      dispatch({
-        type: RECEIVE_CHANNELS,
-        channels
-      });
+        debugger
+      dispatch(receiveChannels(channels));
       dispatch(receiveUsers(users));
     });
 }
@@ -69,7 +67,6 @@ export const createChannel = (channel) => async dispatch => {
 }
 
 export const updateChannel = (channel) => async dispatch => {
-    debugger
     const response = await fetch(`/api/channels/${channel.id}`, {
         method: "PATCH",
         headers: {
@@ -86,9 +83,8 @@ export const updateChannel = (channel) => async dispatch => {
 const channelsReducer = (state = {}, action) => {
     switch (action.type) {
       case RECEIVE_CHANNEL:
-        debugger
-        const { channel } = action;
-        return { ...state, [channel.id]: channel };
+        const { payload } = action;
+        return { ...state, [payload.channel.id]: payload.channel };
       case RECEIVE_CHANNELS:
         return { ...state, ...action.channels };
       case REMOVE_CHANNEL:

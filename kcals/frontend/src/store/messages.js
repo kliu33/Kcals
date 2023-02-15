@@ -1,4 +1,5 @@
 import csrfApiFetch from './csrf';
+import { RECEIVE_CHANNEL } from './channels.js'
 
 const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
@@ -26,11 +27,12 @@ export const removeMessage = messageId => {
 };
 
 export const getMessages = channelId => state => {
+  debugger
   return Object.values(state.messages)
                .filter(message => message.channelId === parseInt(channelId))
                .map(message => ({
                  ...message,
-                 author: state.users[message.authorId]?.first_name
+                 user: state.users[message.userId]?.first_name
                }))
                .sort(({ createdAt: timeA }, { createdAt: timeB }) => Math.sign(
                  new Date(timeA).getTime() - new Date(timeB).getTime()
@@ -52,6 +54,9 @@ export const destroyMessage = id => (
 
 export const messagesReducer = (state = {}, action) => {
   switch (action.type) {
+    case RECEIVE_CHANNEL:
+      const { payload } = action
+      return { ...state, ...payload.messages}
     case RECEIVE_MESSAGE:
       const { message } = action;
       return { ...state, [message.id]: message };

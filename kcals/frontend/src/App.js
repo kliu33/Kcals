@@ -11,7 +11,7 @@ function App() {
       <Route path="/signup" component={SignUp}/>
       <Route path="/channels/:channelId" component={Home}/>
       <Route exact path="/">
-        <Redirect to="/channels"/>
+        <Redirect to="/login"/>
       </Route>
     </Switch>
   );

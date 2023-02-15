@@ -1,3 +1,6 @@
+import { RECEIVE_CHANNEL } from "./channels";
+
+
 const RECEIVE_USER = 'users/RECEIVE_USER';
 const REMOVE_USER = 'users/REMOVE_USER';
 const RECEIVE_USERS = 'RECEIVE_USERS';
@@ -23,6 +26,9 @@ export const receiveUsers = users => {
 const userReducer = ( state = {}, action ) => {
     const nextState = { ...state };
     switch(action.type) {
+        case RECEIVE_CHANNEL:
+            const { payload } = action
+            return {...state, ...payload.users}
         case RECEIVE_USER:
             nextState[action.payload.id] = action.payload;
             return nextState;
