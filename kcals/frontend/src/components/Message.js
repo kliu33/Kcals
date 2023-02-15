@@ -1,6 +1,6 @@
 const Message = ({ body, user, createdAt }) => {
     const formattedTime = getFormattedTime(createdAt);
-  
+    debugger
     return (
       <div className='message'>
         <span className='message__author'>{user}</span>

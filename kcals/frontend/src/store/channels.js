@@ -37,7 +37,6 @@ export const fetchChannel = (channelId) => async dispatch => {
 
 export const fetchChannels = () => async dispatch => {
     return csrfApiFetch('channels').then(({ channels, users }) => {
-        debugger
       dispatch(receiveChannels(channels));
       dispatch(receiveUsers(users));
     });

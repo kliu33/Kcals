@@ -14,7 +14,7 @@ function Room() {
   const [usersInRoom, setUsersInRoom] = useState({});
 
   const { channelId } = useParams();
-  // const messages = useSelector(getMessages(channelId));
+  const messages = useSelector(getMessages(channelId));
   const currentUserId = useSelector(state => state.session.user.id)
   const channel = useSelector(state => state.channels[channelId]);
   const activeMessageRef = useRef(null);
@@ -111,7 +111,7 @@ function Room() {
         <h1>{channel?.name}</h1>
 
         <ul ref={messageUlRef}>
-          {/* {messages.map(message => (
+          {messages.map(message => (
             <li
               key={message.id}
               ref={activeMessageId === message.id ? activeMessageRef : null}
@@ -127,7 +127,7 @@ function Room() {
                 </button>
               )}
             </li>
-          ))} */}
+          ))}
         </ul>
         <form onSubmit={handleSubmit}>
           <textarea

@@ -27,7 +27,6 @@ export const removeMessage = messageId => {
 };
 
 export const getMessages = channelId => state => {
-  debugger
   return Object.values(state.messages)
                .filter(message => message.channelId === parseInt(channelId))
                .map(message => ({

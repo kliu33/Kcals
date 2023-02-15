@@ -5,7 +5,7 @@ class Api::MessagesController < ApplicationController
       @message = Message.new(message_params)
     
       if @message.save
-        RoomsChannel.broadcast_to @message.room,
+        RoomsChannel.broadcast_to @message.channel,
           from_template('api/messages/show', message: @message)
         render :show, locals: { message: @message }
       else
@@ -23,6 +23,6 @@ class Api::MessagesController < ApplicationController
     private
   
     def message_params
-      params.require(:message).permit(:body, :room_id, :author_id)
+      params.require(:message).permit(:body, :channel_id, :user_id)
     end
   end
