@@ -4,7 +4,7 @@
     position: relative;
     grid-template-areas: 
     'header-div'
-    'channels';
+    'channels', 'room';
 }
 
 .channels {
