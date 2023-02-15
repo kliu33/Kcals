@@ -30,8 +30,8 @@ export const getChannels = (state) => state.channels ? Object.values(state.chann
 export const fetchChannel = (channelId) => async dispatch => {
     const response = await fetch(`/api/channels/${channelId}`)
     if (response.ok) {
-        const channel = await response.json();
-        dispatch(receiveChannel(channel))
+        const data = await response.json();
+        dispatch(receiveChannel(data.channel))
     }
 }
 
@@ -86,6 +86,7 @@ export const updateChannel = (channel) => async dispatch => {
 const channelsReducer = (state = {}, action) => {
     switch (action.type) {
       case RECEIVE_CHANNEL:
+        debugger
         const { channel } = action;
         return { ...state, [channel.id]: channel };
       case RECEIVE_CHANNELS:
