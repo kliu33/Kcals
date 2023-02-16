@@ -1,10 +1,14 @@
-const Message = ({ body, user, createdAt }) => {
+import { useSelector } from "react-redux";
+import './Message.css'
+
+const Message = ({ body, userId, createdAt }) => {
     const formattedTime = getFormattedTime(createdAt);
+    const users = useSelector(state => state.users)
     return (
       <div className='message'>
-        <span className='message__author'>{user}</span>
+        <span className='message__author'>{users[userId].firstName} </span>
         <span className='message__timestamp'>{formattedTime}</span>
-        <p>
+        <p className='message__body'>
           {body}
         </p>
       </div>

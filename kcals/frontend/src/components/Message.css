@@ -1,0 +1,11 @@
+.message__author{
+    font-weight: 900;
+}
+
+.message__timestamp{
+    font-size: 10px;
+}
+
+.message__body {
+    margin-top: 2px;
+}

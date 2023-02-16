@@ -48,7 +48,7 @@ function Home() {
                         </div>
                     </ul>
                 </div>
-                <Room class='room'/>
+                <Room class='room'/>    
                 {form}
                 {userInfo}
         </main>

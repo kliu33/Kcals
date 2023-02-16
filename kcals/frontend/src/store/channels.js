@@ -1,6 +1,6 @@
 import { receiveMessages } from './messages';
 import { receiveUsers } from './users';
-import csrfApiFetch from './csrf';
+import { csrfAPIFetch } from './csrf';
 
 export const RECEIVE_CHANNELS = 'session/receiveChannels'
 export const RECEIVE_CHANNEL = 'session/receiveChannel';
@@ -36,7 +36,7 @@ export const fetchChannel = (channelId) => async dispatch => {
 }
 
 export const fetchChannels = () => async dispatch => {
-    return csrfApiFetch('channels').then(({ channels, users }) => {
+    return csrfAPIFetch('channels').then(({ channels, users }) => {
       dispatch(receiveChannels(channels));
       dispatch(receiveUsers(users));
     });

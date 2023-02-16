@@ -9,20 +9,15 @@ export function storeCSRFToken(response) {
     return response;
   }
   
-  async function csrfFetch(url, options = {}) {
+  export async function csrfFetch(url, options = {}) {
     options.method = options.method || 'GET';
-    // set options.headers to an empty object if there are no headers
     options.headers = options.headers || {};
   
-    // if the options.method is not 'GET', then set the "Content-Type" header to
-    // "application/json" and the "X-CSRF-Token" header to the value of the 
-    // "X-CSRF-Token" cookie
     if (options.method.toUpperCase() !== 'GET') {
       options.headers['Content-Type'] =
         options.headers['Content-Type'] || 'application/json';
       options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
     }
-  
     // call fetch with the url and the updated options hash
     const res = await fetch(url, options);
   
@@ -49,7 +44,6 @@ export function storeCSRFToken(response) {
         'X-CSRF-Token': localStorage.getItem("X-CSRF-Token"),
         'Content-Type': 'application/json'
       };
-    
       let response = await fetch(`/api/${url}`, {
         ...options,
         body: JSON.stringify(data),
@@ -65,5 +59,3 @@ export function storeCSRFToken(response) {
       return success ? response : Promise.reject(response);
     };
     
-
-  export default csrfAPIFetch;

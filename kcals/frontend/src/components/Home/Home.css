@@ -1,16 +1,16 @@
 #main {
     display: grid;
-    overflow: visible;
-    position: relative;
     grid-template-areas: 
-    'header-div'
-    'channels', 'room';
+    'header-div header-div'
+    'channels room';
+    grid-template-columns: 13% 87%;
 }
 
 .channels {
     background-color: #3F0E40;
     height: 100vh;
     width: 260px;
+    float: left;
 }
 
 .messaging {

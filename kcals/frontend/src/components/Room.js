@@ -6,6 +6,7 @@ import { fetchChannel } from '../store/channels.js';
 import { receiveUser } from '../store/users';
 import Message from './Message';
 import consumer from '../consumer.js';
+import './Room.css'
 
 function Room() {
   const dispatch = useDispatch();
@@ -106,9 +107,9 @@ function Room() {
   };
 
   return (
-    <>
-      <section className='room home-section'>
-        <h1>{channel?.name}</h1>
+    <div class="room-home-div">
+      <section className='room-home-section'>
+        <div id='border-under'> <h1> #{channel?.name} </h1> {channel?.description}</div>
 
         <ul ref={messageUlRef}>
           {messages.map(message => (
@@ -117,7 +118,7 @@ function Room() {
               ref={activeMessageId === message.id ? activeMessageRef : null}
               tabIndex={-1}
             >
-              <Message {...message} />
+              <Message {...message} class='message'/>
               {message.authorId === currentUserId && (
                 <button
                   className='btn-delete'
@@ -130,9 +131,10 @@ function Room() {
           ))}
         </ul>
         <form onSubmit={handleSubmit}>
-          <textarea
+          <textarea id='send-chat'
             rows={body.split('\n').length}
             onChange={e => setBody(e.target.value)}
+            placeholder={`Message #${channel?.name}`}
             onKeyDown={e => {
               if (e.code === 'Enter' && !e.shiftKey) {
                 handleSubmit(e);
@@ -140,28 +142,9 @@ function Room() {
             }}
             value={body}
           />
-          <div className='message-controls'>
-            <div>
-              {generateReactions('👍', '❤️', '🔥', '😡')}
-            </div>
-            <button className='btn-primary' disabled={!body}>
-              Send Message
-            </button>
-          </div>
         </form>
       </section>
-      <section className='online-users home-section'>
-        <h2>In Room</h2>
-        <ul >
-          {usersInRoomArray.map(({ id, username, reaction }) => (
-            <li key={id} className={currentUserId === id ? 'current' : ''}>
-              <span className='reaction'>{reaction}</span>
-              <span>{username}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </>
+    </div>
   );
 }
 

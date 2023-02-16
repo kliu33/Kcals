@@ -9,7 +9,7 @@ import configureStore from './store';
 import { restoreSession } from './store/csrf';
 import * as sessionActions from './store/session.js'
 import * as channelActions from './store/channels.js'
-import csrfFetch, {restoreCSRF} from './store/csrf.js'
+import { csrfFetch, restoreCSRF} from './store/csrf.js'
 
 const store = configureStore();
 

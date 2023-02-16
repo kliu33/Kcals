@@ -1,4 +1,4 @@
-import csrfApiFetch from './csrf';
+import { csrfAPIFetch } from './csrf';
 import { RECEIVE_CHANNEL } from './channels.js'
 
 const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
@@ -39,14 +39,14 @@ export const getMessages = channelId => state => {
 };
 
 export const createMessage = message => (
-  csrfApiFetch('messages', {
+  csrfAPIFetch('messages', {
     method: 'POST',
     data: { message }
   })
 );
 
 export const destroyMessage = id => (
-  csrfApiFetch(`messages/${id}`, {
+  csrfAPIFetch(`messages/${id}`, {
     method: 'DELETE'
   })
 );

@@ -28,6 +28,15 @@ class Api::ChannelsController < ApplicationController
     render json: nil, status: :ok
   end
 
+  def update
+    @channel = Channel.find_by(id: params[:id])
+    if (@channel.update(channel_params))
+        render :show
+    else
+        render json: { errors: ["Must have a name"] }, status: 418
+    end
+  end
+
   private
 
   def channel_params

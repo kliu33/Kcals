@@ -25,7 +25,13 @@ function ChannelFormPage(props) {
         id: (props.channel ? props.channel.id : null)
     }
 
-    const act = props.channel ? channelActions.updateChannel(formDataObject) : channelActions.createChannel(formDataObject)
+    const formDataObject2 = {
+      name: name,
+      description: description,
+      author_id: sessionUser.id
+  }
+
+    const act = props.channel ? channelActions.updateChannel(formDataObject) : channelActions.createChannel(formDataObject2)
     return dispatch(act)
       .catch(async (res) => {
         let data;
