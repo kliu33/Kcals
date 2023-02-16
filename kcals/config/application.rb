@@ -23,6 +23,7 @@ module Kcals
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.middleware.use ActionDispatch::Cookies
+    config.autoloader = :classic
     config.middleware.use ActionDispatch::Session::CookieStore,
     key: '_kcals_session',
     same_site: :lax, 
