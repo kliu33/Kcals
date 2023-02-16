@@ -6,7 +6,7 @@ const Message = ({ body, userId, createdAt }) => {
     const users = useSelector(state => state.users)
     return (
       <div className='message'>
-        <span className='message__author'>{users[userId].firstName} </span>
+        <span className='message__author'>{users[userId].firstName} {users[userId].lastName}</span>
         <span className='message__timestamp'>{formattedTime}</span>
         <p className='message__body'>
           {body}

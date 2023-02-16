@@ -6,11 +6,20 @@
     background-color: white;
 }
 
+.messages-box {
+    max-height: 500px;
+}
+
+.room-home-section {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
 #border-under {
     border-bottom: 1px gray solid;
     padding-left: 20px;
     padding-top: 10px;
-    padding-bottom: 10px
+    padding-bottom: 10px;
 }
 
 .message{
@@ -20,6 +29,8 @@
     text-align: left;
     font-variant-ligatures: common-ligatures;
     font-weight: 400;
+    padding-left: 50px;
+    padding-bottom: 15px;
 }
 
 .message:hover {
@@ -29,5 +40,19 @@
 #send-chat {
     width: 100%;
     border-radius: 5px;
-    height: 50px
+    height: 50px;
+    bottom: 500px;
+    position: fixed;
+    bottom: 0;
+
+}
+
+.right-div{
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 100px;
+    border: solid black 1px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px
 }

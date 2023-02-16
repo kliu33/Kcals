@@ -7,22 +7,24 @@ import { receiveUser } from '../store/users';
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
+import usersModal from './usersModal.js';
 
 function Room() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [body, setBody] = useState('');
   const [usersInRoom, setUsersInRoom] = useState({});
-
+  const [hidden, setHidden] = useState(true)
   const { channelId } = useParams();
   const messages = useSelector(getMessages(channelId));
   const currentUserId = useSelector(state => state.session.user.id)
   const channel = useSelector(state => state.channels[channelId]);
+  const users = useSelector(state => state.users)
   const activeMessageRef = useRef(null);
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
   const numMessages = useRef(0);
-
+  const showUsers = hidden ? null : <usersModal />
   const activeMessageId = parseInt(history.location.hash.slice(1));
   const usersInRoomArray = Object.values(usersInRoom);
 
@@ -68,6 +70,11 @@ function Room() {
     return () => subscription?.unsubscribe();
   }, [channelId, dispatch]);
 
+  const handleModal = (e) => {
+    e.preventDefault();
+
+  }
+
   const scrollToMessage = () => {
     activeMessageRef.current.focus();
     activeMessageRef.current.scrollIntoView();
@@ -94,24 +101,24 @@ function Room() {
     });
   };
 
-  const generateReactions = (...reactions) => {
-    return reactions.map(reaction => (
-      <span
-        key={reaction}
-        className='reaction'
-        onClick={() => setReaction(currentUserId, reaction)}
-      >
-        {reaction}
-      </ span>
-    ));
-  };
+  // const generateReactions = (...reactions) => {
+  //   return reactions.map(reaction => (
+  //     <span
+  //       key={reaction}
+  //       className='reaction'
+  //       onClick={() => setReaction(currentUserId, reaction)}
+  //     >
+  //       {reaction}
+  //     </ span>
+  //   ));
+  // };
 
   return (
     <div class="room-home-div">
       <section className='room-home-section'>
-        <div id='border-under'> <h1> #{channel?.name} </h1> {channel?.description}</div>
-
-        <ul ref={messageUlRef}>
+        <div id='border-under'> <h1> #{channel?.name} </h1> <p class='right-div' onClick={handleModal}> {Object.values(users).length} </p> 
+        {channel?.description}</div>
+        <ul ref={messageUlRef} className="messages-box">
           {messages.map(message => (
             <li
               key={message.id}
@@ -144,6 +151,7 @@ function Room() {
           />
         </form>
       </section>
+      {showUsers}
     </div>
   );
 }

@@ -4,11 +4,12 @@
     'header-div header-div'
     'channels room';
     grid-template-columns: 13% 87%;
+    width: 100%;
 }
 
 .channels {
     background-color: #3F0E40;
-    height: 100vh;
+    height: 100%;
     width: 260px;
     float: left;
 }
