@@ -33,8 +33,8 @@ function SignupFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit} id = "form">
-      <ul>
+    <form onSubmit={handleSubmit} id = "sign-up-form">
+      <ul className='errors'>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
         <input

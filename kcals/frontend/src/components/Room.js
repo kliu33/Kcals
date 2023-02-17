@@ -7,14 +7,12 @@ import { receiveUser } from '../store/users';
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
-import usersModal from './usersModal.js';
+import UsersInRoom from './usersInRoom.js';
 
 function Room() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [body, setBody] = useState('');
-  const [usersInRoom, setUsersInRoom] = useState({});
-  const [hidden, setHidden] = useState(true)
   const { channelId } = useParams();
   const messages = useSelector(getMessages(channelId));
   const currentUserId = useSelector(state => state.session.user.id)
@@ -24,25 +22,22 @@ function Room() {
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
   const numMessages = useRef(0);
-  const showUsers = hidden ? null : <usersModal />
   const activeMessageId = parseInt(history.location.hash.slice(1));
-  const usersInRoomArray = Object.values(usersInRoom);
 
   // Scroll to message selected from mentions menu
   useEffect (() => {
     if (activeMessageRef.current) scrollToMessage();
   }, [activeMessageId]);
 
-  // Scroll to new messages as they come in
-  // useEffect(() => {
-  //   if (channelId === prevRoom.current && numMessages.current < messages.length) {
-  //     // Remove any hash values from the URL
-  //     if (history.location.hash)
-  //       history.push(history.location.pathname);
-  //     scrollToBottom();
-  //   }
-  //   numMessages.current = messages.length;
-  // }, [messages, channelId, history]);
+  useEffect(() => {
+    if (channelId === prevRoom.current && numMessages.current < messages.length) {
+      // Remove any hash values from the URL
+      if (history.location.hash)
+        history.push(history.location.pathname);
+      scrollToBottom();
+    }
+    numMessages.current = messages.length;
+  }, [messages, channelId, history]);
 
   // Effect to run when entering a room
   useEffect(() => {
@@ -70,10 +65,15 @@ function Room() {
     return () => subscription?.unsubscribe();
   }, [channelId, dispatch]);
 
-  const handleModal = (e) => {
-    e.preventDefault();
-
+  
+  const [users_hidden, setusersHidden] = useState(true)
+  const handleUsersModal = (e) => {
+      e.preventDefault();
+      setusersHidden(!users_hidden)
   }
+  
+  const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
+
 
   const scrollToMessage = () => {
     activeMessageRef.current.focus();
@@ -82,11 +82,12 @@ function Room() {
 
   const scrollToBottom = () => {
     messageUlRef.current.scrollTop = messageUlRef.current.scrollHeight;
+    
   };
 
-  const setReaction = (id, reaction) => {
-    setUsersInRoom(prevUsersInRoom => ({ ...prevUsersInRoom, [id]: { ...prevUsersInRoom[id], reaction } }));
-  };
+  // const setReaction = (id, reaction) => {
+  //   setUsersInRoom(prevUsersInRoom => ({ ...prevUsersInRoom, [id]: { ...prevUsersInRoom[id], reaction } }));
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -97,7 +98,7 @@ function Room() {
 
   const handleDelete = messageId => {
     destroyMessage(messageId).then(() => {
-      removeMessage(messageId);
+      dispatch(removeMessage(messageId));
     });
   };
 
@@ -116,17 +117,26 @@ function Room() {
   return (
     <div class="room-home-div">
       <section className='room-home-section'>
-        <div id='border-under'> <h1> #{channel?.name} </h1> <p class='right-div' onClick={handleModal}> {Object.values(users).length} </p> 
-        {channel?.description}</div>
+        <div id='border-under'> 
+          <h1> #{channel?.name} </h1> 
+          <div>
+            <span class='right-div' onClick={handleUsersModal}> {Object.values(users).length} </span> 
+          </div>
+          {channel?.description}
+        </div>
         <ul ref={messageUlRef} className="messages-box">
+          <li class='start'> <p class='p1'>This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
+          <p class='p2'> This channel is for everything # {channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
+          </li>
           {messages.map(message => (
             <li
               key={message.id}
               ref={activeMessageId === message.id ? activeMessageRef : null}
               tabIndex={-1}
+              className='message-x'
             >
               <Message {...message} class='message'/>
-              {message.authorId === currentUserId && (
+              {message.userId === currentUserId && (
                 <button
                   className='btn-delete'
                   onClick={() => handleDelete(message.id)}
@@ -151,7 +161,8 @@ function Room() {
           />
         </form>
       </section>
-      {showUsers}
+      {usersModal}
+      
     </div>
   );
 }

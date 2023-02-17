@@ -11,7 +11,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/channels" />;
+  if (sessionUser) return <Redirect to="/channels/1" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ function LoginFormPage() {
             <div class="hor_content"> OR </div>
           <hr class="hor_line" />
         </div>
-        <ul>
+        <ul className='errors'>
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>
         <input

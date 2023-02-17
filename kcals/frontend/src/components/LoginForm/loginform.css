@@ -57,3 +57,7 @@
 .form-div{
     width: fit-content;
 }
+
+.errors {
+    margin-bottom: 15px;
+}

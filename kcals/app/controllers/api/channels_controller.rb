@@ -15,7 +15,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      render '_channel', locals: { channel: @channel }
+      render :show
     else
       render json: @channel.errors.full_messages, status: 422
     end

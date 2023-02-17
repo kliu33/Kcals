@@ -1,4 +1,13 @@
 /* TODO Add site wide styles */
 body{
     font-family: 'Lato', sans-serif;
+    height: 90vh;
+}
+
+#root{
+    height: 100vh;
+}
+
+#main{
+    height: 100%;
 }

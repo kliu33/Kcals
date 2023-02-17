@@ -11,7 +11,7 @@ function SignUp() {
           </div>
           <h1 class='head'> Sign up for kcals</h1>
           <div class="suggest">
-            <span> We suggest using the </span> <span id ="sec"> email address you use at work.</span>
+            <span> Start by entering the email address you use for work. </span>
           </div>
           <SignupFormPage id="form" />
           <br></br>

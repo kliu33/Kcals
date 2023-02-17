@@ -11,3 +11,26 @@
 .message__body {
     margin-top: 2px;
 }
+
+.message {
+    display: flex
+}
+
+.message-content{
+    display:table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.img-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#pfp3 {
+    height:40px;
+    border-radius: 5px;
+    border: 1px solid black;
+}

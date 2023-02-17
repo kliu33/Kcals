@@ -22,3 +22,11 @@ span {
     text-decoration: none;
     cursor: pointer;
 }
+
+#sign-up-form {
+    padding-top: 10px;
+    margin: auto;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}

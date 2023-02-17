@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as channelActions from '../../../store/channels';
 import ChannelFormPage from '../../Modal/modal';
 import './options.css'
 
 function Owner(props) {
     const dispatch = useDispatch();
-    const channel = props.channel
 
     const handleDelete = (e) => {
         return dispatch(channelActions.deleteChannel(props.channel.id));
@@ -23,10 +22,11 @@ function Owner(props) {
     return (
       <div>
             <div>
-                <span onClick={handleDelete}> Delete Channel</span>
+                <span onClick={handleDelete} className='option'> Delete Channel</span>
             </div>
+            <br></br>
             <div> 
-                <span onClick={handleEdit}> Edit Channel</span>
+                <span onClick={handleEdit} className='option'> Edit Channel</span>
             </div>
             {form}
       </div>
