@@ -15,8 +15,12 @@ class Api::MessagesController < ApplicationController
   
     def destroy
       @message = Message.find(params[:id])
+      RoomsChannel.broadcast_to @message.channel,
+        type: 'DESTROY_MESSAGE',
+        id: @message.id
+    
       @message.destroy
-      # Your code here
+      
       render json: nil, status: :ok
     end
   
