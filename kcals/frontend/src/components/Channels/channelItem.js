@@ -17,14 +17,17 @@ const ChannelItem = (props) => {
         setposY(e.clientY)
         setHidden(!hidden)
     }
-
+    
     return (
-        <>
-        <div class="channel-div" onContextMenu={handleRightClick}>
-            <NavLink to={`/channels/${channel.id}`} class="channel-name"># {channel.name}</NavLink>
-        </div>
-        {rightClickForm}
-        </>
+        <li>
+            <NavLink to={`/channels/${channel.id}`}>
+                <div class="channel-div channel-name" onContextMenu={handleRightClick}>
+                    # {channel.name}
+                </div>
+                {rightClickForm}
+            </NavLink>
+        </li>
+        
     )
 }
 

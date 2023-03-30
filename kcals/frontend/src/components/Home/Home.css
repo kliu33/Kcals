@@ -39,6 +39,7 @@
     display: flex;
     position: relative;
     justify-content: space-evenly;
+    margin-bottom: 5px;
 }
 
 .channel-toggle {
@@ -59,6 +60,10 @@
     cursor: pointer;
 }
 
+.plus:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
 .channel-hover .hidden {
   opacity: 0;
 }
@@ -66,3 +71,13 @@
 .channel-hover:hover .hidden {
     opacity: 1;
   }
+
+.arrow {
+    height: 10px;
+    width: 15px;
+    margin-right: 5px;
+}
+
+.rotate {
+    transform: rotate(-90deg);
+}
