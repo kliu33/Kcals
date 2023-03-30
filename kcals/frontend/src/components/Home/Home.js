@@ -22,6 +22,7 @@ function Home() {
 
     const [hidden, setHidden] = useState(true)
     const handleModal = (e) => {
+        e.stopPropagation();
         e.preventDefault();
         setHidden(!hidden)
     }
@@ -46,10 +47,10 @@ function Home() {
                 <div class='channels'>
                     <h1 class='server'> App Academy </h1>
                     <ul id="channels-bar">
-                        <div class="channel-hover">
-                            <div class="channel-name channel-toggle" onClick={() => {setShowChannels(!showChannels)}}> Channels 
+                        <div class="channel-hover"  onClick={() => {setShowChannels(!showChannels)}}>
+                            <div class="channel-name channel-toggle"> Channels 
                             </div>
-                            <span class="plus" onClick={handleModal}> + </span>
+                            <span class="plus hidden" onClick={handleModal}> + </span>
                         </div>
                         {channelIndexItems}
                     </ul>

@@ -35,6 +35,7 @@
 }
 
 .channel-hover {
+    cursor: pointer;
     display: flex;
     position: relative;
     justify-content: space-evenly;
@@ -45,7 +46,6 @@
     border-radius: 6px;
     margin-left: 10px;
     padding-left: 10px;
-    cursor: pointer;
     margin-bottom: 5px;
 }
 
@@ -54,7 +54,15 @@
     border-radius: 8px;
     padding: 5px;
     display: inline-block;
-    color: white;
+    color: #c5c5c5;
     font-size: 25px;
     cursor: pointer;
 }
+
+.channel-hover .hidden {
+  opacity: 0;
+}
+
+.channel-hover:hover .hidden {
+    opacity: 1;
+  }

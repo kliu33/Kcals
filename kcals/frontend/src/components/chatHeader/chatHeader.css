@@ -3,10 +3,13 @@
     box-shadow: 0 1px 0 0 rgb(255 255 255 / 10%);
     align-items: center;
     display: flex;
-    justify-content: center;
     grid-area: header-div;
     position: relative;
     height: 45px;
+}
+
+.links {
+    display: flex;
 }
 
 #searchBar{
@@ -14,6 +17,7 @@
     color: white;
     background-color: #603c5c;
     border-radius: 5px;
+    margin-left: 15%;
     width: 45%;
     height: 22px;
 }
@@ -98,4 +102,8 @@
 #logout:hover{
     background-color: #1864a4;
     color: white;
+}
+
+#logo {
+    margin: 10px
 }
