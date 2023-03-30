@@ -24,11 +24,6 @@
     margin:auto
 }
 
-#plus {
-    background-color: gray;
-    border-radius: 8px;
-    padding: 5px;
-}
 
 .server {
     color: white;
@@ -37,4 +32,29 @@
     font-size: 20px;
     border-bottom: 1px rgb(114, 44, 121) solid;
     width: 100%;
+}
+
+.channel-hover {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+.channel-toggle {
+    display: inline-block;
+    border-radius: 6px;
+    margin-left: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+
+.plus {
+    border-radius: 8px;
+    padding: 5px;
+    display: inline-block;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
 }

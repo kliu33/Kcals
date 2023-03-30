@@ -17,7 +17,8 @@ function Home() {
     const channels = useSelector(state => Object.values(state.channels))
     useEffect(()=> {dispatch(fetchChannels())}, [dispatch])
     const sessionUser = useSelector(state => state.session.user);
-    const channelIndexItems = channels.map((channel) => <ChannelItem key={channel.id} channel={channel}/>)
+    const [showChannels, setShowChannels] = useState(true)
+    const channelIndexItems = showChannels ? channels.map((channel) => <ChannelItem key={channel.id} channel={channel}/>) : null
 
     const [hidden, setHidden] = useState(true)
     const handleModal = (e) => {
@@ -45,10 +46,12 @@ function Home() {
                 <div class='channels'>
                     <h1 class='server'> App Academy </h1>
                     <ul id="channels-bar">
-                        {channelIndexItems}
-                        <div class="channel-name channel-div" onClick={handleModal}>
-                            <span id="plus"> + </span> Create Channel
+                        <div class="channel-hover">
+                            <div class="channel-name channel-toggle" onClick={() => {setShowChannels(!showChannels)}}> Channels 
+                            </div>
+                            <span class="plus" onClick={handleModal}> + </span>
                         </div>
+                        {channelIndexItems}
                     </ul>
                 </div>
                 <Room class='room'/>    
