@@ -1,5 +1,5 @@
 import './Splash.css'
-import logo from '../../imgs/logo.jpg'
+import logo from '../../imgs/logo.png'
 import tesla from '../../imgs/tesla.png'
 import amazon from '../../imgs/amazon.png'
 import cfa from '../../imgs/cfa.png'
@@ -15,15 +15,19 @@ import Vid3 from '../Videos/Vid3'
 function Splash() {
     return (
     <>
-      <div id='top-splash'>
-        <div id="nav">
-            <img src={logo} alt="" id="logo" />
-            <a href="https://github.com/kliu33/Kcals" target="_blank" class="nav-link">GitHub</a>
-            <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" class="nav-link">LinkedIn</a>
-            <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" class="nav-link">AngelList</a>
-            <NavLink to="login" id="navlink"> Sign In</NavLink> 
-            <NavLink to="signup" id="navlink"> Create an account</NavLink> 
+      <div id="nav">
+        <div id="left-links">
+          <img src={logo} alt="" id="logo" />
+          <a href="https://github.com/kliu33/Kcals" target="_blank" class="nav-link">GitHub</a>
+          <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" class="nav-link">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" class="nav-link">AngelList</a>
         </div>
+        <div id="right-links">
+          <NavLink to="login" className="nav-link"> Sign In</NavLink> 
+          <NavLink to="signup" className="nav-link"> Create an account</NavLink> 
+        </div>
+      </div>
+      <div id='top-splash'>
         <div className='under-nav'>
           <div className='top-text'>
             <h1 className='head-text'> Unlock your <span className='text-yellow'>productivity potential </span></h1>
@@ -77,6 +81,38 @@ function Splash() {
           </div>
         </div>
       </div>
+        <div className='howto-container'>
+          <h1 className='try'> Try out Kcals today</h1>
+          <div className='instructions'>
+            <div className='instruction-div'>
+              <span className='num'> 1 </span>
+              <h2 className='instruction-head'>
+                Sign Up
+              </h2>
+              <p>
+                <NavLink to="signup" id="navlink"> Create an account</NavLink>  Signing up for Kcals is free and easy.
+              </p>
+            </div>
+            <div className='instruction-div'>
+              <span className='num'> 2 </span>
+              <h2 className='instruction-head'>
+                Invite your coworkers
+              </h2>
+              <p>
+                Invite your coworkers to create their own Kcals account.
+              </p>
+            </div>
+            <div className='instruction-div'>
+              <span className='num'> 3 </span>
+              <h2 className='instruction-head'>
+                Start a channel
+              </h2>
+              <p>
+                Create a channel for your team and start chatting!
+              </p>
+            </div>
+          </div>
+        </div>
     </>
     );
   }

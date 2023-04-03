@@ -3,14 +3,15 @@ import Login from './components/Login/Login.js'
 import SignUp from './components/SignUp/signup.js'
 import Home from './components/Home/Home.js'
 import Splash from './components/Splash/Splash.js'
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 
 function App() {
   return (
     <Switch>
-      <Route path="/login" component={Login}/>
-      <Route path="/signup" component={SignUp}/>
-      <Route path="/channels/:channelId" component={Home}/>
+      <AuthRoute exact path="/login" component={Login}/>
+      <AuthRoute exact path="/signup" component={SignUp}/>
+      <ProtectedRoute path="/channels/:channelId" component={Home}/>
       <Route exact path="/" component={Splash}/>
     </Switch>
   );

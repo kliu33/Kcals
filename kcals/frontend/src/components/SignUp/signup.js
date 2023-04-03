@@ -1,5 +1,5 @@
 import SignupFormPage from "../SignupForm/SignupForm";
-import logo from '../../imgs/logo.jpg'
+import logo from '../../imgs/logo.png'
 import { NavLink } from 'react-router-dom';
 import './signup.css'
 
@@ -7,7 +7,9 @@ function SignUp() {
     return (
         <div id="block">
           <div id = "top">
-            <img src={logo} alt="" id="logo" />
+            <a href="/">
+              <img src={logo} alt="" id="logo" />
+            </a>
           </div>
           <h1 class='head'> Sign up for kcals</h1>
           <div class="suggest">
