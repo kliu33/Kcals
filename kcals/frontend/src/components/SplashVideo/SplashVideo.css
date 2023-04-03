@@ -1,14 +1,17 @@
 .video {
+    min-width: 400px;
     width: 40vw;
 }
 
 .video-left{
+    min-width: 400px;
     width: 30vw;
     border-top-right-radius: 210px;
     border-bottom-right-radius: 210px;
 }
 
 .video-right{
+    min-width: 400px;
     width: 30vw;
     border-top-left-radius: 210px;
     border-bottom-left-radius: 210px;

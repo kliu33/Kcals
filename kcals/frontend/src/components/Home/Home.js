@@ -17,6 +17,7 @@ function Home() {
     const dispatch = useDispatch();
     const {currentChannelId} = useParams();
     const channels = useSelector(state => Object.values(state.channels))
+    const currentChannel = channels.find(channel => channel.id === currentChannelId)
     useEffect(()=> {dispatch(fetchChannels())}, [dispatch])
     const sessionUser = useSelector(state => state.session.user);
     const [showChannels, setShowChannels] = useState(true)
