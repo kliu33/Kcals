@@ -1,0 +1,15 @@
+.video {
+    height: 400px;
+}
+
+.video-left{
+    height: 400px;
+    border-top-right-radius: 210px;
+    border-bottom-right-radius: 210px;
+}
+
+.video-right{
+    height: 400px;
+    border-top-left-radius: 210px;
+    border-bottom-left-radius: 210px;
+}
