@@ -48,19 +48,31 @@ function Splash() {
           <img id="logo" src={etsy}/>
         </div>
         <div className='info-container'>
-          <div className='info-div'>
+          <div className='info-div wrap'>
             <div className="info-vid">
                 <Vid1 />
             </div>
+            <div className='text-block'>
+              <h1 className='info-title'> Real-time communication and collaboration </h1>
+              <p>  Kcals provides users with a powerful platform for real-time communication and collaboration, enabling teams to work together more efficiently and effectively. With channels and direct messaging, users can stay connected and up-to-date on their projects and tasks, no matter where they are located.</p>
+            </div>
           </div>
-          <div className='info-div'>
+          <div className='info-div wrap'>
+          <div className='text-block'>
+              <h1 className='info-title'> Centralized organization and file sharing </h1>
+              <p>  By centralizing communication and file sharing in a single platform, Kcals makes it easier for teams to stay organized and productive. Users can easily find and access the files and messages they need, and can collaborate on documents and projects in real-time, reducing the need for email and other communication tools.</p>
+            </div>
             <div className="info-vid">
                 <Vid3 />
             </div>
           </div>
-          <div className='info-div'>
+          <div className='info-div wrap'>
             <div className="info-vid">
                 <Vid2 />
+            </div>
+            <div className='text-block'> 
+              <h1 className='info-title'> Customizable and scalable </h1>
+              <p> Kcals can be customized and adapted to meet the specific needs of any organization, with integrations and add-ons for a wide range of tools and services. Additionally, it can be scaled to accommodate teams of any size, making it a versatile and powerful communication and collaboration platform for organizations of all types and sizes.</p>
             </div>
           </div>
         </div>
