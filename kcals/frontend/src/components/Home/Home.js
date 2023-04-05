@@ -12,16 +12,21 @@ import HeaderModal from "../chatHeader/headerModal";
 import { Redirect, useParams } from 'react-router-dom';
 import Room from '../Room.js'
 import da from '../../imgs/down_arrow.png'
+import DMChannelItem from "../Channels/DMchannelItem";
 
 function Home() {
     const dispatch = useDispatch();
     const {currentChannelId} = useParams();
-    const channels = useSelector(state => Object.values(state.channels))
-    const currentChannel = channels.find(channel => channel.id === currentChannelId)
-    useEffect(()=> {dispatch(fetchChannels())}, [dispatch])
     const sessionUser = useSelector(state => state.session.user);
+    const channels = useSelector(state => Object.values(state.channels))
+    const dm_channels = sessionUser?.directMessageChannels
+    useEffect(()=> {
+        dispatch(fetchChannels())
+    }, [dispatch])
     const [showChannels, setShowChannels] = useState(true)
+    const [showDMChannels, setShowDMChannels] = useState(true)
     const channelIndexItems = showChannels ? channels.map((channel) => <ChannelItem key={channel.id} channel={channel}/>) : null
+    const DMchannelIndexItems = showDMChannels ? dm_channels.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel}/>) : null
     const [hidden, setHidden] = useState(true)
     const handleModal = (e) => {
         e.stopPropagation();
@@ -55,6 +60,11 @@ function Home() {
                             <span class="plus hidden" onClick={handleModal}> + </span>
                         </div>
                         {channelIndexItems}
+                        <div class="channel-hover" onClick={() => {setShowDMChannels(!showDMChannels)}}>
+                            <div class="channel-name channel-toggle"> <img class={showDMChannels ? "arrow" : "arrow rotate"} src={da}/>Direct Messages
+                            </div>
+                        </div>
+                        {DMchannelIndexItems}
                     </ul>
                 </div>
                 <Room class='room'/>    
