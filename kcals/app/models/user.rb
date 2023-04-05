@@ -18,7 +18,11 @@ class User < ApplicationRecord
       foreign_key: :user_id,
       class_name: :Message,
       dependent: :destroy
-
+  
+    def direct_message_channels
+      DirectMessageChannel.where("user1_id = ? OR user2_id = ?", id, id)
+    end
+    
     def generate_unique_session_token
       while true 
         token = SecureRandom.urlsafe_base64

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_170532) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_151611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,13 +23,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_170532) do
     t.index ["author_id"], name: "index_channels_on_author_id"
   end
 
+  create_table "direct_message_channels", force: :cascade do |t|
+    t.bigint "user1_id", null: false
+    t.bigint "user2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user1_id"], name: "index_direct_message_channels_on_user1_id"
+    t.index ["user2_id"], name: "index_direct_message_channels_on_user2_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "body", null: false
     t.bigint "user_id", null: false
-    t.bigint "channel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["channel_id"], name: "index_messages_on_channel_id"
+    t.bigint "channel_id"
+    t.bigint "direct_message_channel_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -45,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_170532) do
   end
 
   add_foreign_key "channels", "users", column: "author_id"
-  add_foreign_key "messages", "channels"
+  add_foreign_key "direct_message_channels", "users", column: "user1_id"
+  add_foreign_key "direct_message_channels", "users", column: "user2_id"
   add_foreign_key "messages", "users"
 end
