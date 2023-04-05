@@ -6,13 +6,25 @@ import cfa from '../../imgs/cfa.png'
 import bloomberg from '../../imgs/bloomberg.png'
 import etsy from '../../imgs/etsy.png'
 import apple from '../../imgs/apple.png'
-import { NavLink } from 'react-router-dom/cjs/react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom/cjs/react-router-dom';
 import SplashVideo from '../SplashVideo/SplashVideo';
 import Vid1 from '../Videos/Vid1'
 import Vid2 from '../Videos/Vid2'
 import Vid3 from '../Videos/Vid3'
+import { useDispatch, useSelector } from 'react-redux';
+import * as sessionActions from '../../store/session';
 
 function Splash() {
+
+  const dispatch = useDispatch()
+  const sessionUser = useSelector(state => state.session.user);
+  if (sessionUser) return <Redirect to="/channels/1" />;
+
+  const handleDemo = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.login({email: "demo@user.io", password: "password"}))
+  }
+
     return (
     <>
       <div id="nav">
@@ -25,6 +37,7 @@ function Splash() {
         <div id="right-links">
           <NavLink to="login" className="nav-link"> Sign In</NavLink> 
           <NavLink to="signup" className="nav-link"> Create an account</NavLink> 
+          <button onClick={handleDemo} className='demo-button'> Try a demo </button>
         </div>
       </div>
       <div id='top-splash'>
