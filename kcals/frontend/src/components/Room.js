@@ -56,8 +56,8 @@ function Room() {
       { channel: 'RoomsChannel', id: channelId },
       {
         received: ({ message, user }) => {
-          dispatch(receiveMessage(message));
           dispatch(receiveUser(user));
+          dispatch(receiveMessage(message));
         }
       }
     );

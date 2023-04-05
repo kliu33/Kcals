@@ -53,6 +53,7 @@ function LoginFormPage() {
           value={email}
           placeholder="name@work-email.com"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           class="input"
@@ -60,6 +61,7 @@ function LoginFormPage() {
           value={password}
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       <button type="submit" id="submit">Sign In With Email</button>
     </form>

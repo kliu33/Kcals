@@ -43,6 +43,7 @@ function SignupFormPage() {
           value={email}
           placeholder="name@work-email.com"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           class="input"
@@ -50,6 +51,7 @@ function SignupFormPage() {
           value={first_name}
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
+          required
         />
         <input
           class="input"
@@ -57,6 +59,7 @@ function SignupFormPage() {
           value={last_name}
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
+          required
         />
         <input
           class="input"
@@ -64,6 +67,7 @@ function SignupFormPage() {
           value={password}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       <button type="submit" id="submit">Sign Up</button>
     </form>

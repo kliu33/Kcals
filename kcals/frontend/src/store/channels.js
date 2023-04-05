@@ -1,4 +1,3 @@
-import { receiveMessages } from './messages';
 import { receiveUsers } from './users';
 import { csrfAPIFetch } from './csrf';
 
