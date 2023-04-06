@@ -13,7 +13,6 @@ import { Redirect, useParams } from 'react-router-dom';
 import Room from '../Room.js'
 import da from '../../imgs/down_arrow.png'
 import DMChannelItem from "../Channels/DMchannelItem";
-import { fetchDMChannels } from "../../store/dm_channels";
 
 function Home() {
     const dispatch = useDispatch();

@@ -12,6 +12,7 @@ function App() {
       <AuthRoute exact path="/login" component={Login}/>
       <AuthRoute exact path="/signup" component={SignUp}/>
       <ProtectedRoute path="/channels/:channelId" component={Home}/>
+      <ProtectedRoute path="/dm_channels/:dm_channelId" component={Home}/>
       <Route exact path="/" component={Splash}/>
     </Switch>
   );
