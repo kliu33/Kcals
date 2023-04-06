@@ -1,1 +1,1 @@
-json.extract! user, :id, :email, :first_name, :last_name, :direct_message_channels
+json.extract! user, :id, :email, :first_name, :last_name

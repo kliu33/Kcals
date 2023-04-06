@@ -13,6 +13,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import Room from '../Room.js'
 import da from '../../imgs/down_arrow.png'
 import DMChannelItem from "../Channels/DMchannelItem";
+import { fetchDMChannels } from "../../store/dm_channels";
 
 function Home() {
     const dispatch = useDispatch();
@@ -25,8 +26,8 @@ function Home() {
     }, [dispatch])
     const [showChannels, setShowChannels] = useState(true)
     const [showDMChannels, setShowDMChannels] = useState(true)
-    const channelIndexItems = showChannels ? channels.map((channel) => <ChannelItem key={channel.id} channel={channel}/>) : null
-    const DMchannelIndexItems = showDMChannels ? dm_channels.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel}/>) : null
+    const channelIndexItems = showChannels ? channels?.map((channel) => <ChannelItem key={channel.id} channel={channel}/>) : null
+    const DMchannelIndexItems = showDMChannels ? dm_channels?.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel}/>) : null
     const [hidden, setHidden] = useState(true)
     const handleModal = (e) => {
         e.stopPropagation();

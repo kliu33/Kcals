@@ -30,6 +30,7 @@ const userReducer = ( state = {}, action ) => {
             const { payload } = action
             return {...state, ...payload.users}
         case RECEIVE_USER:
+            debugger
             nextState[action.payload.id] = action.payload;
             return nextState;
         case RECEIVE_USERS:

@@ -23,9 +23,11 @@ export const fetchDMChannel = (DM_channelId) => async dispatch => {
 }
 
 export const fetchDMChannels = () => async dispatch => {
-    return csrfAPIFetch('dm_channels').then(({ dm_channels }) => {
-      dispatch(receiveDMChannels(dm_channels));
-    });
+  const response = await fetch(`/api/dm_channels`)
+  if (response.ok) {
+      const data = await response.json();
+      dispatch(receiveDMChannels(data))
+  }
 }
 
 
