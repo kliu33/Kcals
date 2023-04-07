@@ -51,8 +51,10 @@ function DMRoom() {
       { channel: 'DmChannel', id: id },
       {
         received: ({ message, user }) => {
+          message['direct_message_channel_id'] = message.directMessageChannelId
           dispatch(receiveUser(user));
           dispatch(receiveDMMessage(message));
+          scrollToBottom();
         }
       }
     );
@@ -88,7 +90,6 @@ function DMRoom() {
   const handleSubmit = e => {
     e.preventDefault();
     createMessage({ body, direct_message_channel_id: id, userId: currentUserId }).then(() => {
-      dispatch(receiveDMMessage({ body, direct_message_channel_id: id, userId: currentUserId }))
       setBody('');
       scrollToBottom();
     });

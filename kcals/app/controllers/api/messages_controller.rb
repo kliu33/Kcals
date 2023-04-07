@@ -3,11 +3,17 @@ class Api::MessagesController < ApplicationController
   
     def create
       @message = Message.new(message_params)
-      debugger
       if @message.save
-        RoomsChannel.broadcast_to @message.channel,
-          from_template('api/messages/show', message: @message)
-        render :show, locals: { message: @message }
+        if @message.channel_id
+          RoomsChannel.broadcast_to @message.channel,
+            from_template('api/messages/show', message: @message)
+          render :show, locals: { message: @message }
+        end
+        if @message.direct_message_channel_id
+          DmChannel.broadcast_to @message.direct_message_channel,
+            from_template('api/messages/show', message: @message)
+          render :show, locals: { message: @message }
+        end
       else
         render json: @message.errors.full_messages, status: 422
       end
@@ -15,10 +21,15 @@ class Api::MessagesController < ApplicationController
   
     def destroy
       @message = Message.find(params[:id])
-      RoomsChannel.broadcast_to @message.channel,
-        type: 'DESTROY_MESSAGE',
-        id: @message.id
-    
+      if @message.channel_id 
+        RoomsChannel.broadcast_to @message.channel,
+          type: 'DESTROY_MESSAGE',
+          id: @message.id
+      elsif
+        DmChannel.broadcast_to @message.direct_message_channel,
+          type: 'DESTROY_MESSAGE',
+          id: @message.id
+      end
       @message.destroy
       
       render json: nil, status: :ok
