@@ -43,6 +43,7 @@ function DMRoom() {
   useEffect(() => {
     dispatch(getDMMessages(parseInt(id)))
     dispatch(fetchUsers())
+    scrollToBottom();
   }, []);
   
   useEffect(() => {
@@ -77,6 +78,7 @@ function DMRoom() {
     messageUlRef.current.scrollTop = messageUlRef.current.scrollHeight;
     
   };
+  
 
   // const setReaction = (id, reaction) => {
   //   setUsersInRoom(prevUsersInRoom => ({ ...prevUsersInRoom, [id]: { ...prevUsersInRoom[id], reaction } }));
@@ -87,6 +89,7 @@ function DMRoom() {
     createMessage({ body, direct_message_channel_id: id, userId: currentUserId }).then(() => {
       dispatch(receiveDMMessage({ body, direct_message_channel_id: id, userId: currentUserId }))
       setBody('');
+      scrollToBottom();
     });
   };
 
