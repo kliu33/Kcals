@@ -44,7 +44,7 @@ function DMRoom() {
     dispatch(getDMMessages(parseInt(id)))
     dispatch(fetchUsers())
     scrollToBottom();
-  }, []);
+  }, [id, dispatch]);
   
   useEffect(() => {
     const subscription = consumer.subscriptions.create(

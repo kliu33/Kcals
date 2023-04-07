@@ -82,6 +82,10 @@ export const signup = (user) => async (dispatch) => {
       message
     }
   }
+
+// export const receiveDMMessages = dmChannelId => {
+
+// }
   
 
 const initialState = { 
