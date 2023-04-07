@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import './Message.css'
 
 const Message = ({ body, userId, createdAt }) => {
-  debugger
     const formattedTime = getFormattedTime(createdAt);
     const users = useSelector(state => state.users)
     return Object.values(users).length > 1 ? (
