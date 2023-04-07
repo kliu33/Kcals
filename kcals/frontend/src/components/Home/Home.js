@@ -14,7 +14,7 @@ import Room from '../Room.js'
 import DMRoom from "../DMRoom";
 import da from '../../imgs/down_arrow.png'
 import DMChannelItem from "../Channels/DMchannelItem";
-import { fetchUsers } from "../../store/users";
+import { fetchUsers, receiveUser } from "../../store/users";
 
 function Home() {
     const dispatch = useDispatch();
@@ -27,6 +27,7 @@ function Home() {
     useEffect(()=> {
         dispatch(fetchChannels())
         dispatch(fetchUsers())
+        dispatch(receiveUser(sessionUser))
     }, [dispatch])
     const [showChannels, setShowChannels] = useState(true)
     const [showDMChannels, setShowDMChannels] = useState(true)

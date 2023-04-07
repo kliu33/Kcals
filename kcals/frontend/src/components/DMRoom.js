@@ -6,7 +6,7 @@ import { receiveDMMessage } from '../store/session.js';
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
-import { fetchUsers } from '../store/users.js';
+import { receiveUser, fetchUsers } from '../store/users.js';
 
 function DMRoom() {
   const dispatch = useDispatch();
@@ -50,7 +50,8 @@ function DMRoom() {
     const subscription = consumer.subscriptions.create(
       { channel: 'DmChannel', id: id },
       {
-        received: ({ message }) => {
+        received: ({ message, user }) => {
+          dispatch(receiveUser(user));
           dispatch(receiveDMMessage(message));
         }
       }

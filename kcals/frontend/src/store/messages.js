@@ -69,7 +69,6 @@ export const messagesReducer = (state = {}, action) => {
       const { payload } = action
       return { ...state, ...payload.messages}
     case RECEIVE_MESSAGE:
-      debugger
       const { message } = action;
       return { ...state, [message.id]: message };
     case RECEIVE_MESSAGES:
