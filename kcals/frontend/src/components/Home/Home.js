@@ -11,17 +11,22 @@ import ChatHeader from '../chatHeader/chatHeader.js';
 import HeaderModal from "../chatHeader/headerModal";
 import { Redirect, useParams } from 'react-router-dom';
 import Room from '../Room.js'
+import DMRoom from "../DMRoom";
 import da from '../../imgs/down_arrow.png'
 import DMChannelItem from "../Channels/DMchannelItem";
+import { fetchUsers } from "../../store/users";
 
 function Home() {
     const dispatch = useDispatch();
-    const {currentChannelId} = useParams();
+    const { id } = useParams();
+    const routeName = window.location.pathname.split('/')[1];
+    const displayRoom = routeName === 'channels' ? <Room class='room'/> : <DMRoom class='room'/>
     const sessionUser = useSelector(state => state.session.user);
     const channels = useSelector(state => Object.values(state.channels))
-    const dm_channels = sessionUser?.directMessageChannels
+    const dm_channels = Object.values(sessionUser?.directMessageChannels)
     useEffect(()=> {
         dispatch(fetchChannels())
+        dispatch(fetchUsers())
     }, [dispatch])
     const [showChannels, setShowChannels] = useState(true)
     const [showDMChannels, setShowDMChannels] = useState(true)
@@ -67,7 +72,7 @@ function Home() {
                         {DMchannelIndexItems}
                     </ul>
                 </div>
-                <Room class='room'/>    
+                {displayRoom}  
                 {form}
                 {userInfo}
         </main>

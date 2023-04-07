@@ -1,29 +1,29 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessage } from '../store/messages.js';
-import { fetchChannel } from '../store/channels.js';
-import { receiveUser } from '../store/users';
+import { removeMessage, getDMMessages, createMessage, destroyMessage } from '../store/messages.js';
+import { receiveDMMessage } from '../store/session.js';
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
-import UsersInRoom from './usersInRoom.js';
+import { fetchUsers } from '../store/users.js';
 
-function Room() {
+function DMRoom() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [body, setBody] = useState('');
   const { id } = useParams();
-  const messages = useSelector(getMessages(id));
+  const sessionUser = useSelector(state => state.session.user);
+  const messages = useSelector(getDMMessages(parseInt(id)));
   const currentUserId = useSelector(state => state.session.user.id)
-  const channel = useSelector(state => state.channels[id]);
+  const dm_channel = useSelector(state => state.session.user.directMessageChannels[id]);
+  const recipient = dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1
   const users = useSelector(state => state.users)
   const activeMessageRef = useRef(null);
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
   const numMessages = useRef(0);
   const activeMessageId = parseInt(history.location.hash.slice(1));
-
   // Scroll to message selected from mentions menu
   useEffect (() => {
     if (activeMessageRef.current) scrollToMessage();
@@ -41,23 +41,16 @@ function Room() {
 
   // Effect to run when entering a room
   useEffect(() => {
-    dispatch(fetchChannel(id)).then(() => {
-      if (activeMessageRef.current) {
-        scrollToMessage();
-      } else {
-        scrollToBottom();
-      }
-      prevRoom.current = id;
-    });
-  }, [id, dispatch]);
-
+    dispatch(getDMMessages(parseInt(id)))
+    dispatch(fetchUsers())
+  }, []);
+  
   useEffect(() => {
     const subscription = consumer.subscriptions.create(
-      { channel: 'RoomsChannel', id: id },
+      { channel: 'DmChannel', id: id },
       {
-        received: ({ message, user }) => {
-          dispatch(receiveUser(user));
-          dispatch(receiveMessage(message));
+        received: ({ message }) => {
+          dispatch(receiveDMMessage(message));
         }
       }
     );
@@ -72,7 +65,7 @@ function Room() {
       setusersHidden(!users_hidden)
   }
   
-  const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
+//   const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
 
 
   const scrollToMessage = () => {
@@ -91,7 +84,8 @@ function Room() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createMessage({ body, channel_id: id, userId: currentUserId }).then(() => {
+    createMessage({ body, direct_message_channel_id: id, userId: currentUserId }).then(() => {
+      dispatch(receiveDMMessage({ body, direct_message_channel_id: id, userId: currentUserId }))
       setBody('');
     });
   };
@@ -118,15 +112,15 @@ function Room() {
     <div class="room-home-div">
       <section className='room-home-section'>
         <div id='border-under'> 
-          <h1> #{channel?.name} </h1> 
+          <h1> {recipient.firstName} {recipient.lastName} </h1> 
           <div>
             <span class='right-div' onClick={handleUsersModal}> {Object.values(users).length} </span> 
           </div>
-          {channel?.description}
+          {/* {channel?.description} */}
         </div>
         <ul ref={messageUlRef} className="messages-box">
-          <li class='start'> <p class='p1'>This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
-          <p class='p2'> This channel is for everything # {channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
+          <li class='start'> <p class='p1'>This is the very beginning of the <span className='blue'># {recipient.firstName} </span> channel </p>
+          <p class='p2'> This channel is for everything # {recipient.firstName}. Hold meetings, share docs, and make decisions together with your team.</p>
           </li>
           {messages.map(message => (
             <li
@@ -151,7 +145,7 @@ function Room() {
           <textarea id='send-chat'
             rows={body.split('\n').length}
             onChange={e => setBody(e.target.value)}
-            placeholder={`Message #${channel?.name}`}
+            placeholder={`Message #${recipient.firstName}`}
             onKeyDown={e => {
               if (e.code === 'Enter' && !e.shiftKey) {
                 handleSubmit(e);
@@ -161,10 +155,10 @@ function Room() {
           />
         </form>
       </section>
-      {usersModal}
+      {/* {usersModal} */}
       
     </div>
   );
 }
 
-export default Room;
+export default DMRoom;

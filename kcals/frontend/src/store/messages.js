@@ -18,7 +18,6 @@ export const receiveMessages = messages => {
     messages
   };
 };
-
 export const removeMessage = messageId => {
   return {
     type: REMOVE_MESSAGE,
@@ -38,6 +37,18 @@ export const getMessages = channelId => state => {
                ));
 };
 
+export const getDMMessages = dmChannelId => state => {
+  return state.session ? Object.values(state.session.user.directMessageChannels[dmChannelId].messages)
+               .map(message => ({
+                 ...message,
+                 user: state.users[message.userId]?.first_name
+               }))
+               .sort(({ createdAt: timeA }, { createdAt: timeB }) => Math.sign(
+                 new Date(timeA).getTime() - new Date(timeB).getTime()
+               )) : []
+
+}
+
 export const createMessage = message => (
   csrfAPIFetch('messages', {
     method: 'POST',
@@ -52,17 +63,18 @@ export const destroyMessage = id => (
 );
 
 export const messagesReducer = (state = {}, action) => {
+  const newState = {...state}
   switch (action.type) {
     case RECEIVE_CHANNEL:
       const { payload } = action
       return { ...state, ...payload.messages}
     case RECEIVE_MESSAGE:
+      debugger
       const { message } = action;
       return { ...state, [message.id]: message };
     case RECEIVE_MESSAGES:
       return { ...state, ...action.messages };
     case REMOVE_MESSAGE:
-      const newState = { ...state };
       delete newState[action.messageId];
       return newState;
     default:

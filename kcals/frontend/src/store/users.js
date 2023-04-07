@@ -1,9 +1,11 @@
 import { RECEIVE_CHANNEL } from "./channels";
+import { csrfAPIFetch } from "./csrf";
 
 
 const RECEIVE_USER = 'users/RECEIVE_USER';
 const REMOVE_USER = 'users/REMOVE_USER';
 const RECEIVE_USERS = 'RECEIVE_USERS';
+
 // ACTION CREATORS
 export const receiveUser = user => ({
     type: RECEIVE_USER,
@@ -15,12 +17,19 @@ export const removeUser = userId => ({
 });
 
 
+
 export const receiveUsers = users => {
     return {
       type: RECEIVE_USERS,
       users
     };
   };
+
+export const fetchUsers = () => async dispatch => {
+    return csrfAPIFetch('users').then(({ users }) => {
+      dispatch(receiveUsers(users));
+    });
+}
   
 // REDUCER
 const userReducer = ( state = {}, action ) => {
@@ -30,7 +39,6 @@ const userReducer = ( state = {}, action ) => {
             const { payload } = action
             return {...state, ...payload.users}
         case RECEIVE_USER:
-            debugger
             nextState[action.payload.id] = action.payload;
             return nextState;
         case RECEIVE_USERS:

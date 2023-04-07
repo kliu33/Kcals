@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf'
 
 const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
+const RECEIVE_DM_MESSAGE = 'RECEIVE_DM_MESSAGE';
 
 
 const storeCSRFToken = response => {
@@ -74,6 +75,15 @@ export const signup = (user) => async (dispatch) => {
     return response;
   };
 
+
+  export const receiveDMMessage = message => {
+    return {
+      type: RECEIVE_DM_MESSAGE,
+      message
+    }
+  }
+  
+
 const initialState = { 
   user: JSON.parse(sessionStorage.getItem("currentUser"))
 };
@@ -84,8 +94,11 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.payload };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
+    case RECEIVE_DM_MESSAGE:
+      state.user.directMessageChannels[parseInt(action.message.direct_message_channel_id)].messages.push(action.message)
+      return { ...state}
     default:
-      return state;
+      return {...state};
   }
 };
 
