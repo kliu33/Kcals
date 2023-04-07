@@ -3,7 +3,7 @@ class Api::MessagesController < ApplicationController
   
     def create
       @message = Message.new(message_params)
-    
+      debugger
       if @message.save
         RoomsChannel.broadcast_to @message.channel,
           from_template('api/messages/show', message: @message)
