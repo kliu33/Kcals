@@ -124,8 +124,8 @@ function DMRoom() {
           {/* {channel?.description} */}
         </div>
         <ul ref={messageUlRef} className="messages-box">
-          <li class='start'> <p class='p1'>This is the very beginning of the <span className='blue'># {recipient.firstName} </span> channel </p>
-          <p class='p2'> This channel is for everything # {recipient.firstName}. Hold meetings, share docs, and make decisions together with your team.</p>
+          <li class='start'> <p class='p1'>This conversation is just between <span className='blue'>@{recipient.firstName} {recipient.lastName} </span> and you </p>
+          <p class='p2'>Check out their profile to learn more about them.</p>
           </li>
           {messages.map(message => (
             <li
