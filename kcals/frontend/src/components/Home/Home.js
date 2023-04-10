@@ -23,7 +23,7 @@ function Home() {
     const displayRoom = routeName === 'channels' ? <Room class='room'/> : <DMRoom class='room'/>
     const sessionUser = useSelector(state => state.session.user);
     const channels = useSelector(state => Object.values(state.channels))
-    const dm_channels = Object.values(sessionUser?.directMessageChannels)
+    const dm_channels = Object.values(sessionUser?.directMessageChannels) || []
     useEffect(()=> {
         dispatch(fetchChannels())
         dispatch(fetchUsers())
