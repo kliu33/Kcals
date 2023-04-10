@@ -50,11 +50,21 @@ function DMRoom() {
     const subscription = consumer.subscriptions.create(
       { channel: 'DmChannel', id: id },
       {
-        received: ({ message, user }) => {
-          message['direct_message_channel_id'] = message.directMessageChannelId
-          dispatch(receiveUser(user));
-          dispatch(receiveDMMessage(message));
-          scrollToBottom();
+        received: ({ type, payload, id }) => {
+          switch (type) {
+            case 'RECEIVE_DM_MESSAGE':
+              payload.message['direct_message_channel_id'] = payload.message.directMessageChannelId
+              dispatch(receiveUser(payload.user));
+              dispatch(receiveDMMessage(payload.message));
+              scrollToBottom();
+              break;
+            case 'DESTROY_MESSAGE':
+              dispatch(removeMessage(id));
+              break;
+            default:
+              console.log('Unhandled broadcast: ', type);
+              break;
+          }
         }
       }
     );
@@ -96,9 +106,7 @@ function DMRoom() {
   };
 
   const handleDelete = messageId => {
-    destroyMessage(messageId).then(() => {
-      dispatch(removeMessage(messageId));
-    });
+    destroyMessage(messageId);
   };
 
   // const generateReactions = (...reactions) => {

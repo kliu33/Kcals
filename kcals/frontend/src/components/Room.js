@@ -55,9 +55,20 @@ function Room() {
     const subscription = consumer.subscriptions.create(
       { channel: 'RoomsChannel', id: id },
       {
-        received: ({ message, user }) => {
-          dispatch(receiveUser(user));
-          dispatch(receiveMessage(message));
+        received: ({ type, payload, id }) => {
+          switch (type) {
+            case 'RECEIVE_MESSAGE':
+              dispatch(receiveMessage(payload.message));
+              dispatch(receiveUser(payload.user));
+              scrollToBottom();
+              break;
+            case 'DESTROY_MESSAGE':
+              dispatch(removeMessage(id));
+              break;
+            default:
+              console.log('Unhandled broadcast: ', type);
+              break;
+          }
         }
       }
     );
@@ -97,9 +108,7 @@ function Room() {
   };
 
   const handleDelete = messageId => {
-    destroyMessage(messageId).then(() => {
-      dispatch(removeMessage(messageId));
-    });
+    destroyMessage(messageId)
   };
 
   // const generateReactions = (...reactions) => {

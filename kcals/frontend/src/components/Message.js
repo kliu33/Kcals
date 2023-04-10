@@ -20,17 +20,6 @@ const Message = ({ body, userId, createdAt }) => {
     ) : <></>
   };
   
-//   function getFormattedBody(body, usernames) {
-//     return usernames.length
-//       ? body
-//         .split(new RegExp(`(${usernames.join('|')})`))
-//         .map((text, idx) => idx % 2 === 0
-//           ? text
-//           : <strong key={text}>{text}</strong>
-//         )
-//       : body;
-//   }
-  
   function getFormattedTime(dateString) {
     const date = new Date(dateString);
   
