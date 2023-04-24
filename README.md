@@ -13,12 +13,12 @@
 
 ## With Kcals, users can:
 
-  -Create new text channels with a custom name and description
+ - ### Create new text channels with a custom name and description
   
   ![image](https://user-images.githubusercontent.com/30753677/233995448-31456909-e16d-47c1-be7e-4ad0a747bb26.png)
   
    
-  Once the user requests to either make or update a text channel, a modal pops up that prompts the user to input a server name and an optional description. The form will be prefilled with the channels information if it is an update request. That information is the passed to the modal componenent as a prop and the component will dynamically return the form.
+  Once the user requests to either make or update a text channel, a modal pops up that prompts the user to input a server name and an optional description. The form will be prefilled with the channel's information if it is an update request. That information is then passed to the modal component as a prop, and the component will dynamically return the form.
   
   ```
   <form onSubmit={handleSubmit} id = "channel-form">
@@ -57,11 +57,11 @@
       <button type="submit" id="create">{props.channel ? "Update" : "Create"}</button>
   ```
   
-  -Send and receive messages in real time
+ - ### Send and receive messages in real time
   
   ![image](https://user-images.githubusercontent.com/30753677/234086962-4fbf72fe-fcae-4af7-9646-8ee9d5fbd0dd.png)
   
-  Using action cable, users are able to send and receive messages to everyone in the text channel in real time. Users are also able to delete and edit their message (something slack requires you to pay for) in real time.
+  Using ActionCable, users are able to send and receive messages to everyone in the text channel in real-time. Users are also able to delete and edit their messages in real-time, something that Slack requires you to pay for.
   
   ```
   useEffect(() => {
@@ -90,5 +90,9 @@
   }, [id, dispatch]);
   ```
   
-  Action cable allows users to subscribe to a channel, this is what allows for real-time messaging. As users create, edit, or delete messages the action will then be broadcasted to everyone currently subscribed to that channel which will dispatch the appropriate action on the receivers end.
+  Action Cable allows users to subscribe to a channel. This is what enables real-time messaging. As users create, edit, or delete messages, the action will then be broadcasted to everyone currently subscribed to that channel, which then dispatches the appropriate action on the receiver's end.
+
+- ### Display members of a channel
+
+![image](https://user-images.githubusercontent.com/30753677/234089793-574bd31d-eb01-4602-97c4-e0b8251e4c26.png)
 
