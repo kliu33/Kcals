@@ -23,7 +23,6 @@ class Api::SessionsController < ApplicationController
       def destroy
         if current_user
           logout!
-          render json: {message: 'success'}
         end
       end
 end
