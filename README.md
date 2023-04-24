@@ -18,7 +18,7 @@
   ![image](https://user-images.githubusercontent.com/30753677/233995448-31456909-e16d-47c1-be7e-4ad0a747bb26.png)
   
    
-  Once the user requests to either make or update a text channel, a modal pops up that prompts the user to input a server name and an optional description. The form will be prefilled with the channels information if it is an update request.
+  Once the user requests to either make or update a text channel, a modal pops up that prompts the user to input a server name and an optional description. The form will be prefilled with the channels information if it is an update request. That information is the passed to the modal componenent as a prop and the component will return the form accordingly.
   
   ```
   <form onSubmit={handleSubmit} id = "channel-form">
