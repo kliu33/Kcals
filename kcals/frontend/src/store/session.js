@@ -41,12 +41,12 @@ export const login = ({ email, password }) => async dispatch => {
 };
 
 export const logout = () => async dispatch => {
-    const response = await csrfAPIFetch("session", {
-        method: "DELETE",
-    })
     storeCurrentUser(null)
     dispatch(removeCurrentUser)
-    return response
+    const response = await csrfFetch("/api/session", {
+        method: "DELETE",
+    })
+    return response;
 }
 
 export const restoreSession = () => async dispatch => {

@@ -84,7 +84,25 @@ function Room() {
   }
   
   const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
-
+  // const all_messages = messages.map(message => console.log(message))
+  const all_messages = messages.map(message => (
+    <li
+      key={message.id}
+      ref={activeMessageId === message.id ? activeMessageRef : null}
+      tabIndex={-1}
+      className='message-x'
+    > 
+      <Message {...message} class='message'/>
+      {message.userId === currentUserId && (
+        <button
+          className='btn-delete'
+          onClick={() => handleDelete(message.id)}
+        >
+          x
+        </button>
+      )}
+    </li>
+  ))
 
   const scrollToMessage = () => {
     activeMessageRef.current.focus();
@@ -137,24 +155,7 @@ function Room() {
           <li class='start'> <p class='p1'>This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
           <p class='p2'> This channel is for everything # {channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
           </li>
-          {messages.map(message => (
-            <li
-              key={message.id}
-              ref={activeMessageId === message.id ? activeMessageRef : null}
-              tabIndex={-1}
-              className='message-x'
-            >
-              <Message {...message} class='message'/>
-              {message.userId === currentUserId && (
-                <button
-                  className='btn-delete'
-                  onClick={() => handleDelete(message.id)}
-                >
-                  x
-                </button>
-              )}
-            </li>
-          ))}
+          {all_messages}
         </ul>
         <form onSubmit={handleSubmit}>
           <textarea id='send-chat'

@@ -53,7 +53,6 @@ function Home() {
 
     const form = hidden ? null : <ChannelFormPage setHidden={setHidden}/>
     
-    if (!sessionUser) return <Redirect to="/login" />;
     return (
         <main id='main'>
                 <ChatHeader handleUserModal={handleUserModal}/>
