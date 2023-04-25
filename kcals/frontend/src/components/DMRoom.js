@@ -126,9 +126,6 @@ function DMRoom() {
       <section className='room-home-section'>
         <div id='border-under'> 
           <h1> {recipient.firstName} {recipient.lastName} </h1> 
-          <div>
-            <span class='right-div' onClick={handleUsersModal}> {Object.values(users).length} </span> 
-          </div>
           {/* {channel?.description} */}
         </div>
         <ul ref={messageUlRef} className="messages-box">

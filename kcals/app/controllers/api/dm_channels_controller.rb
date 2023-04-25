@@ -1,4 +1,4 @@
-class Api::DirectMessageChannelsController < ApplicationController
+class Api::DmChannelsController < ApplicationController
     before_action :require_logged_in, except: [:index]
   
     def index
@@ -16,8 +16,8 @@ class Api::DirectMessageChannelsController < ApplicationController
   
       if @dm_channel.save
         render :show
-      else
-        render json: @channel.errors.full_messages, status: 422
+      else 
+        render json: @dm_channel.errors.full_messages, status: 422
       end
     end
   
