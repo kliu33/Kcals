@@ -2,6 +2,7 @@
     float: left;
     clear: none;
     background-color: white;
+    display: flex;
 }
 
 .messages-box {
@@ -14,6 +15,7 @@
 
 .room-home-section {
     display: block;
+    width: 100%;
 }
 
 #border-under {
@@ -43,12 +45,9 @@
 }
 
 #send-chat {
-    width: 80%;
+    width: 90%;
     border-radius: 5px;
     height: 50px;
-    bottom: 500px;
-    position: fixed;
-    bottom: 0;
     margin: 20px;
     text-indent: 10px;
     padding-top: 10px;
