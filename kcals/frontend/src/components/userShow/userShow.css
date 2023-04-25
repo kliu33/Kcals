@@ -1,0 +1,63 @@
+.userInfo {
+    height: 100%;
+    width: 500px;
+    border-left: 1px rgb(202, 202, 202) solid;
+}
+
+.show-head{
+    border-bottom: 1px rgb(202, 202, 202) solid;
+    text-align:left;
+    padding: 15px;
+    font-weight: bold;
+}
+
+#pfp6 {
+    width: 80%;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 1px black solid;
+}
+
+.close-user-modal{
+    float: right;
+    font-size: 20px;
+    font-weight: 200;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 5px;
+}
+
+.close-user-modal:hover{
+    background-color:rgba(230, 230, 230, 0.596);
+}
+
+#show-name {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#message-button {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-weight: bold;
+    border: solid rgba(126, 126, 126, 0.705) 1px;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    cursor: pointer;
+}
+
+#message-button:hover{
+    background-color:rgba(230, 230, 230, 0.596);
+}
+
+#msg-img{
+    width: 30px;
+}

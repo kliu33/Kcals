@@ -1,5 +1,10 @@
 .message__author{
     font-weight: 900;
+    cursor: pointer;
+}
+
+.message__author:hover{
+    text-decoration: underline;
 }
 
 .message__timestamp{
