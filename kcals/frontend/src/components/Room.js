@@ -10,7 +10,6 @@ import './Room.css'
 import UsersInRoom from './usersInRoom.js';
 import UserShowModal from './userShow/userShow.js';
 import react from '../imgs/react.png';
-
 import options from '../imgs/options.png'
 
 function Room() {

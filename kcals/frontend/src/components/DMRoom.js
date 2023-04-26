@@ -7,6 +7,9 @@ import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
 import { receiveUser, fetchUsers } from '../store/users.js';
+import react from '../imgs/react.png';
+import options from '../imgs/options.png'
+
 
 function DMRoom() {
   const dispatch = useDispatch();
@@ -133,14 +136,17 @@ function DMRoom() {
               className='message-x'
             >
               <Message {...message} className='message'/>
-              {message.userId === currentUserId && (
-                <button
-                  className='btn-delete'
-                  onClick={() => handleDelete(message.id)}
-                >
-                  x
-                </button>
-              )}
+      <div className='options'>
+        <img id="react" src={react}/>
+        <img id="more-options" src={options}/>
+        
+      {/* {message.userId === currentUserId && (
+        <button
+          onClick={() => handleDelete(message.id)}>
+          x
+        </button>
+      )} */}
+      </div>
             </li>
           ))}
         </ul>
