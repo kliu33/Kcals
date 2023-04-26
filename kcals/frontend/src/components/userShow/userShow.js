@@ -1,11 +1,14 @@
 import './userShow.css'
 import {useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import msg from '../../imgs/message.png'
 import { createDMChannel } from '../../store/dm_channels';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 function UserShowModal(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    const[redirectTo, setRedirectTo] = useState(null)
 
     const handleUserShow = (e) => {
         e.preventDefault();
@@ -14,12 +17,25 @@ function UserShowModal(props) {
 
     const handleDm = (e) => {
         e.preventDefault();
-        let new_dm = {
-            user1_id: sessionUser.id,
-            user2_id: props.showUser.id
+        let find_dm = Object.values(sessionUser.directMessageChannels).find(channel => channel.user1.id === sessionUser.id 
+            && channel.user2.id === props.showUser.id);
+        let find_dm2 = Object.values(sessionUser.directMessageChannels).find(channel => channel.user2.id === sessionUser.id 
+            && channel.user1.id === props.showUser.id);
+        if (find_dm) {
+            setRedirectTo(find_dm.id)
+        } else if (find_dm2){
+            setRedirectTo(find_dm2.id)
+        } else {
+            let new_dm = {
+                user1_id: sessionUser.id,
+                user2_id: props.showUser.id
+            }
+            dispatch(createDMChannel(new_dm))
         }
-        dispatch(createDMChannel(new_dm))
     }
+
+    if (redirectTo) return <Redirect to={`/dm_channels/${redirectTo}`}/>
+
     return (
         <div className='userInfo'>
             <h2 className='show-head'> Profile 
