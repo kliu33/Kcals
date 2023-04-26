@@ -18,7 +18,6 @@ function DMRoom() {
   const currentUserId = useSelector(state => state.session.user.id)
   const dm_channel = useSelector(state => state.session.user.directMessageChannels[id]);
   const recipient = dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1
-  const users = useSelector(state => state.users)
   const activeMessageRef = useRef(null);
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
@@ -72,8 +71,7 @@ function DMRoom() {
     return () => subscription?.unsubscribe();
   }, [id, dispatch]);
 
-  
-  const [users_hidden, setusersHidden] = useState(true)
+
 //   const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
 
 

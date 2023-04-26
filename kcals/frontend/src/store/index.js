@@ -4,7 +4,6 @@ import session from './session';
 import channels from './channels';
 import { messagesReducer } from "./messages";
 import users from './users'
-import dm_channels from "./dm_channels";
 
 const rootReducer = combineReducers({
     session,

@@ -1,5 +1,3 @@
-import { csrfAPIFetch } from './csrf';
-
 export const RECEIVE_DM_CHANNELS = 'session/receiveDMChannels'
 export const RECEIVE_DM_CHANNEL = 'session/receiveDMChannel';
 

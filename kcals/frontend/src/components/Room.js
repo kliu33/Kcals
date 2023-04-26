@@ -80,7 +80,7 @@ function Room() {
     );
 
     return () => subscription?.unsubscribe();
-  }, [id, dispatch]);
+  }, [id, dispatch, users]);
 
   
   const [users_hidden, setusersHidden] = useState(true)
