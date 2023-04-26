@@ -62,8 +62,10 @@ function Room() {
         received: ({ type, payload, id }) => {
           switch (type) {
             case 'RECEIVE_MESSAGE':
+              if (!Object.values(users).map(user => user.id).includes(payload.user.id)) {
+                dispatch(receiveUser(payload.user));
+              }
               dispatch(receiveMessage(payload.message));
-              dispatch(receiveUser(payload.user));
               scrollToBottom();
               break;
             case 'DESTROY_MESSAGE':

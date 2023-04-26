@@ -47,11 +47,11 @@ export const createDMChannel = (dm_channel) => async dispatch => {
 
 const DMchannelsReducer = (state = {}, action) => {
     switch (action.type) {
-      case RECEIVE_DM_CHANNEL:
-        const { payload } = action;
-        return { ...state, [payload.dm_channel.id]: payload.dm_channel };
-      case RECEIVE_DM_CHANNELS:
-        return { ...state, ...action.dm_channels };
+      // case RECEIVE_DM_CHANNEL:
+      //   const { payload } = action;
+      //   return { ...state, [payload.dmChannel.id]: payload.dmChannel };
+      // case RECEIVE_DM_CHANNELS:
+      //   return { ...state, ...action.dmChannels };
     //   case REMOVE_CHANNEL:
     //     const newState = { ...state };
     //     delete newState[action.channelId];

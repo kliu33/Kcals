@@ -9,7 +9,6 @@ import dm_channels from "./dm_channels";
 const rootReducer = combineReducers({
     session,
     channels,
-    dm_channels,
     messages: messagesReducer,
     users
 })

@@ -74,11 +74,6 @@ function DMRoom() {
 
   
   const [users_hidden, setusersHidden] = useState(true)
-  const handleUsersModal = (e) => {
-      e.preventDefault();
-      setusersHidden(!users_hidden)
-  }
-  
 //   const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
 
 
