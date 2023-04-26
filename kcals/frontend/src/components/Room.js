@@ -9,6 +9,9 @@ import consumer from '../consumer.js';
 import './Room.css'
 import UsersInRoom from './usersInRoom.js';
 import UserShowModal from './userShow/userShow.js';
+import react from '../imgs/react.png';
+
+import options from '../imgs/options.png'
 
 function Room() {
   const dispatch = useDispatch();
@@ -99,14 +102,17 @@ function Room() {
       className='message-x'
     > 
       <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
-      {message.userId === currentUserId && (
+      <div className='options'>
+        <img id="react" src={react}/>
+        <img id="more-options" src={options}/>
+        
+      {/* {message.userId === currentUserId && (
         <button
-          className='btn-delete'
-          onClick={() => handleDelete(message.id)}
-        >
+          onClick={() => handleDelete(message.id)}>
           x
         </button>
-      )}
+      )} */}
+      </div>
     </li>
   ))
 

@@ -144,11 +144,38 @@
     padding-bottom: 30px;
 }
 
+.options {
+    display: flex;
+    margin-right: 15px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+    border: rgb(179, 179, 179) 1px solid;
+    border-radius: 8px;
+    height: fit-content;
+}
 
-.message-x .btn-delete {
+.message-x .options {
     opacity: 0;
 }
 
-.message-x:hover .btn-delete{
+.message-x:hover .options{
     opacity: 1;
 }
+
+#react {
+    width: 20px;
+    height: 20px;
+    margin: 7px;
+    cursor: pointer;
+}
+
+#more-options {
+    height: 30px;
+    cursor: pointer;
+}
+
+/* #react:hover{
+    background-color: rgb(236, 236, 236);
+} */
