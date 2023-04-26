@@ -143,3 +143,12 @@
     padding-right: 30px;
     padding-bottom: 30px;
 }
+
+
+.message-x .btn-delete {
+    opacity: 0;
+}
+
+.message-x:hover .btn-delete{
+    opacity: 1;
+}
