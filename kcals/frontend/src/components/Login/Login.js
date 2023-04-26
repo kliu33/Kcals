@@ -12,8 +12,8 @@ function Login() {
               <img src={logo} alt="" id="logo" />
             </a>
           </div>
-          <h1 class='head'> Sign in to kcals</h1>
-          <div class="suggest">
+          <h1 className='head'> Sign in to kcals</h1>
+          <div className="suggest">
             <span> We suggest using the </span> <span id ="sec"> email address you use at work.</span>
           </div>
           <LoginFormPage id="form" />

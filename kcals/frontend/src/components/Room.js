@@ -98,7 +98,7 @@ function Room() {
       tabIndex={-1}
       className='message-x'
     > 
-      <Message {...message} class='message' setHidden={setHidden} setShowUser={setShowUser}/>
+      <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
       {message.userId === currentUserId && (
         <button
           className='btn-delete'
@@ -151,18 +151,18 @@ function Room() {
 
   return (
     <>
-      <div class="room-home-div">
+      <div className="room-home-div">
         <section className='room-home-section'>
           <div id='border-under'> 
             <h1> #{channel?.name} </h1> 
             <div>
-              <span class='right-div' onClick={handleUsersModal}> {Object.values(users).length} </span> 
+              <span className='right-div' onClick={handleUsersModal}> {Object.values(users).length} </span> 
             </div>
             {channel?.description}
           </div>
           <ul ref={messageUlRef} className="messages-box">
-            <li class='start'> <p class='p1'>This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
-            <p class='p2'> This channel is for everything # {channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
+            <li className='start'> <p className='p1'>This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
+            <p className='p2'> This channel is for everything # {channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
             </li>
             {all_messages}
           </ul>

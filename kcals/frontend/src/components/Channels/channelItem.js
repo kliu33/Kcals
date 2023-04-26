@@ -21,7 +21,7 @@ const ChannelItem = (props) => {
     return (
         <li>
             <NavLink to={`/channels/${channel.id}`}>
-                <div class="channel-div channel-name" onContextMenu={handleRightClick}>
+                <div className="channel-div channel-name" onContextMenu={handleRightClick}>
                     # {channel.name}
                 </div>
                 {rightClickForm}

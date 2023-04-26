@@ -36,19 +36,19 @@ function LoginFormPage() {
   }
 
   return (
-    <div class='form-div'>
-    <button onClick={demoLogin} class='demo'>Demo Login</button>
+    <div className='form-div'>
+    <button onClick={demoLogin} className='demo'>Demo Login</button>
     <form onSubmit={handleSubmit} id = "form">
-        <div class="break">
-          <hr class="hor_line" />
-            <div class="hor_content"> OR </div>
-          <hr class="hor_line" />
+        <div className="break">
+          <hr className="hor_line" />
+            <div className="hor_content"> OR </div>
+          <hr className="hor_line" />
         </div>
         <ul className='errors'>
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>
         <input
-          class="input"
+          className="input"
           type="text"
           value={email}
           placeholder="name@work-email.com"
@@ -56,7 +56,7 @@ function LoginFormPage() {
           required
         />
         <input
-          class="input"
+          className="input"
           type="password"
           value={password}
           placeholder="password"

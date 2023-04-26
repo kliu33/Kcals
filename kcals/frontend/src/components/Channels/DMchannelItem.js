@@ -24,7 +24,7 @@ const DMChannelItem = ({dm_channel}) => {
     return (
         <li>
             <NavLink to={`/dm_channels/${dm_channel.id}`}>
-                <div class="channel-div channel-name">
+                <div className="channel-div channel-name">
                     {recipient.firstName} {recipient.lastName}
                 </div>
                 {/* {rightClickForm} */}

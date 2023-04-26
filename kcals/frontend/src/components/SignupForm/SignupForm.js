@@ -38,7 +38,7 @@ function SignupFormPage() {
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
         <input
-          class="input"
+          className="input"
           type="text"
           value={email}
           placeholder="name@work-email.com"
@@ -46,7 +46,7 @@ function SignupFormPage() {
           required
         />
         <input
-          class="input"
+          className="input"
           type="text"
           value={first_name}
           placeholder="First Name"
@@ -54,7 +54,7 @@ function SignupFormPage() {
           required
         />
         <input
-          class="input"
+          className="input"
           type="text"
           value={last_name}
           placeholder="Last Name"
@@ -62,7 +62,7 @@ function SignupFormPage() {
           required
         />
         <input
-          class="input"
+          className="input"
           type="password"
           value={password}
           placeholder="Password"

@@ -115,15 +115,15 @@ function DMRoom() {
   // };
 
   return (
-    <div class="room-home-div">
+    <div className="room-home-div">
       <section className='room-home-section'>
         <div id='border-under'> 
           <h1> {recipient.firstName} {recipient.lastName} </h1> 
           {/* {channel?.description} */}
         </div>
         <ul ref={messageUlRef} className="messages-box">
-          <li class='start'> <p class='p1'>This conversation is just between <span className='blue'>@{recipient.firstName} {recipient.lastName} </span> and you </p>
-          <p class='p2'>Check out their profile to learn more about them.</p>
+          <li className='start'> <p className='p1'>This conversation is just between <span className='blue'>@{recipient.firstName} {recipient.lastName} </span> and you </p>
+          <p className='p2'>Check out their profile to learn more about them.</p>
           </li>
           {messages.map(message => (
             <li
@@ -132,7 +132,7 @@ function DMRoom() {
               tabIndex={-1}
               className='message-x'
             >
-              <Message {...message} class='message'/>
+              <Message {...message} className='message'/>
               {message.userId === currentUserId && (
                 <button
                   className='btn-delete'

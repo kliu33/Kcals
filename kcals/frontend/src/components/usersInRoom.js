@@ -9,7 +9,7 @@ function UsersInRoom({channel, users, handleUsersModal}) {
     return (
         <div id='modal-back' onClick={handleUsersModal}>
             <div id='users-modal' onClick={stopProp}>
-                <a class="close-modal" onClick = {handleUsersModal}> X </a>
+                <a className="close-modal" onClick = {handleUsersModal}> X </a>
                 <h1># {channel.name}</h1>
                 <p>Members: {usersArr.length}</p>
                 <br></br>

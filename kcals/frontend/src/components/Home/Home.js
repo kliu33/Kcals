@@ -20,7 +20,7 @@ function Home() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const routeName = window.location.pathname.split('/')[1];
-    const displayRoom = routeName === 'channels' ? <Room class='room'/> : <DMRoom class='room'/>
+    const displayRoom = routeName === 'channels' ? <Room className='room'/> : <DMRoom className='room'/>
     const sessionUser = useSelector(state => state.session.user);
     const channels = useSelector(state => Object.values(state.channels))
     const dm_channels = sessionUser.directMessageChannels ? Object.values(sessionUser?.directMessageChannels) : []
@@ -56,17 +56,17 @@ function Home() {
     return (
         <main id='main'>
                 <ChatHeader handleUserModal={handleUserModal}/>
-                <div class='channels'>
-                    <h1 class='server'> App Academy </h1>
+                <div className='channels'>
+                    <h1 className='server'> App Academy </h1>
                     <ul id="channels-bar">
-                        <div class="channel-hover" onClick={() => {setShowChannels(!showChannels)}}>
-                            <div class="channel-name channel-toggle"> <img class={showChannels ? "arrow" : "arrow rotate"} src={da}/>Channels 
+                        <div className="channel-hover" onClick={() => {setShowChannels(!showChannels)}}>
+                            <div className="channel-name channel-toggle"> <img className={showChannels ? "arrow" : "arrow rotate"} src={da}/>Channels 
                             </div>
-                            <span class="plus hidden" onClick={handleModal}> + </span>
+                            <span className="plus hidden" onClick={handleModal}> + </span>
                         </div>
                         {channelIndexItems}
-                        <div class="channel-hover" onClick={() => {setShowDMChannels(!showDMChannels)}}>
-                            <div class="channel-name channel-toggle"> <img class={showDMChannels ? "arrow" : "arrow rotate"} src={da}/>Direct Messages
+                        <div className="channel-hover" onClick={() => {setShowDMChannels(!showDMChannels)}}>
+                            <div className="channel-name channel-toggle"> <img className={showDMChannels ? "arrow" : "arrow rotate"} src={da}/>Direct Messages
                             </div>
                         </div>
                         {DMchannelIndexItems}

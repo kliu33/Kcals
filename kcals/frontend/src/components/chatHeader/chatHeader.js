@@ -7,8 +7,8 @@ import li from '../../imgs/linkedin.png'
 const ChatHeader = (props) => {
 
     return (
-        <div class="header-div">
-            <div class="links">
+        <div className="header-div">
+            <div className="links">
                 <a href="https://github.com/kliu33/Kcals" target="_blank"><img id="logo" src={git}/></a>
                 <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank"><img id="logo" src={li}/></a>
             </div>

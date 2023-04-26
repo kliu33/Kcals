@@ -16,8 +16,8 @@ function RightClickMenu(props) {
   const sessionUser = useSelector(state => state.session.user);
   const option = (channel.authorId === sessionUser.id) ? <Owner channel={channel}/> : <Member channel={channel}/>;
     return (
-        <div class="right-click-bg" onClick={props.setHidden}>
-            <div class="right-click-menu" onClick={stopProp} style={{top: props.posY, left:props.posX}}>
+        <div className="right-click-bg" onClick={props.setHidden}>
+            <div className="right-click-menu" onClick={stopProp} style={{top: props.posY, left:props.posX}}>
                 {option}
             </div>
         </div>
