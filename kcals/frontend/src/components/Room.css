@@ -177,6 +177,12 @@
     cursor: pointer;
 }
 
+#trash {
+    height: 30px;
+    cursor: pointer;
+    padding: 6px;
+}
+
 /* #react:hover{
     background-color: rgb(236, 236, 236);
 } */

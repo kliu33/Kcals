@@ -46,7 +46,7 @@ function UserShowModal(props) {
             </div>
             <h1 id="show-name">{props.showUser.firstName} {props.showUser.lastName}</h1>
             <button id="message-button" onClick={handleDm}> 
-                <img id="msg-img" src={msg}/>
+                <img id="msg-img" alt="Message Icon" src={msg}/>
             Message </button>
         </div>
     );

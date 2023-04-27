@@ -11,6 +11,7 @@ import UsersInRoom from './usersInRoom.js';
 import UserShowModal from './userShow/userShow.js';
 import react from '../imgs/react.png';
 import options from '../imgs/options.png'
+import trash from '../imgs/trash.png'
 
 function Room() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function Room() {
   const [hidden, setHidden] = useState(true);
   
   const [showUser, setShowUser] = useState({})
+  const [showOptions, setShowOptions] = useState(false)
   const { id } = useParams();
   const messages = useSelector(getMessages(id));
   const currentUserId = useSelector(state => state.session.user.id)
@@ -92,28 +94,6 @@ function Room() {
   }
   
   const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
-  // const all_messages = messages.map(message => console.log(message))
-  const all_messages = messages.map(message => (
-    <li
-      key={message.id}
-      ref={activeMessageId === message.id ? activeMessageRef : null}
-      tabIndex={-1}
-      className='message-x'
-    > 
-      <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
-      <div className='options'>
-        <img id="react" src={react}/>
-        <img id="more-options" src={options}/>
-        
-      {/* {message.userId === currentUserId && (
-        <button
-          onClick={() => handleDelete(message.id)}>
-          x
-        </button>
-      )} */}
-      </div>
-    </li>
-  ))
 
   const scrollToMessage = () => {
     activeMessageRef.current.focus();
@@ -128,6 +108,17 @@ function Room() {
   // const setReaction = (id, reaction) => {
   //   setUsersInRoom(prevUsersInRoom => ({ ...prevUsersInRoom, [id]: { ...prevUsersInRoom[id], reaction } }));
   // };
+
+  // function copyToClip() {
+  //   var copyText = document.getElementById("myInput");
+  //   copyText.select();
+  //   copyText.setSelectionRange(0, 99999);
+  
+  //   navigator.clipboard.writeText(copyText.value);
+  
+  //   // Alert the copied text
+  //   alert("Copied the text: " + copyText.value);
+  // }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -151,6 +142,33 @@ function Room() {
   //     </ span>
   //   ));
   // };
+
+  const handleOptions = (e) => {
+    e.preventDefault();
+    setShowOptions(!showOptions);
+  }
+
+
+  const all_messages = messages.map(message => (
+    <li
+      key={message.id}
+      ref={activeMessageId === message.id ? activeMessageRef : null}
+      tabIndex={-1}
+      className='message-x'
+    > 
+      <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
+      <div className='options'>
+        <img id="react" src={react}/>
+        <img id="more-options" onClick={handleOptions} src={options}/>
+        
+      {message.userId === currentUserId && (
+        <img id="trash" onClick={() => handleDelete(message.id)} src={trash}/>
+      )}
+      </div>
+    </li>
+  ))
+
+  
 
   const userShow = hidden ? null : <UserShowModal setHidden={setHidden} showUser={showUser}/>
 
