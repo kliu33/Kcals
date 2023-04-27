@@ -7,6 +7,7 @@ class Message < ApplicationRecord
     belongs_to :channel, optional: true
     belongs_to :direct_message_channel, optional: true
 
+    has_many :reactions, dependent: :destroy
 
     private
 

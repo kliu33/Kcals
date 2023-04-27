@@ -18,6 +18,8 @@ class User < ApplicationRecord
       foreign_key: :user_id,
       class_name: :Message,
       dependent: :destroy
+
+    has_many :reactions, dependent: :destroy
   
     def direct_message_channels
       DirectMessageChannel.where("user1_id = ? OR user2_id = ?", id, id)
