@@ -17,10 +17,11 @@ function UserShowModal(props) {
 
     const handleDm = (e) => {
         e.preventDefault();
-        let find_dm = Object.values(sessionUser.directMessageChannels).find(channel => channel.user1.id === sessionUser.id 
-            && channel.user2.id === props.showUser.id);
-        let find_dm2 = Object.values(sessionUser.directMessageChannels).find(channel => channel.user2.id === sessionUser.id 
-            && channel.user1.id === props.showUser.id);
+
+        let find_dm = sessionUser.directMessageChannels ? Object.values(sessionUser.directMessageChannels).find(channel => channel.user1.id === sessionUser.id 
+            && channel.user2.id === props.showUser.id) : null;
+        let find_dm2 = sessionUser.directMessageChannels ? Object.values(sessionUser.directMessageChannels).find(channel => channel.user2.id === sessionUser.id 
+            && channel.user1.id === props.showUser.id) : null;
         if (find_dm) {
             setRedirectTo(find_dm.id)
         } else if (find_dm2){
@@ -30,7 +31,11 @@ function UserShowModal(props) {
                 user1_id: sessionUser.id,
                 user2_id: props.showUser.id
             }
-            dispatch(createDMChannel(new_dm))
+            let new_chan = dispatch(createDMChannel(new_dm))
+            new_chan.then((response) => {
+                let dmChannel = response.dmChannel;
+                setRedirectTo(dmChannel.id);
+              });
         }
     }
 

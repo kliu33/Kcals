@@ -1,5 +1,7 @@
+import { reload } from "./session";
 export const RECEIVE_DM_CHANNELS = 'session/receiveDMChannels'
 export const RECEIVE_DM_CHANNEL = 'session/receiveDMChannel';
+
 
 const receiveDMChannels = dm_channels => ({
     type: RECEIVE_DM_CHANNELS,
@@ -38,8 +40,9 @@ export const createDMChannel = (dm_channel) => async dispatch => {
         body: JSON.stringify(dm_channel)
     })
     if (response.ok) {
-        const dm_channel = await response.json();
-        dispatch(receiveDMChannel(dm_channel))
+      const data = await response.json();
+      dispatch(reload());
+      return { response, dmChannel: data.dmChannel };
     }
 }
 

@@ -4,7 +4,6 @@ import { csrfFetch } from './csrf'
 const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
 const RECEIVE_DM_MESSAGE = 'RECEIVE_DM_MESSAGE';
-export const RECEIVE_DM_CHANNEL = 'session/receiveDMChannel';
 
 
 const storeCSRFToken = response => {
@@ -17,7 +16,7 @@ const storeCurrentUser = user => {
   else sessionStorage.removeItem("currentUser");
 }
 
-const setCurrentUser = (user) => {
+export const setCurrentUser = (user) => {
   return {
     type: SET_CURRENT_USER,
     payload: user
@@ -29,6 +28,14 @@ const removeCurrentUser = () => {
     type: REMOVE_CURRENT_USER
   };
 };
+
+export const reload = () => async dispatch => {
+  console.log('hello')
+  const response = await csrfFetch("/api/session")
+  const data = await response.json();
+  storeCurrentUser(data.user)
+  dispatch(setCurrentUser(data.user));
+}
 
 export const login = ({ email, password }) => async dispatch => {
   const response = await csrfFetch("api/session", {
@@ -99,8 +106,6 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.payload };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
-    case RECEIVE_DM_CHANNEL:
-      return { ...state}
     case RECEIVE_DM_MESSAGE:
       state.user.directMessageChannels[parseInt(action.message.direct_message_channel_id)].messages.push(action.message)
       return { ...state}

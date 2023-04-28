@@ -19,8 +19,7 @@ function DMRoom() {
   const sessionUser = useSelector(state => state.session.user);
   const messages = useSelector(getDMMessages(parseInt(id)));
   const currentUserId = useSelector(state => state.session.user.id)
-  const dm_channel = useSelector(state => state.session.user.directMessageChannels[id]);
-  const recipient = dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1
+  const dm_channel = useSelector(state => state.session.user && state.session.user.directMessageChannels && state.session.user.directMessageChannels[id]);  const recipient = dm_channel ? (dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1) : null
   const activeMessageRef = useRef(null);
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
@@ -121,11 +120,11 @@ function DMRoom() {
     <div className="room-home-div">
       <section className='room-home-section'>
         <div id='border-under'> 
-          <h1> {recipient.firstName} {recipient.lastName} </h1> 
+          <h1> {recipient?.firstName} {recipient?.lastName} </h1> 
           {/* {channel?.description} */}
         </div>
         <ul ref={messageUlRef} className="messages-box">
-          <li className='start'> <p className='p1'>This conversation is just between <span className='blue'>@{recipient.firstName} {recipient.lastName} </span> and you </p>
+          <li className='start'> <p className='p1'>This conversation is just between <span className='blue'>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
           <p className='p2'>Check out their profile to learn more about them.</p>
           </li>
           {messages.map(message => (
@@ -154,7 +153,7 @@ function DMRoom() {
           <textarea id='send-chat'
             rows={body.split('\n').length}
             onChange={e => setBody(e.target.value)}
-            placeholder={`Message #${recipient.firstName}`}
+            placeholder={`Message #${recipient?.firstName}`}
             onKeyDown={e => {
               if (e.code === 'Enter' && !e.shiftKey) {
                 handleSubmit(e);

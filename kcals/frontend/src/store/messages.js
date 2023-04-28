@@ -38,15 +38,16 @@ export const getMessages = channelId => state => {
 };
 
 export const getDMMessages = dmChannelId => state => {
-  return state.session ? Object.values(state.session.user.directMessageChannels[dmChannelId].messages)
-               .map(message => ({
-                 ...message,
-                 user: state.users[message.userId]?.first_name
-               }))
-               .sort(({ createdAt: timeA }, { createdAt: timeB }) => Math.sign(
-                 new Date(timeA).getTime() - new Date(timeB).getTime()
-               )) : []
-
+  return state.session && state.session.user.directMessageChannels && state.session.user.directMessageChannels[dmChannelId]
+    ? Object.values(state.session.user.directMessageChannels[dmChannelId].messages)
+        .map(message => ({
+          ...message,
+          user: state.users[message.userId]?.first_name
+        }))
+        .sort(({ createdAt: timeA }, { createdAt: timeB }) => Math.sign(
+          new Date(timeA).getTime() - new Date(timeB).getTime()
+        ))
+    : [];
 }
 
 export const createMessage = message => (
