@@ -1,0 +1,18 @@
+
+.reaction {
+    cursor: pointer;
+    width: fit-content;
+    margin-left: 70px;
+    margin-top: -10px;
+    background-color: rgb(238, 238, 238);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 10px;
+    border: 1px white solid
+}
+
+.reaction:hover {
+    border: 1px gray solid
+}

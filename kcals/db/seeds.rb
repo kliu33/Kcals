@@ -8,6 +8,7 @@
 ApplicationRecord.transaction do
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
+    Reaction.destroy_all
     Message.destroy_all
     DirectMessageChannel.destroy_all
     Channel.destroy_all
@@ -19,6 +20,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!("direct_message_channels")
     ApplicationRecord.connection.reset_pk_sequence!("channels")
     ApplicationRecord.connection.reset_pk_sequence!("messages")
+    ApplicationRecord.connection.reset_pk_sequence!("reactions")
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -58,6 +60,12 @@ ApplicationRecord.transaction do
       body: "TESTING3",
       user_id: 1,
       channel_id: 1
+    )
+
+    Reaction.create!(
+      emoji: "smile",
+      user_id: 1,
+      message_id: 1
     )
 
     

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessage } from '../store/messages.js';
+import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessage, removeReaction } from '../store/messages.js';
 import { fetchChannel } from '../store/channels.js';
 import { receiveUser } from '../store/users';
 import Message from './Message';
@@ -12,6 +12,7 @@ import UserShowModal from './userShow/userShow.js';
 import react from '../imgs/react.png';
 import options from '../imgs/options.png'
 import trash from '../imgs/trash.png'
+import Emoji from './Emoji/Emoji.js';
 
 function Room() {
   const dispatch = useDispatch();
@@ -75,6 +76,9 @@ function Room() {
             case 'DESTROY_MESSAGE':
               dispatch(removeMessage(id));
               break;
+            case 'REMOVE_REACTION':
+              dispatch(removeReaction(id))
+              break
             default:
               console.log('Unhandled broadcast: ', type);
               break;
@@ -154,17 +158,18 @@ function Room() {
       key={message.id}
       ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
-      className='message-x'
-    > 
-      <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
-      <div className='options'>
-        <img id="react" src={react}/>
-        <img id="more-options" onClick={handleOptions} src={options}/>
-        
-      {message.userId === currentUserId && (
-        <img id="trash" onClick={() => handleDelete(message.id)} src={trash}/>
-      )}
+      > 
+      <div className='message-x'>
+        <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
+        <div className='options'>
+          <img id="react" src={react}/>
+          <img id="more-options" onClick={handleOptions} src={options}/>
+        {message.userId === currentUserId && (
+          <img id="trash" onClick={() => handleDelete(message.id)} src={trash}/>
+        )}
       </div>
+    </div>
+      <Emoji message = {message}/>
     </li>
   ))
 

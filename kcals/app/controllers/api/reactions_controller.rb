@@ -10,6 +10,15 @@ class Api::ReactionsController < ApplicationController
 
     def destroy
         @reaction = Reaction.find(params[:id])
+        if @reaction.message.channel_id 
+            RoomsChannel.broadcast_to @reaction.message.channel,
+              type: 'REMOVE_REACTION',
+              id: @reaction
+        elsif
+          DmChannel.broadcast_to @reaction.message.direct_message_channel,
+          type: 'REMOVE_REACTION',
+            id: @reaction
+        end
         @reaction.destroy
         render json: nil, status: :ok
     end

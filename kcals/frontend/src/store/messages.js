@@ -4,6 +4,8 @@ import { RECEIVE_CHANNEL } from './channels.js'
 const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
 const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
+const RECEIVE_REACTION = 'RECEIVE_REACTION'
+const REMOVE_REACTION = 'REMOVE_REACTION'
 
 export const receiveMessage = message => {
   return {
@@ -18,6 +20,21 @@ export const receiveMessages = messages => {
     messages
   };
 };
+
+export const receiveReaction = reaction => {
+  return {
+    type: RECEIVE_REACTION,
+    reaction
+  }
+}
+
+export const removeReaction = reaction => {
+  return {
+    type: REMOVE_REACTION,
+    reaction
+  }
+}
+
 export const removeMessage = messageId => {
   return {
     type: REMOVE_MESSAGE,
@@ -36,6 +53,12 @@ export const getMessages = channelId => state => {
                  new Date(timeA).getTime() - new Date(timeB).getTime()
                ));
 };
+
+export const deleteReaction = reactionId => (
+  csrfAPIFetch(`reactions/${reactionId}`, {
+    method: 'DELETE'
+  })
+)
 
 export const getDMMessages = dmChannelId => state => {
   return state.session && state.session.user.directMessageChannels && state.session.user.directMessageChannels[dmChannelId]
@@ -77,6 +100,12 @@ export const messagesReducer = (state = {}, action) => {
     case REMOVE_MESSAGE:
       delete newState[action.messageId];
       return newState;
+    case REMOVE_REACTION:
+      const messageId = action.reaction.message_id;
+      const react_message = newState[action.reaction.message_id];
+      const updatedReactions = react_message.reactions.filter(reac => reac.id !== action.reaction.id);
+      react_message.reactions = updatedReactions;
+      return { ...state, [messageId]: react_message };
     default:
       return state;
   }
