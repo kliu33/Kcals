@@ -1,7 +1,7 @@
-json.reaction do
-  json.partial! 'api/reactions/reaction', reaction: reaction
-end
-
-json.user do 
-  json.partial! 'api/users/user', user: reaction.user
-end
+json.extract! reaction, 
+    :id, 
+    :emoji, 
+    :user_id, 
+    :message_id,
+    :created_at
+json.partial! 'api/reactions/reaction', reaction: reaction

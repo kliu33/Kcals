@@ -54,6 +54,14 @@ export const getMessages = channelId => state => {
                ));
 };
 
+
+export const createReaction = reaction => (
+  csrfAPIFetch('reactions', {
+    method: 'POST',
+    data: { reaction }
+  })
+);
+
 export const deleteReaction = reactionId => (
   csrfAPIFetch(`reactions/${reactionId}`, {
     method: 'DELETE'
@@ -100,6 +108,9 @@ export const messagesReducer = (state = {}, action) => {
     case REMOVE_MESSAGE:
       delete newState[action.messageId];
       return newState;
+    case RECEIVE_REACTION:
+      newState[action.reaction.message_id].reactions.push(action.reaction)
+      return newState
     case REMOVE_REACTION:
       const messageId = action.reaction.message_id;
       const react_message = newState[action.reaction.message_id];

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessage, removeReaction } from '../store/messages.js';
+import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessage, removeReaction, receiveReaction } from '../store/messages.js';
 import { fetchChannel } from '../store/channels.js';
 import { receiveUser } from '../store/users';
 import Message from './Message';
@@ -79,8 +79,11 @@ function Room() {
               dispatch(removeMessage(id));
               break;
             case 'REMOVE_REACTION':
-              dispatch(removeReaction(id))
-              break
+              dispatch(removeReaction(id));
+              break;
+            case 'RECEIVE_REACTION':
+              dispatch(receiveReaction(id));
+              break;
             default:
               console.log('Unhandled broadcast: ', type);
               break;
