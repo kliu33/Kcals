@@ -1,11 +1,9 @@
 import './Emoji.css'
 import { deleteReaction, removeReaction } from '../../store/messages';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 const Emoji = ({message}) => {
   const sessionUser = useSelector(state => state.session.user);
-  const { id } = useParams();
   const dispatch = useDispatch();
   const emoji_dict = (emoji) => {
     switch(emoji) {

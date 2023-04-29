@@ -1,9 +1,8 @@
 import './Emoji.css'
-import { createReaction, receiveReaction} from '../../store/messages';
-import { useSelector, useDispatch } from 'react-redux';
+import { createReaction} from '../../store/messages';
+import { useSelector } from 'react-redux';
 
 const EmojiList = (props) => {
-  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
 
