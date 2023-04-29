@@ -47,7 +47,8 @@ const Emoji = ({message}) => {
 
 return (
     <div className='emoji-list'>
-        {emoji_obj ? Object.keys(emoji_obj).map(k => emoji_obj[k].length > 0 ? <p className='reaction' onClick={()=>
+        {emoji_obj ? Object.keys(emoji_obj).map(k => emoji_obj[k].length > 0 ? <p className={`reaction ${
+            emoji_obj[k].find(react => react.user_id === sessionUser.id) ? 'react-hilight' : null}`} onClick={()=>
         handleRemoveReact(k)}>{emoji_dict(k)}</p> : null) : null}
     </div>
     )};
