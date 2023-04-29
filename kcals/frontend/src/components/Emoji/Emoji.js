@@ -1,8 +1,15 @@
 import './Emoji.css'
-import { deleteReaction, removeReaction } from '../../store/messages';
+import { createReaction, deleteReaction, removeReaction } from '../../store/messages';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Emoji = ({message}) => {
+  const emoji_obj = {
+    'smile': message.reactions.filter(reaction => reaction.emoji === 'smile'),
+    'heart': message.reactions.filter(reaction => reaction.emoji === 'heart'),
+    'thumbs-up': message.reactions.filter(reaction => reaction.emoji === 'thumbs-up'),
+    'thumbs-down': message.reactions.filter(reaction => reaction.emoji === 'thumbs-down'),
+    'laughing': message.reactions.filter(reaction => reaction.emoji === 'laughing'),
+  }
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const emoji_dict = (emoji) => {
@@ -22,17 +29,26 @@ const Emoji = ({message}) => {
     }
   }
 
-  const handleRemoveReact = (reaction) => {
-    if (sessionUser.id === reaction.user_id) {
-        dispatch(removeReaction(reaction))
-        deleteReaction(reaction.id);
+  const handleRemoveReact = (k) => {
+    let react = emoji_obj[k].find(react => react.user_id === sessionUser.id)
+    if (react){
+        dispatch(removeReaction(react))
+        deleteReaction(react.id);
+    } else {
+        let new_react = {
+          emoji: k,
+          message_id: message.id,
+          user_id: sessionUser.id
+        };
+        createReaction(new_react)
     }
   }
 
 
 return (
     <div className='emoji-list'>
-        {message.reactions ? message.reactions.map(reaction => <p key={reaction.id} className='reaction' onClick={()=>handleRemoveReact(reaction)}>{emoji_dict(reaction.emoji)}</p>) : null}
+        {emoji_obj ? Object.keys(emoji_obj).map(k => emoji_obj[k].length > 0 ? <p className='reaction' onClick={()=>
+        handleRemoveReact(k)}>{emoji_dict(k)}</p> : null) : null}
     </div>
     )};
   
