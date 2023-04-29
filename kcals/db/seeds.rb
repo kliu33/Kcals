@@ -67,6 +67,30 @@ ApplicationRecord.transaction do
       user_id: 1,
       message_id: 1
     )
+    
+    Reaction.create!(
+      emoji: "thumbs-up",
+      user_id: 1,
+      message_id: 1
+    )
+    
+    Reaction.create!(
+      emoji: "thumbs-down",
+      user_id: 1,
+      message_id: 1
+    )
+    
+    Reaction.create!(
+      emoji: "heart",
+      user_id: 1,
+      message_id: 1
+    )
+    
+    Reaction.create!(
+      emoji: "laughing",
+      user_id: 1,
+      message_id: 1
+    )
 
     
     puts "Done!"

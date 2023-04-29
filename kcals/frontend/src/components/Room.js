@@ -13,6 +13,7 @@ import react from '../imgs/react.png';
 import options from '../imgs/options.png'
 import trash from '../imgs/trash.png'
 import Emoji from './Emoji/Emoji.js';
+import EmojiList from './Emoji/EmojiList.js';
 
 function Room() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function Room() {
   
   const [showUser, setShowUser] = useState({})
   const [showOptions, setShowOptions] = useState(false)
+  const [showEmojis, setShowEmojis] = useState(null)
   const { id } = useParams();
   const messages = useSelector(getMessages(id));
   const currentUserId = useSelector(state => state.session.user.id)
@@ -153,6 +155,7 @@ function Room() {
   }
 
 
+
   const all_messages = messages.map(message => (
     <li
       key={message.id}
@@ -161,12 +164,17 @@ function Room() {
       > 
       <div className='message-x'>
         <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
-        <div className='options'>
-          <img id="react" src={react}/>
-          <img id="more-options" onClick={handleOptions} src={options}/>
-        {message.userId === currentUserId && (
-          <img id="trash" onClick={() => handleDelete(message.id)} src={trash}/>
-        )}
+        <div className='react-list'>
+        {showEmojis === message.id && (
+                  <EmojiList message={message} setShowEmojis={setShowEmojis}/>
+                )}
+          <div className='options'>
+            <img id="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
+            <img id="more-options" onClick={handleOptions} src={options}/>
+          {message.userId === currentUserId && (
+            <img id="trash" onClick={() => handleDelete(message.id)} src={trash}/>
+          )}
+        </div>
       </div>
     </div>
       <Emoji message = {message}/>

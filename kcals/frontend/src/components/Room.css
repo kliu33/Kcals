@@ -165,6 +165,16 @@
     opacity: 1;
 }
 
+
+.message-x .react-list {
+    opacity: 0;
+}
+
+.message-x:hover .react-list{
+    opacity: 1;
+}
+
+
 #react {
     width: 20px;
     height: 20px;

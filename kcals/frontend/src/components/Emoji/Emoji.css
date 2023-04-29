@@ -2,8 +2,6 @@
 .reaction {
     cursor: pointer;
     width: fit-content;
-    margin-left: 70px;
-    margin-top: -10px;
     background-color: rgb(238, 238, 238);
     padding-left: 5px;
     padding-right: 5px;
@@ -15,4 +13,51 @@
 
 .reaction:hover {
     border: 1px gray solid
+}
+
+.emoji-list {
+    display: flex;
+    margin-left: 70px;
+    margin-top: -10px;
+    font-size: 14px;
+}
+
+.make-emoji {
+    display: flex;
+    margin-right: 15px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+    border: rgb(179, 179, 179) 1px solid;
+    border-radius: 8px;
+    height: fit-content;
+    z-index: 1;
+}
+
+.emojis-modal {
+    position: absolute;
+}
+
+#list-of-emojis{
+    position: absolute;
+    display: flex;
+    margin-top: -38px;
+    border: rgb(179, 179, 179) 1px solid;
+    margin-left: -25px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+}
+
+.choose-emoji{
+    cursor: pointer;
+    padding: 1px;
+    border-radius: 5px;
+}
+
+.choose-emoji:hover{
+    background-color: blanchedalmond;
 }
