@@ -18,11 +18,11 @@ const EmojiList = (props) => {
 
 return (
             <ul id='list-of-emojis'>
-                <li className='choose-emoji' onClick={()=>handleCreateReaction('smile')}>🙂</li>
-                <li className='choose-emoji' onClick={()=>handleCreateReaction('heart')}>💗</li>
-                <li className='choose-emoji' onClick={()=>handleCreateReaction('thumbs-up')}>👍</li>
-                <li className='choose-emoji' onClick={()=>handleCreateReaction('thumbs-down')}>👎</li>
-                <li className='choose-emoji' onClick={()=>handleCreateReaction('laughing')}>😂</li>
+                <li className='choose-emoji' key="smile" onClick={()=>handleCreateReaction('smile')}>🙂</li>
+                <li className='choose-emoji' key="heart" onClick={()=>handleCreateReaction('heart')}>💗</li>
+                <li className='choose-emoji' key="thumbs-up" onClick={()=>handleCreateReaction('thumbs-up')}>👍</li>
+                <li className='choose-emoji' key="thumbs-down" onClick={()=>handleCreateReaction('thumbs-down')}>👎</li>
+                <li className='choose-emoji' key="laughing" onClick={()=>handleCreateReaction('laughing')}>😂</li>
             </ul>
     )};
   
