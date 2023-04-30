@@ -10,6 +10,7 @@ const Emoji = ({message}) => {
     'thumbs-down': message.reactions.filter(reaction => reaction.emoji === 'thumbs-down'),
     'laughing': message.reactions.filter(reaction => reaction.emoji === 'laughing'),
   }
+  debugger
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const emoji_dict = (emoji) => {
@@ -47,7 +48,7 @@ const Emoji = ({message}) => {
 
 return (
     <div className='emoji-list'>
-        {emoji_obj ? Object.keys(emoji_obj).map(k => emoji_obj[k].length > 0 ? <p key={k} className={`reaction ${
+        {emoji_obj ? Object.keys(emoji_obj).map(k => emoji_obj[k].length > 0 ? <p key={k} title={k} className={`reaction ${
             emoji_obj[k].find(react => react.user_id === sessionUser.id) ? 'react-hilight' : null}`} onClick={()=>
         handleRemoveReact(k)}>{emoji_dict(k)}</p> : null) : null}
     </div>

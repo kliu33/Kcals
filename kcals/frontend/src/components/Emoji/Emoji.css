@@ -64,6 +64,23 @@
 }
 
 .react-hilight {
-    border: blue 1px solid;
-    background-color: rgba(0, 218, 218, 0.281);
+    border: rgb(121, 121, 161) 1px solid;
+    background-color: rgba(210, 255, 255, 0.973);
 }
+
+p[title]::after {
+    content: attr(title);
+    display: block;
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  p[title]:hover::after {
+    opacity: 1;
+  }
