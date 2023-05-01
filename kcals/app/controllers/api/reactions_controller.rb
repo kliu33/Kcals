@@ -6,9 +6,9 @@ class Api::ReactionsController < ApplicationController
                 RoomsChannel.broadcast_to @reaction.message.channel,
                   type: 'RECEIVE_REACTION',
                   id: @reaction
-            elsif
+            else
               DmChannel.broadcast_to @reaction.message.direct_message_channel,
-              type: 'RECEIVE_REACTION',
+              type: 'RECEIVE_DM_REACTION',
                 id: @reaction
             end
           render json: { reaction: @reaction }, status: :created
@@ -23,9 +23,9 @@ class Api::ReactionsController < ApplicationController
             RoomsChannel.broadcast_to @reaction.message.channel,
               type: 'REMOVE_REACTION',
               id: @reaction
-        elsif
+        else
           DmChannel.broadcast_to @reaction.message.direct_message_channel,
-          type: 'REMOVE_REACTION',
+          type: 'REMOVE_DM_REACTION',
             id: @reaction
         end
         @reaction.destroy

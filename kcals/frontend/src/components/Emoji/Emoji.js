@@ -32,7 +32,6 @@ const Emoji = ({message}) => {
   const handleRemoveReact = (k) => {
     let react = emoji_obj[k].find(react => react.user_id === sessionUser.id)
     if (react){
-        dispatch(removeReaction(react))
         deleteReaction(react.id);
     } else {
         let new_react = {

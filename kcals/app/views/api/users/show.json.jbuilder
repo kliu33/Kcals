@@ -14,6 +14,7 @@ json.user do
         json.messages channel.messages do |message|
           json.id message.id
           json.userId message.user.id
+          json.reactions message.reactions
           json.body message.body
           json.created_at message.created_at
         end

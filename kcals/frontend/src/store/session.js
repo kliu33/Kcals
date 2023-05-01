@@ -5,7 +5,8 @@ const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
 const RECEIVE_DM_MESSAGE = 'RECEIVE_DM_MESSAGE';
 const REMOVE_DM_MESSAGE = 'REMOVE_DM_MESSAGE';
-
+const RECEIVE_DM_REACTION = 'RECEIVE_DM_REACTION';
+const REMOVE_DM_REACTION = 'REMOVE_DM_REACTION';
 
 
 export const receiveDMMessage = message => {
@@ -19,6 +20,20 @@ export const removeDMMessage = message => {
   return {
     type: REMOVE_DM_MESSAGE,
     message
+  }
+}
+
+export const receiveDMReaction = reaction => {
+  return {
+    type: RECEIVE_DM_REACTION,
+    reaction
+  }
+}
+
+export const removeDMReaction = reaction => {
+  return {
+    type: REMOVE_DM_REACTION,
+    reaction
   }
 }
 
@@ -119,6 +134,12 @@ const sessionReducer = (state = initialState, action) => {
       const updated_dm_channel_messages = dm_channel_messages.filter(message => message.id !== dm_id)
       state.user.directMessageChannels[action.message.direct_message_channel_id].messages = updated_dm_channel_messages
       return {...state}
+    case RECEIVE_DM_REACTION:
+      const dm_channel_id = Object.values(state.user.directMessageChannels).find(channel => channel.messages.some(message => message.id === action.reaction.message_id)).id
+      state.user.directMessageChannels[dm_channel_id].messages.find(message => message.id === action.reaction.message_id).reactions.push(action.reaction)
+      return {...state}
+    case REMOVE_DM_MESSAGE:
+      break;
     default:
       return {...state};
   }

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getDMMessages, createMessage, destroyMessage} from '../store/messages.js';
-import { receiveDMMessage, removeDMMessage  } from '../store/session.js';
+import { receiveDMMessage, removeDMMessage, removeDMReaction, receiveDMReaction } from '../store/session.js';
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
@@ -69,6 +69,12 @@ function DMRoom() {
               break;
             case 'DESTROY_MESSAGE':
               dispatch(removeDMMessage(id));
+              break;
+            case 'REMOVE_DM_REACTION':
+              dispatch(removeDMReaction(id));
+              break;
+            case 'RECEIVE_DM_REACTION':
+              dispatch(receiveDMReaction(id));
               break;
             default:
               console.log('Unhandled broadcast: ', type);
@@ -141,7 +147,7 @@ function DMRoom() {
         </div>
       </div>
     </div>
-      {/* <Emoji message = {message}/> */}
+      <Emoji message = {message}/>
     </li>
   ))
 
