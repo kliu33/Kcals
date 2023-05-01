@@ -11,7 +11,7 @@ const Emoji = ({message}) => {
     'laughing': message.reactions.filter(reaction => reaction.emoji === 'laughing'),
   }
   const sessionUser = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
+
   const emoji_dict = (emoji) => {
     switch(emoji) {
       case 'smile':

@@ -32,7 +32,7 @@ function Splash() {
           <img src={logo} alt="" id="logo" />
           <a href="https://github.com/kliu33/Kcals" target="_blank" className="nav-link">GitHub</a>
           <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" className="nav-link">LinkedIn</a>
-          <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" className="nav-link">AngelList</a>
+          <a href="https://wellfound.com/u/kevin-liu-149" target="_blank" className="nav-link">AngelList</a>
         </div>
         <div id="right-links">
           <NavLink to="login" className="nav-link"> Sign In</NavLink> 
