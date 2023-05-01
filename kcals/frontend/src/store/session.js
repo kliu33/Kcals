@@ -138,8 +138,12 @@ const sessionReducer = (state = initialState, action) => {
       const dm_channel_id = Object.values(state.user.directMessageChannels).find(channel => channel.messages.some(message => message.id === action.reaction.message_id)).id
       state.user.directMessageChannels[dm_channel_id].messages.find(message => message.id === action.reaction.message_id).reactions.push(action.reaction)
       return {...state}
-    case REMOVE_DM_MESSAGE:
-      break;
+    case REMOVE_DM_REACTION:
+      const dm_channel_id2 = Object.values(state.user.directMessageChannels).find(channel => channel.messages.some(message => message.id === action.reaction.message_id)).id
+      const react_message = state.user.directMessageChannels[dm_channel_id2].messages.find(message => message.id === action.reaction.message_id)
+      const updatedReactions = react_message.reactions.filter(reac => reac.id !== action.reaction.id)
+      react_message.reactions = updatedReactions
+      return {...state}
     default:
       return {...state};
   }
