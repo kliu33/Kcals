@@ -10,7 +10,6 @@ const Emoji = ({message}) => {
     'thumbs-down': message.reactions.filter(reaction => reaction.emoji === 'thumbs-down'),
     'laughing': message.reactions.filter(reaction => reaction.emoji === 'laughing'),
   }
-  debugger
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const emoji_dict = (emoji) => {

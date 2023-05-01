@@ -30,7 +30,7 @@ class Api::MessagesController < ApplicationController
       elsif
         DmChannel.broadcast_to @message.direct_message_channel,
           type: 'DESTROY_MESSAGE',
-          id: @message.id
+          id: @message
       end
       @message.destroy
       

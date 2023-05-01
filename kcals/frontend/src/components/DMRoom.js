@@ -1,19 +1,26 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { removeMessage, getDMMessages, createMessage, destroyMessage } from '../store/messages.js';
-import { receiveDMMessage } from '../store/session.js';
+import { removeMessage, getDMMessages, createMessage, destroyMessage} from '../store/messages.js';
+import { receiveDMMessage, removeDMMessage  } from '../store/session.js';
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
 import { receiveUser, fetchUsers } from '../store/users.js';
 import react from '../imgs/react.png';
-import options from '../imgs/options.png'
+import trash from '../imgs/trash.png';
+import options from '../imgs/options.png';
+import Emoji from './Emoji/Emoji.js';
+import EmojiList from './Emoji/EmojiList.js';
 
 
 function DMRoom() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [hidden, setHidden] = useState(true);
+  const [showUser, setShowUser] = useState({})
+  const [showOptions, setShowOptions] = useState(false)
+  const [showEmojis, setShowEmojis] = useState(null)
   const [body, setBody] = useState('');
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
@@ -60,7 +67,7 @@ function DMRoom() {
               scrollToBottom();
               break;
             case 'DESTROY_MESSAGE':
-              dispatch(removeMessage(id));
+              dispatch(removeDMMessage(id));
               break;
             default:
               console.log('Unhandled broadcast: ', type);
@@ -99,10 +106,43 @@ function DMRoom() {
       scrollToBottom();
     });
   };
+  
+  const handleOptions = (e) => {
+    e.preventDefault();
+    setShowOptions(!showOptions);
+  }
 
-  const handleDelete = messageId => {
-    destroyMessage(messageId);
+  const handleDelete = message => {
+    destroyMessage(message.id)
+    dispatch(removeDMMessage(message));
   };
+
+
+
+  const all_messages = messages.map(message => (
+    <li
+      key={message.id}
+      ref={activeMessageId === message.id ? activeMessageRef : null}
+      tabIndex={-1}
+      > 
+      <div className='message-x'>
+        <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
+        <div className='react-list'>
+        {showEmojis === message.id && (
+                  <EmojiList message={message} setShowEmojis={setShowEmojis}/>
+                )}
+          <div className='options'>
+            <img id="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
+            <img id="more-options" onClick={handleOptions} src={options}/>
+          {message.userId === currentUserId && (
+            <img id="trash" onClick={() => handleDelete(message)} src={trash}/>
+          )}
+        </div>
+      </div>
+    </div>
+      {/* <Emoji message = {message}/> */}
+    </li>
+  ))
 
   // const generateReactions = (...reactions) => {
   //   return reactions.map(reaction => (
@@ -127,27 +167,7 @@ function DMRoom() {
           <li className='start'> <p className='p1'>This conversation is just between <span className='blue'>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
           <p className='p2'>Check out their profile to learn more about them.</p>
           </li>
-          {messages.map(message => (
-            <li
-              key={message.id}
-              ref={activeMessageId === message.id ? activeMessageRef : null}
-              tabIndex={-1}
-              className='message-x'
-            >
-              <Message {...message} className='message'/>
-      <div className='options'>
-        <img id="react" src={react}/>
-        <img id="more-options" src={options}/>
-        
-      {/* {message.userId === currentUserId && (
-        <button
-          onClick={() => handleDelete(message.id)}>
-          x
-        </button>
-      )} */}
-      </div>
-            </li>
-          ))}
+          {all_messages}
         </ul>
         <form onSubmit={handleSubmit}>
           <textarea id='send-chat'
