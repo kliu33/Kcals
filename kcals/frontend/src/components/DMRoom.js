@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { removeMessage, getDMMessages, createMessage, destroyMessage} from '../store/messages.js';
+import { getDMMessages, createMessage, destroyMessage} from '../store/messages.js';
 import { receiveDMMessage, removeDMMessage  } from '../store/session.js';
 import Message from './Message';
 import consumer from '../consumer.js';
@@ -12,6 +12,7 @@ import trash from '../imgs/trash.png';
 import options from '../imgs/options.png';
 import Emoji from './Emoji/Emoji.js';
 import EmojiList from './Emoji/EmojiList.js';
+import UserShowModal from './userShow/userShow.js';
 
 
 function DMRoom() {
@@ -132,10 +133,10 @@ function DMRoom() {
                   <EmojiList message={message} setShowEmojis={setShowEmojis}/>
                 )}
           <div className='options'>
-            <img id="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
-            <img id="more-options" onClick={handleOptions} src={options}/>
+            <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
+            <img id="more-options" alt="options" onClick={handleOptions} src={options}/>
           {message.userId === currentUserId && (
-            <img id="trash" onClick={() => handleDelete(message)} src={trash}/>
+            <img id="trash" alt="trash" onClick={() => handleDelete(message)} src={trash}/>
           )}
         </div>
       </div>
@@ -155,6 +156,7 @@ function DMRoom() {
   //     </ span>
   //   ));
   // };
+  const userShow = hidden ? null : <UserShowModal setHidden={setHidden} showUser={showUser}/>
 
   return (
     <div className="room-home-div">
@@ -183,7 +185,7 @@ function DMRoom() {
           />
         </form>
       </section>
-      {/* {usersModal} */}
+      {userShow}
       
     </div>
   );

@@ -172,10 +172,10 @@ function Room() {
                   <EmojiList message={message} setShowEmojis={setShowEmojis}/>
                 )}
           <div className='options'>
-            <img id="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
-            <img id="more-options" onClick={handleOptions} src={options}/>
+            <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
+            <img id="more-options" alt="options" onClick={handleOptions} src={options}/>
           {message.userId === currentUserId && (
-            <img id="trash" onClick={() => handleDelete(message.id)} src={trash}/>
+            <img id="trash" alt="trash" onClick={() => handleDelete(message.id)} src={trash}/>
           )}
         </div>
       </div>
