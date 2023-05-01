@@ -19,6 +19,9 @@
 }
 
 #border-under {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px rgb(202, 202, 202) solid;
     padding-left: 20px;
     padding-top: 10px;
@@ -51,6 +54,7 @@
     margin: 20px;
     text-indent: 10px;
     padding-top: 10px;
+    resize: none;
 }
 
 .right-div{
@@ -58,7 +62,8 @@
     border: solid black 1px;
     cursor: pointer;
     border-radius: 5px;
-    padding: 5px
+    padding: 8px;
+    margin-right: 20px;
 }
 
 #send-chat::placeholder{
@@ -193,6 +198,25 @@
     padding: 6px;
 }
 
+#message-form{
+    display: flex;
+    align-items: center;
+}
+
+.submit-arrow{
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+    height: fit-content;
+    border: 1px solid black;
+}
+
+.submit-background{
+    cursor: pointer;
+    color: white;
+    background-color: #8b268d;
+    transition: background-color .5s ease;
+}
 
 /* #react:hover{
     background-color: rgb(236, 236, 236);

@@ -193,11 +193,13 @@ function Room() {
       <div className="room-home-div">
         <section className='room-home-section'>
           <div id='border-under'> 
-            <h1> #{channel?.name} </h1> 
             <div>
-              <span className='right-div' onClick={handleUsersModal}> {Object.values(users).length} </span> 
+              <h1> #{channel?.name} </h1> 
+              {channel?.description}
             </div>
-            {channel?.description}
+            <div>
+              <span className='right-div' onClick={handleUsersModal} title="View all members of this channel"> {Object.values(users).length} members</span> 
+            </div>
           </div>
           <ul ref={messageUlRef} className="messages-box">
             <li className='start'> <p className='p1'>This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
@@ -206,10 +208,12 @@ function Room() {
             {all_messages}
           </ul>
           <form onSubmit={handleSubmit}>
+            <div id="message-form">
             <textarea id='send-chat'
               rows={body.split('\n').length}
               onChange={e => setBody(e.target.value)}
               placeholder={`Message #${channel?.name}`}
+              required
               onKeyDown={e => {
                 if (e.code === 'Enter' && !e.shiftKey) {
                   handleSubmit(e);
@@ -217,6 +221,8 @@ function Room() {
               }}
               value={body}
             />
+            <button className={`submit-arrow ${body ? 'submit-background' : null}`} disabled={!body}> ↪ </button>
+            </div>
           </form>
         </section>
         {userShow}

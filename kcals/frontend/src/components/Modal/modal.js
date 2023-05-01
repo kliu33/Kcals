@@ -76,6 +76,7 @@ function ChannelFormPage(props) {
           value={name}
           placeholder="# e.g. plan-budget"
           onChange={(e) => setName(e.target.value)}
+          required
           />
           <br></br>
         </label>
