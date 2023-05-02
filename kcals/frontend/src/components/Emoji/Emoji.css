@@ -60,13 +60,22 @@
 }
 
 .choose-emoji:hover{
-    background-color: blanchedalmond;
+    background-color: rgb(16, 68, 52);
 }
 
 .react-hilight {
     border: rgb(121, 121, 161) 1px solid;
     background-color: rgba(210, 255, 255, 0.973);
 }
+
+.reaction-dark {
+    background-color: rgb(46, 46, 46);
+}
+
+.react-hilight-dark {
+    background-color: rgb(52, 102, 158);
+}
+
 
 p[title]::after {
     content: attr(title);

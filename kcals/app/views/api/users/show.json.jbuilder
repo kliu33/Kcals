@@ -1,5 +1,5 @@
 json.user do
-  json.extract! @user, :id, :email, :first_name, :last_name, :created_at, :updated_at
+  json.extract! @user, :id, :email, :first_name, :last_name, :dark_mode, :created_at, :updated_at
 
   json.set! :direct_message_channels do
     @user.direct_message_channels.each do |channel|

@@ -20,7 +20,7 @@
     cursor: pointer;
 }
 
-#modal {
+.modal {
     z-index: 1;
     background-color: white;
     height: fit-content;
@@ -37,6 +37,11 @@
     padding-bottom: 30px;
     overflow: hidden;
     overflow-y: auto;
+}
+
+.modal-dark {
+    background-color: rgb(39, 39, 39); 
+    color: rgb(216, 216, 216);
 }
 
 h1 {

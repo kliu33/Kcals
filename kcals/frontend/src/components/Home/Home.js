@@ -9,7 +9,7 @@ import ChannelItem from '../Channels/channelItem';
 import { fetchChannels } from '../../store/channels';
 import ChatHeader from '../chatHeader/chatHeader.js';
 import HeaderModal from "../chatHeader/headerModal";
-import { Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Room from '../Room.js'
 import DMRoom from "../DMRoom";
 import da from '../../imgs/down_arrow.png'
@@ -56,7 +56,7 @@ function Home() {
     return (
         <main id='main'>
                 <ChatHeader handleUserModal={handleUserModal}/>
-                <div className='channels'>
+                <div className={`channels ${sessionUser.darkMode ? 'dark-purple' : null}`}>
                     <h1 className='server'> App Academy </h1>
                     <ul id="channels-bar">
                         <div className="channel-hover" onClick={() => {setShowChannels(!showChannels)}}>

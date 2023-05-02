@@ -83,3 +83,7 @@
     transform: rotate(-90deg);
 }
 
+.dark-purple {
+    background-color: #1a1117;
+    transition: background-color .5s ease;
+}

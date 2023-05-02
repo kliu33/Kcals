@@ -58,7 +58,7 @@ function ChannelFormPage(props) {
 
   return (
     <div id='modal-back' onClick={closeModal}>
-    <div id='modal' onClick={stopProp}>
+    <div className={`modal ${sessionUser.darkMode ? 'modal-dark' : null}`} onClick={stopProp}>
     <form onSubmit={handleSubmit} id = "channel-form">
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}

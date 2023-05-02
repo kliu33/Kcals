@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux';
 
 function UsersInRoom({channel, users, handleUsersModal}) {
+    const sessionUser = useSelector(state => state.session.user);
     const stopProp = (e) => {
       e.stopPropagation()
     }
@@ -8,7 +10,7 @@ function UsersInRoom({channel, users, handleUsersModal}) {
 
     return (
         <div id='modal-back' onClick={handleUsersModal}>
-            <div id='users-modal' onClick={stopProp}>
+            <div className={`users-modal ${sessionUser.darkMode ? 'users-modal-dark' : null}`} onClick={stopProp}>
                 <a className="close-modal" onClick = {handleUsersModal}> X </a>
                 <h1># {channel.name}</h1>
                 <p>Members: {usersArr.length}</p>

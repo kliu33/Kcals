@@ -3,7 +3,9 @@
     clear: none;
     background-color: white;
     display: flex;
+    transition: background-color .5s ease;
 }
+
 
 .messages-box {
     height: 100%;
@@ -18,7 +20,7 @@
     width: 100%;
 }
 
-#border-under {
+.border-under {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,6 +31,7 @@
     position: sticky;
     top:0;
     background-color: white;
+    transition: background-color .5s ease;
 }
 
 .message{
@@ -47,7 +50,11 @@
     background-color: rgb(236, 236, 236);
 }
 
-#send-chat {
+.dark-hover:hover {
+    background-color: rgba(65, 64, 64, 0.527);
+}
+
+.send-chat {
     width: 90%;
     border-radius: 5px;
     height: 50px;
@@ -66,7 +73,7 @@
     margin-right: 20px;
 }
 
-#send-chat::placeholder{
+.send-chat::placeholder{
     text-indent: 10px;
     font-family: 'Lato', sans-serif;
 }
@@ -132,7 +139,7 @@
     justify-content: center;
 }
 
-#users-modal{
+.users-modal{
     z-index: 1;
     background-color: white;
     height: 400px;
@@ -148,6 +155,12 @@
     padding-right: 30px;
     padding-bottom: 30px;
     overflow:auto;
+    transition: background-color .5s ease;
+}
+
+.users-modal-dark{
+    background-color: rgb(39, 39, 39); 
+    transition: background-color .5s ease;
 }
 
 .options {
@@ -211,6 +224,11 @@
     border: 1px solid black;
 }
 
+.submit-arrow-dark{
+    color: white;
+    border: 1px solid white;
+}
+
 .submit-background{
     cursor: pointer;
     color: white;
@@ -232,3 +250,16 @@
 
     border-radius: 5px;
   }
+
+
+  .dark-chat {
+    background-color: rgb(29, 29, 29);
+    color: rgb(216, 216, 216);
+    transition: background-color .5s ease;
+}
+
+.send-chat-dark {
+    background-color: rgb(48, 42, 54);
+    color: white;
+    transition: background-color .5s ease;
+}

@@ -26,7 +26,8 @@ function Room() {
   const [showEmojis, setShowEmojis] = useState(null)
   const { id } = useParams();
   const messages = useSelector(getMessages(id));
-  const currentUserId = useSelector(state => state.session.user.id)
+  const sessionUser = useSelector(state => state.session.user)
+  const currentUserId = sessionUser.id
   const channel = useSelector(state => state.channels[id]);
   const users = useSelector(state => state.users)
   const activeMessageRef = useRef(null);
@@ -165,7 +166,7 @@ function Room() {
       ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
       > 
-      <div className='message-x'>
+      <div className={`message-x ${sessionUser.darkMode ? 'dark-hover' : null}`}>
         <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
         <div className='react-list'>
         {showEmojis === message.id && (
@@ -190,9 +191,9 @@ function Room() {
 
   return (
     <>
-      <div className="room-home-div">
+      <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : null}`}>
         <section className='room-home-section'>
-          <div id='border-under'> 
+          <div className={`border-under ${sessionUser.darkMode ? 'dark-chat' : null}`}> 
             <div>
               <h1> #{channel?.name} </h1> 
               {channel?.description}
@@ -209,7 +210,7 @@ function Room() {
           </ul>
           <form onSubmit={handleSubmit}>
             <div id="message-form">
-            <textarea id='send-chat'
+            <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : null}`}
               rows={body.split('\n').length}
               onChange={e => setBody(e.target.value)}
               placeholder={`Message #${channel?.name}`}
@@ -221,7 +222,7 @@ function Room() {
               }}
               value={body}
             />
-            <button className={`submit-arrow ${body ? 'submit-background' : null}`} disabled={!body}> ↪ </button>
+            <button className={`submit-arrow ${sessionUser.darkMode ? 'submit-arrow-dark' : null} ${body ? 'submit-background' : null}`} disabled={!body}> ↪ </button>
             </div>
           </form>
         </section>

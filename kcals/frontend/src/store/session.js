@@ -60,8 +60,17 @@ const removeCurrentUser = () => {
   };
 };
 
+
+export const updateColorMode = (userId) => async dispatch => {
+  const response = await fetch(`/api/users/${userId}`, {
+    method: "PATCH",
+  })
+  if (response.ok) { 
+    dispatch(reload())
+  }
+};
+
 export const reload = () => async dispatch => {
-  console.log('hello')
   const response = await csrfFetch("/api/session")
   const data = await response.json();
   storeCurrentUser(data.user)

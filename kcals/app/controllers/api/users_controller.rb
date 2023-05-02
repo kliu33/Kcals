@@ -15,6 +15,13 @@ class Api::UsersController < ApplicationController
         render json: { errors: @user.errors.full_messages }, status: 418
       end
     end
+
+    def update
+      @user = User.find_by(id: current_user.id)
+      if (@user.update(dark_mode: !@user.dark_mode))
+        render :show
+      end
+    end
     
     private
     def user_params
