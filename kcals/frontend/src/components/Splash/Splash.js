@@ -31,7 +31,7 @@ function Splash() {
         <div id="left-links">
           <img src={logo} alt="" id="logo" />
           <a href="https://github.com/kliu33/Kcals" target="_blank" className="nav-link">GitHub</a>
-          <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" className="nav-link">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/kliu33/" target="_blank" className="nav-link">LinkedIn</a>
           <a href="https://wellfound.com/u/kevin-liu-149" target="_blank" className="nav-link">AngelList</a>
         </div>
         <div id="right-links">

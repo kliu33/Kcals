@@ -12,7 +12,7 @@ const ChatHeader = (props) => {
         <div className={`header-div ${sessionUser.darkMode ? 'header-dark' : null}`}>
             <div className="links">
                 <a href="https://github.com/kliu33/Kcals" target="_blank" rel="noreferrer"><img id="logo" alt="git" src={git}/></a>
-                <a href="https://www.linkedin.com/in/kevin-liu-3a5b96158/" target="_blank" rel="noreferrer"><img id="logo" alt='linkedin' src={li}/></a>
+                <a href="https://www.linkedin.com/in/kliu33/" target="_blank" rel="noreferrer"><img id="logo" alt='linkedin' src={li}/></a>
                 <a href="https://wellfound.com/u/kevin-liu-149" target="_blank" rel="noreferrer"><img id="logo" alt="angellist" src={al}/></a>
             </div>
             <input placeholder='Search server' className={`searchBar ${sessionUser.darkMode ? 'search-dark' : null}`}></input>
