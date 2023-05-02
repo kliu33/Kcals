@@ -1,6 +1,6 @@
 import './Emoji.css'
-import { createReaction, deleteReaction, removeReaction } from '../../store/messages';
-import { useSelector, useDispatch } from 'react-redux';
+import { createReaction, deleteReaction } from '../../store/messages';
+import { useSelector } from 'react-redux';
 
 const Emoji = ({message}) => {
   const emoji_obj = {
