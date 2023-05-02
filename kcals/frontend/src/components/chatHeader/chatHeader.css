@@ -45,6 +45,10 @@
     cursor: pointer;
 }
 
+#pfp:hover{
+    opacity: 70%;
+}
+
 #pfp2 {
     height:40px;
     border-radius: 5px;
@@ -76,9 +80,8 @@
     top: 43px;
     right: 5px;
     background-color: white;
-    display: grid;
-    grid-template-areas: 
-    'pfp2' 'name';
+    display: flex;
+    flex-direction: column;
     transition: background-color 0.5s ease;
 }
 
@@ -91,7 +94,7 @@
 #pfp-name{
     display:flex;
     align-items: center;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     border-bottom: rgb(211, 198, 198) solid 1px;
 }
 
@@ -101,6 +104,7 @@
 }
 
 #logout{
+    cursor: pointer;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -127,8 +131,8 @@
 .switch {
     height: 100px;
     position: fixed;
-    right: 50px;
-    top: 50px;
+    right: 40px;
+    top: 55px;
 }
     
 .theme-switch {

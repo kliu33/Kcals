@@ -33,13 +33,15 @@ function HeaderModal(props) {
                         <div className="slider round"></div>
                     </label>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div id='logout-div'>
-                        <button type='submit' id='logout'>
-                            Logout of Kcals
-                        </button>
-                    </div>
-                </form>
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <div id='logout-div'>
+                            <button type='submit' id='logout'>
+                                Logout of Kcals
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
