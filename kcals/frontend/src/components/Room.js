@@ -199,7 +199,7 @@ function Room() {
               {channel?.description}
             </div>
             <div>
-              <span className='right-div' onClick={handleUsersModal} title="View all members of this channel"> {Object.values(users).length} members</span> 
+              <span className='right-div' onClick={handleUsersModal} title="View all members of this channel"> {Object.values(users).length} {`member${Object.values(users).length > 1 ? 's' : ''}`}</span> 
             </div>
           </div>
           <ul ref={messageUlRef} className="messages-box">
