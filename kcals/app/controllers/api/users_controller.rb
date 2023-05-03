@@ -1,4 +1,5 @@
 class Api::UsersController < ApplicationController
+    wrap_parameters include: User.attribute_names + [:photo]
     wrap_parameters include: User.attribute_names + ['password']
 
     def index
@@ -18,13 +19,19 @@ class Api::UsersController < ApplicationController
 
     def update
       @user = User.find_by(id: current_user.id)
-      if (@user.update(dark_mode: !@user.dark_mode))
-        render :show
+      if params[:user].present?
+        if @user.update(user_params)
+          render :show
+        end
+      else
+        if @user.update(dark_mode: !@user.dark_mode)
+          render :show
+        end
       end
     end
     
     private
     def user_params
-      params.require(:user).permit(:email, :password, :first_name, :last_name)
+      params.require(:user).permit(:email, :password, :first_name, :last_name, :photo)
     end
 end

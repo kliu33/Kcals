@@ -38,11 +38,13 @@
 }
 
 #pfp {
-    height: 60%;
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
     position:absolute;
     right: 20px;
     cursor: pointer;
+    background-color: white;
 }
 
 #pfp:hover{
@@ -51,10 +53,12 @@
 
 #pfp2 {
     height:40px;
+    width:40px;
     border-radius: 5px;
     border: 1px solid black;
     margin-top: 15px;
     margin-left: 15px;
+    background-color: white;
 }
 
 #modal-back-users {
@@ -183,4 +187,23 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.change-pfp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: rgb(211, 198, 198) solid 1px
+}
+
+.update-pfp {
+    cursor: pointer;
+    color: inherit;
+}
+
+.file-input #file-upload-button{
+    border-radius: 100px;
 }

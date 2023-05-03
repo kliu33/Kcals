@@ -1,5 +1,6 @@
 json.user do
   json.extract! @user, :id, :email, :first_name, :last_name, :dark_mode, :created_at, :updated_at
+  json.photoUrl @user.photo.attached? ? @user.photo.url : nil
 
   json.set! :direct_message_channels do
     @user.direct_message_channels.each do |channel|

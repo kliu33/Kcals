@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 function UserShowModal(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const[redirectTo, setRedirectTo] = useState(null)
+    const [redirectTo, setRedirectTo] = useState(null)
 
     const handleUserShow = (e) => {
         e.preventDefault();
@@ -40,6 +40,7 @@ function UserShowModal(props) {
     }
 
     if (redirectTo) return <Redirect to={`/dm_channels/${redirectTo}`}/>
+    const img = props.showUser.photoUrl ? props.showUser.photoUrl : "https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67"
 
     return (
         <div className='userInfo'>
@@ -47,12 +48,12 @@ function UserShowModal(props) {
                 <p className="close-user-modal" onClick={handleUserShow}>x</p>
             </h2>
             <div className="img-div">
-                <img id='pfp6' src={'https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67'} alt=""></img>
+                <img id='pfp6' src={img} alt=""></img>
             </div>
             <h1 id="show-name">{props.showUser.firstName} {props.showUser.lastName}</h1>
-            <button id="message-button" onClick={handleDm}> 
+            <button className={`message-button ${sessionUser.darkMode ? 'message-button-dark' : null}`} onClick={handleDm}> 
                 <img id="msg-img" alt="Message Icon" src={msg}/>
-            Message </button>
+            Send Message </button>
         </div>
     );
   }

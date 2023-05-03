@@ -12,10 +12,11 @@
 }
 
 #pfp6 {
-    width: 80%;
+    max-width: 80%;
     border-radius: 10px;
     margin-top: 20px;
     border: 1px black solid;
+    background-color: white;
 }
 
 .close-user-modal{
@@ -39,7 +40,7 @@
     margin-top: 20px;
 }
 
-#message-button {
+.message-button {
     display: flex;
     align-items: center;
     margin-top: 20px;
@@ -54,8 +55,12 @@
     cursor: pointer;
 }
 
-#message-button:hover{
+.message-button:hover{
     background-color:rgba(230, 230, 230, 0.596);
+}
+
+.message-button-dark {
+    background-color: white;
 }
 
 #msg-img{
