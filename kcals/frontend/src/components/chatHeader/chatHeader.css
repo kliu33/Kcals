@@ -133,7 +133,6 @@
 }
 
 .switch {
-    height: 100px;
     position: fixed;
     right: 40px;
     top: 55px;
@@ -192,18 +191,133 @@ input:checked + .slider:before {
 .change-pfp {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 15px;
+    height: 100px;
     padding-bottom: 15px;
-    border-bottom: rgb(211, 198, 198) solid 1px
 }
 
 .update-pfp {
-    cursor: pointer;
     color: inherit;
+    border: 1px solid #adadad;
+    background-color: rgb(128, 128, 128);
+    color: white;
+    padding: 10px;
+    min-width: 70px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-left: 20px;
 }
 
-.file-input #file-upload-button{
-    border-radius: 100px;
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #adadad;
+    background-color: gray;
+    display: inline-block;
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-top: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.custom-file-upload:hover{
+    background-color: purple;
+    transition: background-color 0.5s ease;
+}
+
+.files-container{
+    height: 50vh;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: dashed rgba(80, 80, 80, 0.616) 3px;
+}
+
+.button-div{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.uploaded{
+    background-color: rgb(10, 99, 17);
+    cursor: pointer;
+}
+
+.modal-upload {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    background-color: white;
+    height: 80vh;
+    max-width: 520px;
+    width: 50%;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.46668;
+    font-family: 'Lato', sans-serif;
+    border-radius: 8px;
+    padding-left: 20px;
+    padding-top:30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    overflow: auto;
+}
+
+
+.modal-upload-dark {
+    background-color: rgb(39, 39, 39); 
+    color: rgb(216, 216, 216);
+}
+
+#add-pfp {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#pfp8{
+    height: 8vh;
+    width: 8vh;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+#preview{
+    font-size: 13px;
+    color: rgba(177, 177, 177, 0.808);
+    margin-bottom: 10px;
+}
+
+.preview-div{
+    display: flex;
+    height: 10vh;
+}
+
+#upload{
+    height: 60%;
+}
+
+.cancel-pfp{
+    cursor: pointer;
+    color: inherit;
+    border: 1px solid #adadad;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    min-width: 70px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.user-modal-options{
+    padding-top: 10px;
 }
