@@ -41,7 +41,6 @@ function Home() {
     const [user_hidden, setuserHidden] = useState(true)
     
     const handleUserModal = (e) => {
-        e.preventDefault();
         setuserHidden(!user_hidden)
     }
 

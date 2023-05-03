@@ -5,7 +5,7 @@ import * as sessionActions from '../../store/session';
 import upload from '../../imgs/upload.png'
 
 
-function UploadModal({setHidden}) {
+function UploadModal({setHidden, setHeaderHidden}) {
 
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -13,9 +13,8 @@ function UploadModal({setHidden}) {
   const [photoUrl, setPhotoUrl] = useState(null)
 
   const closeModal = (e) => {
-    e.preventDefault()
-    e.cancelBubble = true
     setHidden(true)
+    setHeaderHidden()
   }
   
   const stopProp = (e) => {
@@ -45,7 +44,7 @@ function UploadModal({setHidden}) {
       if (response.ok) {
           setPhotoFile(null);
           dispatch(sessionActions.reload());
-          setHidden(true)
+          closeModal();
       }
   }    
   const preview = photoUrl ? <img id="pfp8" src={photoUrl} alt="" /> : <img id='pfp8' src="https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67" alt=""/>
@@ -72,7 +71,7 @@ function UploadModal({setHidden}) {
                     <h2>{sessionUser.firstName} {sessionUser.lastName}</h2>
                 </div>
                     <div className='button-div'>
-                        <button className='cancel-pfp' onClick={()=>setHidden(true)}> Cancel</button>
+                        <button className='cancel-pfp' onClick={closeModal}> Cancel</button>
                         <button className={`update-pfp ${photoFile ? "uploaded" : null}`} disabled={photoFile ? false : true}> Save</button>
                     </div>
                 </div>
