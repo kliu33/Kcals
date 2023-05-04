@@ -93,6 +93,10 @@
     padding: 15px;
 }
 
+.about-div section:hover{
+    background-color: rgba(73, 73, 73, 0.24);
+}
+
 .about-div section h2 {
     font-weight: bold;
 }
@@ -100,4 +104,19 @@
 .sec2{
     border-bottom: rgba(146, 145, 145, 0.301) solid 1px;
     border-top: rgba(146, 145, 145, 0.301) solid 1px;
+}
+
+.add-edit{
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-in-modal{
+    font-size: 12px;
+    cursor: pointer;
+    color: #1d9bd1;
+}
+
+.edit-in-modal:hover{
+    text-decoration: underline;
 }
