@@ -187,11 +187,12 @@
 
 .options {
     display: flex;
+    position:static;
     margin-right: 15px;
     background-color: white;
     justify-content: center;
     align-items: center;
-    margin-top: -10px;
+    margin-top: 0px;
     border: rgb(179, 179, 179) 1px solid;
     border-radius: 8px;
     height: fit-content;

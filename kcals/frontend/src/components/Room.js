@@ -177,6 +177,14 @@ function Room() {
     setEdittingId(null);
   };
 
+  const handleShowEmojis = (messageId) => {
+    if (showEmojis === messageId) {
+      setShowEmojis(null)
+    } else {
+      setShowEmojis(messageId)
+    }
+  }
+
   const all_messages = messages.map(message => message.id === edittingId ? <form className={`update-form ${sessionUser.darkMode ? 'update-dark' : ''}`}>
     <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
               rows={updateBody.split('\n').length}
@@ -205,11 +213,11 @@ function Room() {
       <div className={`message-x`}>
         <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
         <div className='react-list'>
+          <div className='options'>
         {showEmojis === message.id && (
                   <EmojiList message={message} setShowEmojis={setShowEmojis}/>
                 )}
-          <div className='options'>
-            <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
+            <img id="react" alt="react" src={react} onClick={()=>handleShowEmojis(message.id)}/>
             <img id="more-options" alt="options" src={options}/>
             {message.userId === currentUserId && (
             <img id="edit" alt="edit" onClick={()=>handleOptions(message)} src={edit}/>

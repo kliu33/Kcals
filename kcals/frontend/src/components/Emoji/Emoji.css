@@ -41,11 +41,11 @@
 }
 
 #list-of-emojis{
-    position: absolute;
+    background-color: white;
+    position: relative;
     display: flex;
-    margin-top: -38px;
+    justify-content: center;
     border: rgb(179, 179, 179) 1px solid;
-    margin-left: -60px;
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
