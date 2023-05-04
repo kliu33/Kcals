@@ -51,13 +51,13 @@ function UploadModal({setHidden, setHeaderHidden}) {
 
   return (
     <div id='modal-back' onClick={closeModal}>
-        <div className={`modal-upload ${sessionUser.darkMode ? 'modal-upload-dark' : null}`} onClick={stopProp}>
+        <div className={`modal-upload ${sessionUser.darkMode ? 'modal-upload-dark' : ''}`} onClick={stopProp}>
             <h2 id="add-pfp">Add a profile photo</h2>
             <form className="change-pfp" onSubmit={handlePfp}>
                 <div className='files-container'>
                     <img id="upload" alt="upload" src={upload}/>
                     <h2 id="add-pfp">Drag your photo here, or...</h2>
-                    <label className={`custom-file-upload ${photoFile ? "uploaded" : null}`}>
+                    <label className={`custom-file-upload ${photoFile ? "uploaded" : ''}`}>
                         <input className="file-upload" type="file" onChange={handleFile}/>
                         Browse Files
                     </label>
@@ -72,7 +72,7 @@ function UploadModal({setHidden, setHeaderHidden}) {
                 </div>
                     <div className='button-div'>
                         <button className='cancel-pfp' onClick={closeModal}> Cancel</button>
-                        <button className={`update-pfp ${photoFile ? "uploaded" : null}`} disabled={photoFile ? false : true}> Save</button>
+                        <button className={`update-pfp ${photoFile ? "uploaded" : ''}`} disabled={photoFile ? false : true}> Save</button>
                     </div>
                 </div>
             </form>

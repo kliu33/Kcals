@@ -24,10 +24,13 @@ function DMRoom() {
   const [showEmojis, setShowEmojis] = useState(null)
   const [body, setBody] = useState('');
   const { id } = useParams();
+  const users = useSelector(state => state.users)
   const sessionUser = useSelector(state => state.session.user);
   const messages = useSelector(getDMMessages(parseInt(id)));
   const currentUserId = useSelector(state => state.session.user.id)
-  const dm_channel = useSelector(state => state.session.user && state.session.user.directMessageChannels && state.session.user.directMessageChannels[id]);  const recipient = dm_channel ? (dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1) : null
+  const dm_channel = useSelector(state => state.session.user && state.session.user.directMessageChannels && state.session.user.directMessageChannels[id]);  
+  const recipient = dm_channel ? (dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1) : null
+  const profile = users[recipient?.id]
   const activeMessageRef = useRef(null);
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
@@ -51,7 +54,6 @@ function DMRoom() {
   // Effect to run when entering a room
   useEffect(() => {
     dispatch(getDMMessages(parseInt(id)))
-    dispatch(fetchUsers())
     scrollToBottom();
   }, [id, dispatch]);
   
@@ -132,7 +134,7 @@ function DMRoom() {
       ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
       > 
-      <div className='message-x'>
+      <div className={`message-x ${sessionUser.darkMode ? 'dark-hover' : ''}`}>
         <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
         <div className='react-list'>
         {showEmojis === message.id && (
@@ -162,26 +164,32 @@ function DMRoom() {
   //     </ span>
   //   ));
   // };
+  const handleProfile = () => {
+    setHidden(false)
+    setShowUser(profile)
+  }
   const userShow = hidden ? null : <UserShowModal setHidden={setHidden} showUser={showUser}/>
 
   return (
-    <div className="room-home-div">
+    <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : ''}`}>
       <section className='room-home-section'>
-        <div id='border-under'> 
+        <div className={`border-under ${sessionUser.darkMode ? 'dark-chat' : ''}`}> 
           <h1> {recipient?.firstName} {recipient?.lastName} </h1> 
           {/* {channel?.description} */}
         </div>
         <ul ref={messageUlRef} className="messages-box">
           <li className='start'> <p className='p1'>This conversation is just between <span className='blue'>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
-          <p className='p2'>Check out their profile to learn more about them.</p>
+          <p className='p2'>Check out their profile to learn more about them. <span onClick={handleProfile} className='blue'>View Profile </span></p> 
           </li>
           {all_messages}
         </ul>
         <form onSubmit={handleSubmit}>
-          <textarea id='send-chat'
+        <div id="message-form">
+          <textarea  className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
             rows={body.split('\n').length}
             onChange={e => setBody(e.target.value)}
             placeholder={`Message #${recipient?.firstName}`}
+            required
             onKeyDown={e => {
               if (e.code === 'Enter' && !e.shiftKey) {
                 handleSubmit(e);
@@ -189,6 +197,8 @@ function DMRoom() {
             }}
             value={body}
           />
+            <button className={`submit-arrow ${sessionUser.darkMode ? 'submit-arrow-dark' : null} ${body ? 'submit-background' : ''}`} disabled={!body}> ↪ </button>
+          </div>
         </form>
       </section>
       {userShow}

@@ -26,7 +26,8 @@ function Home() {
         dispatch(fetchChannels())
         dispatch(fetchUsers())
         dispatch(receiveUser(sessionUser))
-    }, [dispatch, sessionUser])
+    }, [])
+
     const [showChannels, setShowChannels] = useState(true)
     const [showDMChannels, setShowDMChannels] = useState(true)
     const channelIndexItems = showChannels ? channels?.map((channel) => <ChannelItem key={channel.id} channel={channel}/>) : null
@@ -53,7 +54,7 @@ function Home() {
     return (
         <main id='main'>
                 <ChatHeader handleUserModal={handleUserModal}/>
-                <div className={`channels ${sessionUser.darkMode ? 'dark-purple' : null}`}>
+                <div className={`channels ${sessionUser.darkMode ? 'dark-purple' : ''}`}>
                     <h1 className='server'> App Academy </h1>
                     <ul id="channels-bar">
                         <div className="channel-hover" onClick={() => {setShowChannels(!showChannels)}}>

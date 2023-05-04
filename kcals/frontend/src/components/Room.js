@@ -166,7 +166,7 @@ function Room() {
       ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
       > 
-      <div className={`message-x ${sessionUser.darkMode ? 'dark-hover' : null}`}>
+      <div className={`message-x ${sessionUser.darkMode ? 'dark-hover' : ''}`}>
         <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
         <div className='react-list'>
         {showEmojis === message.id && (
@@ -191,9 +191,9 @@ function Room() {
 
   return (
     <>
-      <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : null}`}>
+      <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : ''}`}>
         <section className='room-home-section'>
-          <div className={`border-under ${sessionUser.darkMode ? 'dark-chat' : null}`}> 
+          <div className={`border-under ${sessionUser.darkMode ? 'dark-chat' : ''}`}> 
             <div>
               <h1> #{channel?.name} </h1> 
               {channel?.description}
@@ -210,7 +210,7 @@ function Room() {
           </ul>
           <form onSubmit={handleSubmit}>
             <div id="message-form">
-            <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : null}`}
+            <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
               rows={body.split('\n').length}
               onChange={e => setBody(e.target.value)}
               placeholder={`Message #${channel?.name}`}
@@ -222,7 +222,7 @@ function Room() {
               }}
               value={body}
             />
-            <button className={`submit-arrow ${sessionUser.darkMode ? 'submit-arrow-dark' : null} ${body ? 'submit-background' : null}`} disabled={!body}> ↪ </button>
+            <button className={`submit-arrow ${sessionUser.darkMode ? 'submit-arrow-dark' : null} ${body ? 'submit-background' : ''}`} disabled={!body}> ↪ </button>
             </div>
           </form>
         </section>

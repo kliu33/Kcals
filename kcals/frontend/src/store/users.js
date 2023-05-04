@@ -1,5 +1,5 @@
 import { RECEIVE_CHANNEL } from "./channels";
-import { csrfAPIFetch } from "./csrf";
+import { csrfAPIFetch } from './csrf';
 
 
 const RECEIVE_USER = 'users/RECEIVE_USER';
@@ -26,9 +26,10 @@ export const receiveUsers = users => {
   };
 
 export const fetchUsers = () => async dispatch => {
-    return csrfAPIFetch('users').then(({ users }) => {
-      dispatch(receiveUsers(users));
-    });
+    return csrfAPIFetch('users')
+    .then(response => {
+        dispatch(receiveUsers(response))
+    })
 }
   
 // REDUCER
