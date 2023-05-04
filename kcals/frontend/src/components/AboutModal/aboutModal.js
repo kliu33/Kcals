@@ -21,12 +21,12 @@ function AboutModal({setAboutHidden, channel}) {
   const [tab, setTab] = useState('about')
   const users = useSelector(state => state.users)
   const usersArr = Object.values(users)
+  const sessionUser = useSelector(state => state.session.user);
   const usersinroom = usersArr.map((user) => 
-  <div className="user-list-about">
+  <div className={`user-list-about ${sessionUser.darkMode ? 'user-list-about-dark' : ''}`}>
     <img id='pfp3' src={user?.photoUrl ? user?.photoUrl : 'https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67'} alt=""></img>
     <span id='pfp5'> {user.firstName} {user.lastName}</span>
   </div>)
-  const sessionUser = useSelector(state => state.session.user);
   const date = new Date(channel.createdAt);
   const creator = Object.values(users).find(user => user.id === channel.authorId)
   const closeModal = (e) => {
@@ -38,7 +38,7 @@ function AboutModal({setAboutHidden, channel}) {
   }
 
   const showTab = (tab === 'about') ? 
-  <div className='about-div'> 
+  <div className={`about-div ${sessionUser.darkMode ? 'about-div-dark' : ''}`}> 
     <section className='sec1'>
         <div className='add-edit'>
             <h2>Name</h2>
@@ -65,14 +65,13 @@ function AboutModal({setAboutHidden, channel}) {
   return (
     <div id='modal-back' onClick={closeModal}>
         <div className={`modal-about ${sessionUser.darkMode ? 'modal-about-dark' : ''}`} onClick={stopProp}>
-            <div className='top-about-container'>
+            <div className={`top-about-container${sessionUser.darkMode ? '-dark' : ''}`}>
                 <div className='top-about'>
                     <h2 id="about-channel"># {channel.name}</h2>
                     <h2 id="about-x" onClick={closeModal}>x</h2>
                 </div>
                 <div className='about-members'>
                     <div>
-                        
                     </div>
                     <h2 className={`tabs ${tab === 'about' ? 'tab-selected' : ''}`} onClick={()=>setTab('about')}>About</h2>
                     <h2 className={`tabs ${tab === 'members' ? 'tab-selected' : ''}`} onClick={()=>setTab('members')}>Members <span id="users-length">{Object.values(users).length}</span></h2>
