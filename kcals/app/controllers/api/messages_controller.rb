@@ -30,6 +30,12 @@ class Api::MessagesController < ApplicationController
             payload: from_template('api/messages/show', message: @message)
             render :show, locals: { message: @message }
           end
+          if @message.direct_message_channel_id
+            DmChannel.broadcast_to @message.direct_message_channel,
+            type: 'UPDATE_MESSAGE',
+            payload: from_template('api/messages/show', message: @message)
+            render :show, locals: { message: @message }
+          end
         end
     end
   

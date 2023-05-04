@@ -175,7 +175,7 @@ function Room() {
     setEdittingId(null);
   };
 
-  const all_messages = messages.map(message => message.id === edittingId ? <form className='update-form'>
+  const all_messages = messages.map(message => message.id === edittingId ? <form className={`update-form ${sessionUser.darkMode ? 'update-dark' : ''}`}>
     <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
               rows={updateBody.split('\n').length}
               onChange={e => setUpdateBody(e.target.value)}
@@ -188,18 +188,19 @@ function Room() {
               }}
               value={updateBody}
             />
-            <div>
-              <button onClick={()=>setEdittingId(null)}> Cancel </button>
-              <button onClick={(e)=>handleUpdate(e, message)}> Send</button>
+            <div className='edit-buttons'>
+              <button className="cancel-edit" onClick={()=>setEdittingId(null)}> Cancel </button>
+              <button className="save-edit" onClick={(e)=>handleUpdate(e, message)}> Send</button>
             </div>
             </form>
              : (
     <li
+      className={`message-back ${message.editted ? 'message-editted ' : ''}${sessionUser.darkMode ? 'dark-hover' : ''}`}
       key={message.id}
       ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
       > 
-      <div className={`message-x ${sessionUser.darkMode ? 'dark-hover' : ''}`}>
+      <div className={`message-x`}>
         <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
         <div className='react-list'>
         {showEmojis === message.id && (

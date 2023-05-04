@@ -1,8 +1,8 @@
 .room-home-div {
+    display: flex;
     float: left;
     clear: none;
     background-color: white;
-    display: flex;
     transition: background-color .5s ease;
 }
 
@@ -16,8 +16,11 @@
 }
 
 .room-home-section {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 100%;
+    height: 100%;
 }
 
 .border-under {
@@ -46,18 +49,23 @@
     padding-top: 15px
 }
 
-.message-x:hover {
+.message-editted {
+    background-color: rgba(92, 92, 92, 0.205);
+}
+
+
+.message-back:hover{
     background-color: rgb(236, 236, 236);
 }
 
 .dark-hover:hover {
-    background-color: rgba(65, 64, 64, 0.527);
+    background-color: rgba(105, 105, 105, 0.26);
 }
 
 .send-chat {
     width: 90%;
     border-radius: 5px;
-    height: 50px;
+    height: 60px;
     margin: 20px;
     text-indent: 10px;
     padding-top: 10px;
@@ -90,6 +98,7 @@
     display: flex;
     justify-content: space-between;
 }
+
 
 .p1 {
     font-weight: bold;
@@ -215,6 +224,7 @@
 #message-form{
     display: flex;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .submit-arrow{
@@ -267,4 +277,47 @@
 
 .update-form {
     display: flex;
+    background-color: beige;
+}
+
+.update-dark{
+    background-color: rgb(66, 66, 28);
+}
+
+.edit-buttons{
+    display: flex;
+    align-items: center;
+    margin-left: -200px;
+    margin-bottom: -20px;
+}
+
+.cancel-edit{
+    font-size: 12px;
+    cursor: pointer;
+    color: inherit;
+    border: 1px solid #adadad;
+    background-color: white;
+    color: black;
+    padding: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    min-width: 70px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.save-edit {
+    font-size: 12px;
+    cursor: pointer;
+    color: inherit;
+    border: 1px solid #adadad;
+    background-color: rgb(10, 99, 17);
+    color: white;
+    padding: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    min-width: 70px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-left: 20px;
 }

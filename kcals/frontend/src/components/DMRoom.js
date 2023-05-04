@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { getDMMessages, createMessage, destroyMessage} from '../store/messages.js';
+import { getDMMessages, createMessage, destroyMessage, patchMessage, updateMessage} from '../store/messages.js';
 import { receiveDMMessage, removeDMMessage, removeDMReaction, receiveDMReaction } from '../store/session.js';
 import Message from './Message';
 import consumer from '../consumer.js';
@@ -21,7 +21,9 @@ function DMRoom() {
   const [hidden, setHidden] = useState(true);
   const [showUser, setShowUser] = useState({})
   const [showOptions, setShowOptions] = useState(false)
+  const [edittingId, setEdittingId] = useState(null)
   const [showEmojis, setShowEmojis] = useState(null)
+  const [updateBody, setUpdateBody] = useState('');
   const [body, setBody] = useState('');
   const { id } = useParams();
   const users = useSelector(state => state.users)
@@ -71,6 +73,9 @@ function DMRoom() {
               break;
             case 'DESTROY_MESSAGE':
               dispatch(removeDMMessage(id));
+              break;
+            case 'UPDATE_MESSAGE':
+              dispatch(patchMessage(payload.message))
               break;
             case 'REMOVE_DM_REACTION':
               dispatch(removeDMReaction(id));
@@ -126,15 +131,46 @@ function DMRoom() {
     dispatch(removeDMMessage(message));
   };
 
+  const handleUpdate = (e, message) => {
+    e.preventDefault();
+    let updatedMessage = {
+      ...message, 
+      body: updateBody,
+      editted: true
+    }
+    dispatch(updateMessage(updatedMessage))
+    setUpdateBody('');
+    setEdittingId(null);
+  };
 
 
-  const all_messages = messages.map(message => (
+
+  const all_messages = messages.map(message => message.id === edittingId ? <form className={`update-form ${sessionUser.darkMode ? 'update-dark' : ''}`}>
+    <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
+              rows={updateBody.split('\n').length}
+              onChange={e => setUpdateBody(e.target.value)}
+              placeholder={`Update ${message?.body}`}
+              required
+              onKeyDown={e => {
+                if (e.code === 'Enter' && !e.shiftKey) {
+                  handleUpdate(e, message);
+                }
+              }}
+              value={updateBody}
+            />
+            <div className='edit-buttons'>
+              <button className="cancel-edit" onClick={()=>setEdittingId(null)}> Cancel </button>
+              <button className="save-edit" onClick={(e)=>handleUpdate(e, message)}> Send</button>
+            </div>
+            </form>
+             : (
     <li
+      className={`message-back ${message.editted ? 'message-editted ' : ''}${sessionUser.darkMode ? 'dark-hover' : ''}`}
       key={message.id}
       ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
       > 
-      <div className={`message-x ${sessionUser.darkMode ? 'dark-hover' : ''}`}>
+      <div className={`message-x`}>
         <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
         <div className='react-list'>
         {showEmojis === message.id && (
@@ -142,9 +178,9 @@ function DMRoom() {
                 )}
           <div className='options'>
             <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
-            <img id="more-options" alt="options" onClick={handleOptions} src={options}/>
+            <img id="more-options" alt="options" onClick={()=>handleOptions(message)} src={options}/>
           {message.userId === currentUserId && (
-            <img id="trash" alt="trash" onClick={() => handleDelete(message)} src={trash}/>
+            <img id="trash" alt="trash" onClick={() => handleDelete(message.id)} src={trash}/>
           )}
         </div>
       </div>
