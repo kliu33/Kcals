@@ -1,7 +1,5 @@
 import React from 'react';
 import './channelItem.css'
-import RightClickMenu from './rightClickMenu';
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const ChannelItem = (props) => {

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './aboutModal.css'
+import { deleteChannel } from '../../store/channels';
+import ChangeDescModal from './ChangeDescModal';
+import ChangeNameModal from './ChangeNameModal';
 
 
 function AboutModal({setAboutHidden, channel}) {
+  const dispatch = useDispatch();
   const months = [
     'January',
     'February',
@@ -19,6 +23,8 @@ function AboutModal({setAboutHidden, channel}) {
     'December'
   ];
   const [tab, setTab] = useState('about')
+  const [nameHidden, setNameHidden] = useState(true)
+  const [descHidden, setDescHidden] = useState(true)
   const users = useSelector(state => state.users)
   const usersArr = Object.values(users)
   const sessionUser = useSelector(state => state.session.user);
@@ -29,6 +35,8 @@ function AboutModal({setAboutHidden, channel}) {
   </div>)
   const date = new Date(channel.createdAt);
   const creator = Object.values(users).find(user => user.id === channel.authorId)
+
+
   const closeModal = (e) => {
     setAboutHidden(true)
   }
@@ -36,20 +44,25 @@ function AboutModal({setAboutHidden, channel}) {
   const stopProp = (e) => {
     e.stopPropagation()
   }
+  
+  const handleDelete = (e) => {
+    dispatch(deleteChannel(channel.id));
+    closeModal();
+  }
 
   const showTab = (tab === 'about') ? 
   <div className={`about-div ${sessionUser.darkMode ? 'about-div-dark' : ''}`}> 
     <section className='sec1'>
         <div className='add-edit'>
-            <h2>Name</h2>
-            {sessionUser.id === creator.id ? <h3 className='edit-in-modal'>Edit</h3> : null}
+            <h2>Channel name</h2>
+            {sessionUser.id === creator.id ? <h3 className='edit-in-modal' onClick={()=>setNameHidden(false)}>Edit</h3> : null}
         </div>
         <p>{channel.name}</p>
     </section>
     <section className='sec2'>
         <div className='add-edit'>
             <h2>Description</h2>
-            {sessionUser.id === creator.id ? <h3 className='edit-in-modal'>Edit</h3> : null}
+            {sessionUser.id === creator.id ? <h3 className='edit-in-modal' onClick={()=>setDescHidden(false)}>Edit</h3> : null}
         </div>
             <p>{channel.description}</p>
         <div>
@@ -59,8 +72,18 @@ function AboutModal({setAboutHidden, channel}) {
         <h2>Created By</h2>
         <p>{creator.firstName} {creator.lastName} on {months[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</p>
     </section>
+    {sessionUser.id === creator.id ?
+    <section className='delete-sec' onClick={handleDelete}>
+        <h2>Delete Channel</h2>
+    </section>
+        : null
+    }
+    
   </div> 
   : usersinroom
+
+  const changeNameModal = nameHidden ? null : <ChangeNameModal channel={channel} setNameHidden={setNameHidden}/>
+  const changeDescModal = descHidden ? null : <ChangeDescModal channel={channel} setDescHidden={setDescHidden}/>
 
   return (
     <div id='modal-back' onClick={closeModal}>
@@ -81,6 +104,8 @@ function AboutModal({setAboutHidden, channel}) {
                 {showTab}
             </div>
         </div>
+        {changeDescModal}
+        {changeNameModal}
     </div>
   );
 }
