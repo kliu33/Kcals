@@ -348,3 +348,32 @@
     font-weight: bold;
     margin-left: 20px;
 }
+
+.chat-header {
+    display: flex;
+    align-items: center;
+}
+
+.channel-name-top {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.channel-name-top:hover{
+    background-color: #adadad2d;
+}
+
+.down-caret{
+    margin-left: 2px;
+    font-size: 12px;
+}
+
+.channel-description-top{
+    margin-left: 20px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 400;
+}

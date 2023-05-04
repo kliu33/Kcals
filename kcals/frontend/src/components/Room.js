@@ -15,6 +15,7 @@ import edit from '../imgs/edit.png'
 import trash from '../imgs/trash.png'
 import Emoji from './Emoji/Emoji.js';
 import EmojiList from './Emoji/EmojiList.js';
+import AboutModal from './AboutModal/aboutModal.js';
 import { updateMessage } from '../store/messages.js';
 
 function Room() {
@@ -23,6 +24,7 @@ function Room() {
   const [body, setBody] = useState('');
   const [updateBody, setUpdateBody] = useState('');
   const [hidden, setHidden] = useState(true);
+  const [aboutHidden, setAboutHidden] = useState(true)
   const [showUser, setShowUser] = useState({})
   const [showEmojis, setShowEmojis] = useState(null)
   const [edittingId, setEdittingId] = useState(null)
@@ -225,15 +227,15 @@ function Room() {
   
 
   const userShow = hidden ? null : <UserShowModal setHidden={setHidden} showUser={showUser}/>
-
+  const channelAbout = aboutHidden ? null : <AboutModal setAboutHidden={setAboutHidden} channel={channel}/>
   return (
     <>
       <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : ''}`}>
         <section className='room-home-section'>
           <div className={`border-under ${sessionUser.darkMode ? 'dark-chat' : ''}`}> 
-            <div>
-              <h1> #{channel?.name} </h1> 
-              {channel?.description}
+            <div className='chat-header'>
+              <h2 className='channel-name-top' onClick={()=>setAboutHidden(false)}> #{channel?.name}<span className='down-caret'>▼</span></h2> 
+              <h2 className='channel-description-top'>{channel?.description}</h2>
             </div>
             <div>
               <span className='right-div' onClick={handleUsersModal} title="View all members of this channel"> {Object.values(users).length} {`member${Object.values(users).length > 1 ? 's' : ''}`}</span> 
@@ -265,6 +267,7 @@ function Room() {
         </section>
         {userShow}
         {usersModal}
+        {channelAbout}
       </div>
     </>
   );

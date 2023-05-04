@@ -14,7 +14,6 @@
     height: 100vh;
     width: 260px;
     float: left;
-    padding-right: 10px;
 }
 
 .messaging {
@@ -86,4 +85,18 @@
 .dark-purple {
     background-color: #1a1117;
     transition: background-color .5s ease;
+}
+
+.logo-div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: gray solid 1px;
+    padding-left: 10px;
+}
+
+.kcals{
+    margin-left: -10px;
+    color: white;
+    font-size: 17px;
 }

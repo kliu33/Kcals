@@ -10,6 +10,7 @@ import { fetchChannels } from '../../store/channels';
 import ChatHeader from '../chatHeader/chatHeader.js';
 import HeaderModal from "../chatHeader/headerModal";
 import Room from '../Room.js'
+import logo from '../../imgs/logo_copy.png'
 import DMRoom from "../DMRoom";
 import da from '../../imgs/down_arrow.png'
 import DMChannelItem from "../Channels/DMchannelItem";
@@ -55,7 +56,10 @@ function Home() {
         <main id='main'>
                 <ChatHeader handleUserModal={handleUserModal}/>
                 <div className={`channels ${sessionUser.darkMode ? 'dark-purple' : ''}`}>
-                    <h1 className='server'> App Academy </h1>
+                    <div className="logo-div">
+                        <img src={logo} alt="" id="logo" />
+                        <h1 className='kcals'> Kcals </h1>
+                    </div>
                     <ul id="channels-bar">
                         <div className="channel-hover" onClick={() => {setShowChannels(!showChannels)}}>
                             <div className="channel-name channel-toggle"> <img alt="arrow" className={showChannels ? "arrow" : "arrow rotate"} src={da}/>Channels 

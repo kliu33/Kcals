@@ -1,0 +1,73 @@
+.modal-about {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    background-color: white;
+    height: 60vh;
+    max-width: 520px;
+    width: 50%;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.46668;
+    font-family: 'Lato', sans-serif;
+    border-radius: 8px;
+    padding-left: 30px;
+    padding-top:30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    overflow: auto;
+}
+
+
+.modal-about-dark {
+    background-color: rgb(39, 39, 39); 
+    color: rgb(216, 216, 216);
+}
+
+.top-about{
+    display: flex;
+    justify-content: space-between;
+}
+
+#about-channel{
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+#about-x{
+    font-size: 22px;
+    margin-top: -10px;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    padding-left: 14px;
+    padding-right:14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#about-x:hover{
+    background-color: #6363631f;
+}
+
+.about-members {
+    display: flex;
+    margin-top: 25px;
+    align-items: center;
+    text-align: center;
+}
+
+.tabs{
+    cursor: pointer;
+    margin-right: 30px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+
+#users-length {
+    font-weight: normal;
+    font-size: 13px;
+    padding-left: 5px;
+    color: #adadad;
+}
