@@ -1,9 +1,11 @@
 import React from 'react';
 import './aboutModal.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { updateChannel } from '../../store/channels';
 
 const ChangeDescModal = ({channel, setDescHidden}) => {
+    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     
     const [newDesc, setNewDesc] = useState(channel.description)
@@ -12,26 +14,39 @@ const ChangeDescModal = ({channel, setDescHidden}) => {
         setDescHidden(true)
     }
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let newChannel = {
+            ...channel,
+            description: newDesc
+        }
+        dispatch(updateChannel(newChannel))
+        setDescHidden(true)
+    }
     return (
-        <div id='modal-back-2' onClick={handleModal}>
-            <div className='change-modal' onClick={(e)=>e.stopPropagation()}>
+        <div className={`modal-back-2 ${sessionUser.darkMode ? 'modal-back-2-dark' : ''}`} onClick={handleModal}>
+            <div className={`change-modal ${sessionUser.darkMode ? 'change-modal-dark' : ''}`} onClick={(e)=>e.stopPropagation()}>
                 <div className='top-about'>
-                    <h2 id='about-channel'> Rename this channel</h2>
+                    <h2 id='about-channel'> Edit Description</h2>
                     <h2 id="about-x" onClick={handleModal}>x</h2>
                 </div>
-                <form className='edit-form'>
+                <form className={`edit-form ${sessionUser.darkMode ? 'edit-form-dark' : ''}`}>
                     <div>
-                        <h2> Channel name </h2>
-                        <input className='update-text'
+                        <textarea className={`update-desc ${sessionUser.darkMode ? 'update-desc-dark' : ''}`}
                         type='text'
                         onChange={e => setNewDesc(e.target.value)}
                         placeholder={`Update ${channel?.body}`}
-                        value={newDesc}></input>
-                        <p> Names must be lowercase, without spaces or periods, and can’t be longer than 80 characters.</p>
+                        value={newDesc} 
+                        onKeyDown={e => {
+                            if (e.code === 'Enter' && !e.shiftKey) {
+                                handleSubmit(e);
+                            }
+                        }}></textarea>
+                        <p> Let people know what this channel is for.</p>
                     </div>
                     <div className='edit-buttons2'>
-                        <button className='cancel-pfp' onClick={handleModal}> Cancel </button>
-                        <button className={`update-pfp ${channel.description !=  newDesc? "uploaded" : ''}`} disabled={`${channel.description !=  newDesc? "false" : 'true'}`}> Save Changes</button>
+                        <button className={`cancel-channel-edit ${sessionUser.darkMode ? 'cancel-channel-edit-dark' : ''}`} onClick={handleModal}> Cancel </button>
+                        <button onClick={(e)=> handleSubmit(e)} className={`update-pfp ${channel.description !=  newDesc? "uploaded" : ''}`}> Save Changes</button>
                     </div>
                 </form>
             </div>

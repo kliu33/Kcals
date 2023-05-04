@@ -82,6 +82,10 @@
     margin-right: 20px;
 }
 
+.right-div-dark{
+    border: solid white 1px;
+}
+
 .send-chat::placeholder{
     text-indent: 10px;
     font-family: 'Lato', sans-serif;
