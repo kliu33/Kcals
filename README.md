@@ -105,7 +105,7 @@ Direct messaging channels also uses Action Cable to subscribe users to the direc
 
 - ### React to messages with emojis!
 
-![image](https://user-images.githubusercontent.com/30753677/235472580-92cf8fa3-5ec7-4227-8315-2e67ed5a4049.png)
+![image](https://user-images.githubusercontent.com/30753677/236105251-c02f7040-a5f8-4b5e-ad4b-19034836a1e5.png)
 
 ![image](https://user-images.githubusercontent.com/30753677/235472731-34fa0853-0e02-4144-8887-dbbe32eaed31.png)
 
@@ -119,7 +119,7 @@ With our custum set of emojis users can react to messages in real time. As you c
 
 ## Future features:
 
-- Implement Amazon Web Services (AWS) for custum user profile pictures
+- ~~Implement Amazon Web Services (AWS) for custum user profile pictures~~
 - Functional search bar
 - Direct messaging between more than 2 users
 - Ability to add custom emojis
