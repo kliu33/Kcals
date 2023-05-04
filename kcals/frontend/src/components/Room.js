@@ -24,6 +24,7 @@ function Room() {
   const [showUser, setShowUser] = useState({})
   const [showOptions, setShowOptions] = useState(false)
   const [showEmojis, setShowEmojis] = useState(null)
+  const [editting, setEditting] = useState(null)
   const { id } = useParams();
   const messages = useSelector(getMessages(id));
   const sessionUser = useSelector(state => state.session.user)
@@ -153,9 +154,8 @@ function Room() {
   //   ));
   // };
 
-  const handleOptions = (e) => {
-    e.preventDefault();
-    setShowOptions(!showOptions);
+  const handleOptions = (id) => {
+    setEditting(id)
   }
 
 
@@ -174,7 +174,7 @@ function Room() {
                 )}
           <div className='options'>
             <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
-            <img id="more-options" alt="options" onClick={handleOptions} src={options}/>
+            <img id="more-options" alt="options" onClick={()=>handleOptions(message.id)} src={options}/>
           {message.userId === currentUserId && (
             <img id="trash" alt="trash" onClick={() => handleDelete(message.id)} src={trash}/>
           )}
