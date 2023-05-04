@@ -4,27 +4,26 @@
     z-index: 1;
     background-color: white;
     height: 60vh;
-    max-width: 520px;
-    width: 50%;
+    max-width: 60%;
+    width: 500px;
     font-size: 15px;
     font-weight: 400;
     line-height: 1.46668;
     font-family: 'Lato', sans-serif;
     border-radius: 8px;
-    padding-left: 30px;
-    padding-top:30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
     overflow: auto;
 }
 
 
 .modal-about-dark {
-    background-color: rgb(39, 39, 39); 
+    background-color: #232529;
     color: rgb(216, 216, 216);
 }
 
 .top-about{
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -32,7 +31,6 @@
 #about-channel{
     font-weight: bold;
     font-size: 22px;
-    letter-spacing: 1px;
 }
 
 #about-x{
@@ -51,6 +49,8 @@
 }
 
 .about-members {
+    margin-left: 30px;
+    margin-right: 30px;
     display: flex;
     margin-top: 25px;
     align-items: center;
@@ -60,9 +60,10 @@
 .tabs{
     cursor: pointer;
     margin-right: 30px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: bold;
     font-family: 'Lato', sans-serif;
+    padding-bottom: 5px;
 }
 
 #users-length {
@@ -70,4 +71,33 @@
     font-size: 13px;
     padding-left: 5px;
     color: #adadad;
+}
+
+.top-about-container{
+    background-color: #1c1d20;
+}
+
+.tab-selected{
+    border-bottom: green 2px solid;
+}
+
+.about-div{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+    border: rgba(146, 145, 145, 0.301) solid 1px;
+    border-radius: 5px;
+}
+
+.about-div section{
+    padding: 15px;
+}
+
+.about-div section h2 {
+    font-weight: bold;
+}
+
+.sec2{
+    border-bottom: rgba(146, 145, 145, 0.301) solid 1px;
+    border-top: rgba(146, 145, 145, 0.301) solid 1px;
 }
