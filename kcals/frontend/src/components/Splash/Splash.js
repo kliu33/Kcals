@@ -30,9 +30,9 @@ function Splash() {
       <div id="nav">
         <div id="left-links">
           <img src={logo} alt="" id="logo" />
-          <a href="https://github.com/kliu33/Kcals" target="_blank" className="nav-link">GitHub</a>
-          <a href="https://www.linkedin.com/in/kliu33/" target="_blank" className="nav-link">LinkedIn</a>
-          <a href="https://wellfound.com/u/kevin-liu-149" target="_blank" className="nav-link">AngelList</a>
+          <a href="https://github.com/kliu33/Kcals" target="_blank" rel="noreferrer" className="nav-link">GitHub</a>
+          <a href="https://www.linkedin.com/in/kliu33/" target="_blank" rel="noreferrer" className="nav-link">LinkedIn</a>
+          <a href="https://wellfound.com/u/kevin-liu-149" target="_blank" rel="noreferrer" className="nav-link">AngelList</a>
         </div>
         <div id="right-links">
           <NavLink to="login" className="nav-link"> Sign In</NavLink> 
@@ -57,12 +57,12 @@ function Splash() {
       <div id='cascade'>
         <h2 className='trust'> TRUSTED BY COMPANIES ALL OVER THE WORLD</h2>
         <div className='companies'>
-          <img id="logo" src={tesla}/>
-          <img id="logo" src={amazon}/>
-          <img id="logo" src={cfa}/>
-          <img id="logo" src={bloomberg}/>
-          <img id="logo" src={apple}/>
-          <img id="logo" src={etsy}/>
+          <img id="logo" alt="tesla" src={tesla}/>
+          <img id="logo" alt="amazon" src={amazon}/>
+          <img id="logo" alt="cfa" src={cfa}/>
+          <img id="logo" alt="bloomberg" src={bloomberg}/>
+          <img id="logo" alt="apple" src={apple}/>
+          <img id="logo" alt="etsy" src={etsy}/>
         </div>
         <div className='info-container'>
           <div className='info-div wrap'>
