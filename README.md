@@ -59,7 +59,8 @@
   
  - ### Send and receive messages in real time
   
-  ![image](https://user-images.githubusercontent.com/30753677/234086962-4fbf72fe-fcae-4af7-9646-8ee9d5fbd0dd.png)
+  ![image](https://user-images.githubusercontent.com/30753677/236091110-1c3369a5-8310-41e4-92ea-3255818a9137.png)
+
   
   Using ActionCable, users are able to send and receive messages to everyone in the text channel in real-time. Users are also able to delete and edit their messages in real-time, something that Slack requires you to pay for.
   
@@ -94,7 +95,7 @@
 
 - ### Directly message users privately
 
-![image](https://user-images.githubusercontent.com/30753677/235471294-b6cdd250-5096-4d08-bfd1-42bf0873c80c.png)
+![image](https://user-images.githubusercontent.com/30753677/236104847-e359f41b-10b9-416e-a049-b3ce3e6bc3e5.png)
 
   Users can create and leave direct messaging channels with other users. The messages will only be viewable by the two users and noone else. Direct message channels also features live messaging and reactions that will be broadcasted to the other user.
 
