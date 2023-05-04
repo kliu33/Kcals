@@ -50,7 +50,7 @@
 }
 
 .message-editted {
-    background-color: rgba(92, 92, 92, 0.205);
+    background-color: rgba(92, 92, 92, 0.123);
 }
 
 
@@ -204,10 +204,15 @@
 
 
 #react {
-    width: 20px;
-    height: 20px;
-    margin: 7px;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
     cursor: pointer;
+}
+
+#react:hover{
+    background-color: #adadad57;
+    border-radius: 10px;
 }
 
 #more-options {
@@ -215,10 +220,32 @@
     cursor: pointer;
 }
 
+#more-options:hover{
+    background-color: #adadad57;
+    border-radius: 10px;
+}
+
+#edit {
+    height: 30px;
+    cursor: pointer;
+    padding: 6px;
+    margin-right: 4px;
+}
+
+#edit:hover{
+    background-color: #adadad57;
+    border-radius: 10px;
+}
+
 #trash {
     height: 30px;
     cursor: pointer;
     padding: 6px;
+}
+
+#trash:hover{
+    background-color: #adadad57;
+    border-radius: 10px;
 }
 
 #message-form{

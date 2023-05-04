@@ -11,6 +11,7 @@ import UsersInRoom from './usersInRoom.js';
 import UserShowModal from './userShow/userShow.js';
 import react from '../imgs/react.png';
 import options from '../imgs/options.png'
+import edit from '../imgs/edit.png'
 import trash from '../imgs/trash.png'
 import Emoji from './Emoji/Emoji.js';
 import EmojiList from './Emoji/EmojiList.js';
@@ -22,7 +23,6 @@ function Room() {
   const [body, setBody] = useState('');
   const [updateBody, setUpdateBody] = useState('');
   const [hidden, setHidden] = useState(true);
-  
   const [showUser, setShowUser] = useState({})
   const [showEmojis, setShowEmojis] = useState(null)
   const [edittingId, setEdittingId] = useState(null)
@@ -208,7 +208,10 @@ function Room() {
                 )}
           <div className='options'>
             <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
-            <img id="more-options" alt="options" onClick={()=>handleOptions(message)} src={options}/>
+            <img id="more-options" alt="options" src={options}/>
+            {message.userId === currentUserId && (
+            <img id="edit" alt="edit" onClick={()=>handleOptions(message)} src={edit}/>
+          )}
           {message.userId === currentUserId && (
             <img id="trash" alt="trash" onClick={() => handleDelete(message.id)} src={trash}/>
           )}

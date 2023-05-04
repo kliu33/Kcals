@@ -9,6 +9,7 @@ import './Room.css'
 import { receiveUser } from '../store/users.js';
 import react from '../imgs/react.png';
 import trash from '../imgs/trash.png';
+import edit from '../imgs/edit.png'
 import options from '../imgs/options.png';
 import Emoji from './Emoji/Emoji.js';
 import EmojiList from './Emoji/EmojiList.js';
@@ -20,7 +21,7 @@ function DMRoom() {
   const history = useHistory();
   const [hidden, setHidden] = useState(true);
   const [showUser, setShowUser] = useState({})
-  const [showOptions, setShowOptions] = useState(false)
+  // const [showOptions, setShowOptions] = useState(false)
   const [edittingId, setEdittingId] = useState(null)
   const [showEmojis, setShowEmojis] = useState(null)
   const [updateBody, setUpdateBody] = useState('');
@@ -178,7 +179,10 @@ function DMRoom() {
                 )}
           <div className='options'>
             <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
-            <img id="more-options" alt="options" onClick={()=>handleOptions(message)} src={options}/>
+            <img id="more-options" alt="options"src={options}/>
+            {message.userId === currentUserId && (
+            <img id="edit" alt="edit" onClick={()=>handleOptions(message)} src={edit}/>
+          )}
           {message.userId === currentUserId && (
             <img id="trash" alt="trash" onClick={() => handleDelete(message.id)} src={trash}/>
           )}
