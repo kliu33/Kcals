@@ -120,7 +120,7 @@ With our custum set of emojis users can react to messages in real time. As you c
 ## Future features:
 
 - ~~Implement Amazon Web Services (AWS) for custum user profile pictures~~
-- ~~Add dark mode ~~
+- ~~Add dark mode~~
 - Functional search bar
 - Direct messaging between more than 2 users
 - Ability to add custom emojis
