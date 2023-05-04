@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { getDMMessages, createMessage, destroyMessage, patchMessage, updateMessage} from '../store/messages.js';
-import { receiveDMMessage, removeDMMessage, removeDMReaction, receiveDMReaction } from '../store/session.js';
+import { getDMMessages, createMessage, destroyMessage, updateMessage} from '../store/messages.js';
+import { receiveDMMessage, removeDMMessage, removeDMReaction, receiveDMReaction, patchDMMessage } from '../store/session.js';
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
@@ -75,7 +75,7 @@ function DMRoom() {
               dispatch(removeDMMessage(id));
               break;
             case 'UPDATE_MESSAGE':
-              dispatch(patchMessage(payload.message))
+              dispatch(patchDMMessage(payload.message))
               break;
             case 'REMOVE_DM_REACTION':
               dispatch(removeDMReaction(id));
@@ -121,9 +121,9 @@ function DMRoom() {
     });
   };
   
-  const handleOptions = (e) => {
-    e.preventDefault();
-    setShowOptions(!showOptions);
+  const handleOptions = (message) => {
+    setEdittingId(message.id)
+    setUpdateBody(message.body)
   }
 
   const handleDelete = message => {

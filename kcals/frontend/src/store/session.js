@@ -7,11 +7,19 @@ const RECEIVE_DM_MESSAGE = 'RECEIVE_DM_MESSAGE';
 const REMOVE_DM_MESSAGE = 'REMOVE_DM_MESSAGE';
 const RECEIVE_DM_REACTION = 'RECEIVE_DM_REACTION';
 const REMOVE_DM_REACTION = 'REMOVE_DM_REACTION';
+const UPDATE_DM_MESSAGE = 'UPDATE_DM_MESSAGE';
 
 
 export const receiveDMMessage = message => {
   return {
     type: RECEIVE_DM_MESSAGE,
+    message
+  }
+}
+
+export const patchDMMessage = message => {
+  return {
+    type: UPDATE_DM_MESSAGE,
     message
   }
 }
@@ -143,6 +151,13 @@ const sessionReducer = (state = initialState, action) => {
       const updated_dm_channel_messages = dm_channel_messages.filter(message => message.id !== dm_id)
       state.user.directMessageChannels[action.message.direct_message_channel_id].messages = updated_dm_channel_messages
       return {...state}
+    case UPDATE_DM_MESSAGE:
+      const dm_id2 = action.message.id;
+      const dm_channel_messages2 = state.user.directMessageChannels[action.message.directMessageChannelId].messages
+      const idx = dm_channel_messages2.findIndex(message => message.id === dm_id2)
+      state.user.directMessageChannels[action.message.directMessageChannelId].messages[idx] = action.message
+      return {...state}
+      break;
     case RECEIVE_DM_REACTION:
       const dm_channel_id = Object.values(state.user.directMessageChannels).find(channel => channel.messages.some(message => message.id === action.reaction.message_id)).id
       state.user.directMessageChannels[dm_channel_id].messages.find(message => message.id === action.reaction.message_id).reactions.push(action.reaction)
