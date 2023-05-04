@@ -26,7 +26,7 @@ function Home() {
         dispatch(fetchChannels())
         dispatch(fetchUsers())
         dispatch(receiveUser(sessionUser))
-    }, [])
+    }, [dispatch, sessionUser])
 
     const [showChannels, setShowChannels] = useState(true)
     const [showDMChannels, setShowDMChannels] = useState(true)

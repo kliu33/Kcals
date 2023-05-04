@@ -6,7 +6,7 @@ import { receiveDMMessage, removeDMMessage, removeDMReaction, receiveDMReaction 
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
-import { receiveUser, fetchUsers } from '../store/users.js';
+import { receiveUser } from '../store/users.js';
 import react from '../imgs/react.png';
 import trash from '../imgs/trash.png';
 import options from '../imgs/options.png';
