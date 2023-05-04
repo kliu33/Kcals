@@ -20,6 +20,18 @@ class Api::MessagesController < ApplicationController
         render json: @message.errors.full_messages, status: 422
       end
     end
+
+    def update
+        @message = Message.find_by(id: params[:id])
+        if (@message&.update(message_params))
+          if @message.channel_id
+            RoomsChannel.broadcast_to @message.channel,
+            type: 'UPDATE_MESSAGE',
+            payload: from_template('api/messages/show', message: @message)
+            render :show, locals: { message: @message }
+          end
+        end
+    end
   
     def destroy
       @message = Message.find(params[:id])

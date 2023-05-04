@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessage, removeReaction, receiveReaction } from '../store/messages.js';
+import { receiveMessage, removeMessage, getMessages, createMessage, destroyMessage, removeReaction, receiveReaction, patchMessage } from '../store/messages.js';
 import { fetchChannel } from '../store/channels.js';
 import { receiveUser } from '../store/users';
 import Message from './Message';
@@ -14,17 +14,18 @@ import options from '../imgs/options.png'
 import trash from '../imgs/trash.png'
 import Emoji from './Emoji/Emoji.js';
 import EmojiList from './Emoji/EmojiList.js';
+import { updateMessage } from '../store/messages.js';
 
 function Room() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [body, setBody] = useState('');
+  const [updateBody, setUpdateBody] = useState('');
   const [hidden, setHidden] = useState(true);
   
   const [showUser, setShowUser] = useState({})
-  const [showOptions, setShowOptions] = useState(false)
   const [showEmojis, setShowEmojis] = useState(null)
-  const [editting, setEditting] = useState(null)
+  const [edittingId, setEdittingId] = useState(null)
   const { id } = useParams();
   const messages = useSelector(getMessages(id));
   const sessionUser = useSelector(state => state.session.user)
@@ -79,6 +80,9 @@ function Room() {
               break;
             case 'DESTROY_MESSAGE':
               dispatch(removeMessage(id));
+              break;
+            case 'UPDATE_MESSAGE':
+              dispatch(patchMessage(payload.message))
               break;
             case 'REMOVE_REACTION':
               dispatch(removeReaction(id));
@@ -155,12 +159,39 @@ function Room() {
   // };
 
   const handleOptions = (id) => {
-    setEditting(id)
+    setEdittingId(id)
   }
 
+  const handleUpdate = (e, message) => {
+    e.preventDefault();
+    let updatedMessage = {
+      ...message, 
+      body: updateBody
+    }
+    dispatch(updateMessage(updatedMessage))
+    setUpdateBody('');
+    setEdittingId(null);
+  };
 
-
-  const all_messages = messages.map(message => (
+  const all_messages = messages.map(message => message.id === edittingId ? <form className='update-form'>
+    <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
+              rows={updateBody.split('\n').length}
+              onChange={e => setUpdateBody(e.target.value)}
+              placeholder={`Updating ${message?.body}`}
+              required
+              onKeyDown={e => {
+                if (e.code === 'Enter' && !e.shiftKey) {
+                  handleUpdate(e, message);
+                }
+              }}
+              value={updateBody}
+            />
+            <div>
+              <button onClick={()=>handleOptions(null)}> Cancel </button>
+              <button onClick={(e)=>handleUpdate(e, message)}> Send</button>
+            </div>
+            </form>
+             : (
     <li
       key={message.id}
       ref={activeMessageId === message.id ? activeMessageRef : null}

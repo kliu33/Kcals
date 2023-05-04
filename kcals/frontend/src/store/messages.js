@@ -4,8 +4,9 @@ import { RECEIVE_CHANNEL } from './channels.js'
 const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
 const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
-const RECEIVE_REACTION = 'RECEIVE_REACTION'
-const REMOVE_REACTION = 'REMOVE_REACTION'
+const RECEIVE_REACTION = 'RECEIVE_REACTION';
+const REMOVE_REACTION = 'REMOVE_REACTION';
+const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 
 export const receiveMessage = message => {
   return {
@@ -20,6 +21,13 @@ export const receiveMessages = messages => {
     messages
   };
 };
+
+export const patchMessage = message => {
+  return {
+    type: UPDATE_MESSAGE,
+    message
+  }
+}
 
 export const receiveReaction = reaction => {
   return {
@@ -68,6 +76,20 @@ export const deleteReaction = reactionId => (
   })
 )
 
+export const updateMessage = (message) => async (dispatch) => {
+  const response = await fetch(`/api/messages/${message.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(message),
+  });
+  if(response.ok) {
+    const messageContent = await response.json();
+    dispatch(receiveMessage(messageContent));
+  }
+};
+
 export const getDMMessages = dmChannelId => state => {
   return state.session && state.session.user.directMessageChannels && state.session.user.directMessageChannels[dmChannelId]
     ? Object.values(state.session.user.directMessageChannels[dmChannelId].messages)
@@ -108,6 +130,9 @@ export const messagesReducer = (state = {}, action) => {
     case REMOVE_MESSAGE:
       delete newState[action.messageId];
       return newState;
+    case UPDATE_MESSAGE:
+      const updatedMessage = action.message;
+      return { ...state, [updatedMessage.id]: updatedMessage };
     case RECEIVE_REACTION:
       newState[action.reaction.message_id].reactions.push(action.reaction)
       return newState

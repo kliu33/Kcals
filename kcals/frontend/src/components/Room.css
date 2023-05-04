@@ -263,3 +263,7 @@
     color: white;
     transition: background-color .5s ease;
 }
+
+.update-form {
+    display: flex;
+}
