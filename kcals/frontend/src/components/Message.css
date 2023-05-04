@@ -41,3 +41,9 @@
     border: 1px solid black;
     background-color: white;
 }
+
+#editted{
+    margin-left: 3px;
+    font-size: 11px;
+    color: rgba(128, 128, 128, 0.788);
+}

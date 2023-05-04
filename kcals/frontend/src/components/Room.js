@@ -158,15 +158,17 @@ function Room() {
   //   ));
   // };
 
-  const handleOptions = (id) => {
-    setEdittingId(id)
+  const handleOptions = (message) => {
+    setEdittingId(message.id)
+    setUpdateBody(message.body)
   }
 
   const handleUpdate = (e, message) => {
     e.preventDefault();
     let updatedMessage = {
       ...message, 
-      body: updateBody
+      body: updateBody,
+      editted: true
     }
     dispatch(updateMessage(updatedMessage))
     setUpdateBody('');
@@ -177,7 +179,7 @@ function Room() {
     <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
               rows={updateBody.split('\n').length}
               onChange={e => setUpdateBody(e.target.value)}
-              placeholder={`Updating ${message?.body}`}
+              placeholder={`Update ${message?.body}`}
               required
               onKeyDown={e => {
                 if (e.code === 'Enter' && !e.shiftKey) {
@@ -187,7 +189,7 @@ function Room() {
               value={updateBody}
             />
             <div>
-              <button onClick={()=>handleOptions(null)}> Cancel </button>
+              <button onClick={()=>setEdittingId(null)}> Cancel </button>
               <button onClick={(e)=>handleUpdate(e, message)}> Send</button>
             </div>
             </form>
@@ -205,7 +207,7 @@ function Room() {
                 )}
           <div className='options'>
             <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
-            <img id="more-options" alt="options" onClick={()=>handleOptions(message.id)} src={options}/>
+            <img id="more-options" alt="options" onClick={()=>handleOptions(message)} src={options}/>
           {message.userId === currentUserId && (
             <img id="trash" alt="trash" onClick={() => handleDelete(message.id)} src={trash}/>
           )}

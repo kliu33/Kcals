@@ -23,6 +23,7 @@ const Message = (props) => {
           <span className='message__timestamp'>{formattedTime}</span>
           <p className='message__body'>
             {props.body}
+            <span id='editted'>{props.editted ? '(editted)' : null }</span>
           </p>
         </div>
       </div>
