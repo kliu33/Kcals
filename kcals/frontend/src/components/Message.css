@@ -15,6 +15,8 @@
 
 .message__body {
     margin-top: 2px;
+    font-size: 15px;
+    line-height: 1.46668;
 }
 
 .message {
@@ -49,7 +51,7 @@
 }
 
 .message-2{
-    padding-left: 70px;
-    padding-top: 5px;
-    padding-bottom: 17px;
+    padding: 7px 8px 17px 70px;
+    font-size: 15px;
+    font-weight: 400;
 }

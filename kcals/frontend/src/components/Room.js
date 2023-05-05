@@ -19,6 +19,20 @@ import AboutModal from './AboutModal/aboutModal.js';
 import { updateMessage } from '../store/messages.js';
 
 function Room() {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
   const dispatch = useDispatch();
   const history = useHistory();
   const [body, setBody] = useState('');
@@ -38,12 +52,10 @@ function Room() {
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
   const numMessages = useRef(0);
-  const activeMessageId = parseInt(history.location.hash.slice(1));
+  const creator = Object.values(users).find(user => user.id === channel.authorId)
+  const date = new Date(channel.createdAt);
 
-  // Scroll to message selected from mentions menu
-  useEffect (() => {
-    if (activeMessageRef.current) scrollToMessage();
-  }, [activeMessageId]);
+
 
   useEffect(() => {
     if (id === prevRoom.current && numMessages.current < messages.length) {
@@ -207,7 +219,6 @@ function Room() {
     <li
       className={`message-back ${message.editted ? 'message-editted ' : ''}${sessionUser.darkMode ? 'dark-hover' : ''}`}
       key={message.id}
-      ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
       > 
       <div className={`message-x`}>
@@ -257,8 +268,9 @@ function Room() {
             </div>
           </div>
           <ul ref={messageUlRef} className="messages-box">
-            <li className='start'> <p className='p1'>This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
-            <p className='p2'> This channel is for everything # {channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
+            <li className='start'><h1>#{channel.name}</h1> <p className='p1'> {sessionUser.id === channel.authorId ? "You " : `${creator.firstName} ${creator.lastName} `}
+            created this channel on {months[date.getMonth()]} {date.getDate()}. This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
+            <p className='p2'> This channel is for everything #{channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
             </li>
             {all_messages}
           </ul>

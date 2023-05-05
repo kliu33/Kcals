@@ -38,12 +38,6 @@ function DMRoom() {
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
   const numMessages = useRef(0);
-  const activeMessageId = parseInt(history.location.hash.slice(1));
-  // Scroll to message selected from mentions menu
-  useEffect (() => {
-    if (activeMessageRef.current) scrollToMessage();
-  }, [activeMessageId]);
-
   useEffect(() => {
     if (id === prevRoom.current && numMessages.current < messages.length) {
       // Remove any hash values from the URL
@@ -168,7 +162,6 @@ function DMRoom() {
     <li
       className={`message-back ${message.editted ? 'message-editted ' : ''}${sessionUser.darkMode ? 'dark-hover' : ''}`}
       key={message.id}
-      ref={activeMessageId === message.id ? activeMessageRef : null}
       tabIndex={-1}
       > 
       <div className={`message-x`}>
