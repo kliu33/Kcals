@@ -70,3 +70,19 @@
 .channel-item:focus{
     text-decoration: none;
 }
+
+.you{
+    margin-left: 5px;
+    color: #c5c5c58e;
+}
+
+#pfp9{
+    width: 20px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.dm-channel-container{
+    display: flex;
+    align-items: center;
+}
