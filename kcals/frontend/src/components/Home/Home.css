@@ -43,7 +43,8 @@
 }
 
 .channel-toggle {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     border-radius: 6px;
     margin-left: 10px;
     padding-left: 10px;
@@ -73,8 +74,8 @@
   }
 
 .arrow {
-    height: 10px;
-    width: 15px;
+    height: 8px;
+    width: 11px;
     margin-right: 5px;
 }
 

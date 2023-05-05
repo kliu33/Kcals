@@ -4,6 +4,7 @@
     padding-left: 10px;
     cursor: pointer;
     margin-bottom: 5px;
+    margin-right: 10px;
 }
 
 .channel-div a {
@@ -24,7 +25,8 @@
 }
 
 .channel-div:hover {
-    background-color: rgba(255,255,255,0.2);
+    margin-right: 15px;
+    background-color: rgba(235, 235, 235, 0.116);
 }
 
 .channel-div:focus-within {
@@ -33,16 +35,13 @@
 
 .channel-name {
     text-decoration: none;
-    font-size: 17px;
+    font-size: 15px;
     opacity: 1;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     box-sizing: inherit;
     color: #c5c5c5;
     margin-right: auto;
     line-height: 28px;
-    font-variant-ligatures: common-ligatures;
     font-weight: 400;
     cursor: pointer;
 }
@@ -66,4 +65,8 @@
 
 #channels-bar {
     margin-top: 10px;
+}
+
+.channel-item:focus{
+    text-decoration: none;
 }
