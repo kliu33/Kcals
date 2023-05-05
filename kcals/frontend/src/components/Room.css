@@ -72,10 +72,21 @@
     border-radius: 5px;
     height: 75px;
     margin: 20px;
-    text-indent: 10px;
-    padding-top: 10px;
+    padding-left: 10px;
+    padding-top: 15px;
+    font-size: 15px;
     resize: none;
     font-family: 'Lato', sans-serif;
+}
+
+.send-chat::placeholder{
+    font-family: 'Lato', sans-serif;
+}
+
+.send-chat-dark {
+    background-color: rgb(48, 42, 54);
+    color: white;
+    transition: background-color .5s ease;
 }
 
 .right-div{
@@ -91,10 +102,6 @@
     border: solid white 1px;
 }
 
-.send-chat::placeholder{
-    text-indent: 10px;
-    font-family: 'Lato', sans-serif;
-}
 
 .btn-delete {
     cursor:pointer;
@@ -319,12 +326,6 @@
   .dark-chat {
     background-color: rgb(29, 29, 29);
     color: rgb(216, 216, 216);
-    transition: background-color .5s ease;
-}
-
-.send-chat-dark {
-    background-color: rgb(48, 42, 54);
-    color: white;
     transition: background-color .5s ease;
 }
 
