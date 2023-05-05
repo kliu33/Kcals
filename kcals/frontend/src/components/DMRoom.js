@@ -173,10 +173,10 @@ function DMRoom() {
         </div>
       }
         <div className='react-list'>
+          <div className='options'>
         {showEmojis === message.id && (
                   <EmojiList message={message} setShowEmojis={setShowEmojis}/>
                 )}
-          <div className='options'>
             <img id="react" alt="react" src={react} onClick={()=>setShowEmojis(message.id)}/>
             <img id="more-options" alt="options"src={options}/>
             {message.userId === currentUserId && (
