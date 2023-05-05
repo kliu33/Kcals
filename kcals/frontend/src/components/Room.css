@@ -53,7 +53,7 @@
 }
 
 .message-editted {
-    background-color: rgba(92, 92, 92, 0.123);
+    background-color: rgba(92, 92, 92, 0.068);
 }
 
 .message-back{
@@ -130,6 +130,12 @@
 .blue {
     color: rgba(15, 15, 221, 0.753);
     cursor: pointer;
+    transition: color ease 0.5s;
+}
+
+.blue-dark{
+    color: #2296aa;
+    transition: color ease 0.5s;
 }
 
 .user-list {

@@ -5,14 +5,17 @@
 }
 
 .show-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px rgb(202, 202, 202) solid;
     text-align:left;
-    padding: 15px;
+    padding: 12px;
     font-weight: bold;
 }
 
 #pfp6 {
-    max-width: 80%;
+    max-width: 70%;
     border-radius: 10px;
     margin-top: 20px;
     border: 1px black solid;
@@ -38,6 +41,7 @@
 #show-name {
     margin-left: 20px;
     margin-top: 20px;
+    font-size: 22px;
 }
 
 .message-button {
@@ -56,11 +60,11 @@
 }
 
 .message-button:hover{
-    background-color:rgba(230, 230, 230, 0.596);
+    background-color:rgba(230, 230, 230, 0.219);
 }
 
 .message-button-dark {
-    background-color: white;
+    color: white;
 }
 
 #msg-img{

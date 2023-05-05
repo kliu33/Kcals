@@ -217,8 +217,8 @@ function DMRoom() {
           {/* {channel?.description} */}
         </div>
         <ul ref={messageUlRef} className="messages-box">
-          <li className='start'> <p className='p1'>This conversation is just between <span className='blue'>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
-          <p className='p2'>Check out their profile to learn more about them. <span onClick={handleProfile} className='blue'>View Profile </span></p> 
+          <li className='start'> <p className='p1'>This conversation is just between <span className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
+          <p className='p2'>Check out their profile to learn more about them. <span onClick={handleProfile} className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>View Profile </span></p> 
           </li>
           {all_messages}
         </ul>

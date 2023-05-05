@@ -52,7 +52,7 @@ function UserShowModal(props) {
             </div>
             <h1 id="show-name">{props.showUser?.firstName} {props.showUser?.lastName}</h1>
             <button className={`message-button ${sessionUser.darkMode ? 'message-button-dark' : ''}`} onClick={handleDm}> 
-                <img id="msg-img" alt="Message Icon" src={msg}/>
+            💬{/* <img id="msg-img" alt="Message Icon" src={msg}/> */}
             Send Message </button>
         </div>
     );
