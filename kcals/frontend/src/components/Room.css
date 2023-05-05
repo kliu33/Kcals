@@ -10,12 +10,11 @@
 .messages-box {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     height: 95%;
     max-height: 75vh;
     width: 100%;
     overflow: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .room-home-section {
@@ -123,8 +122,9 @@
 
 .start {
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: auto;
     margin-bottom: 20px;
+    padding-top: 20px;
 }
 
 .blue {

@@ -52,8 +52,8 @@ function Room() {
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
   const numMessages = useRef(0);
-  const creator = Object.values(users).find(user => user.id === channel.authorId)
-  const date = new Date(channel.createdAt);
+  const creator = users ? Object.values(users).find(user => user.id === channel?.authorId) : null;
+  const date = channel ? new Date(channel.createdAt) : null;
 
 
 
@@ -117,12 +117,11 @@ function Room() {
 
   
   const [users_hidden, setusersHidden] = useState(true)
-  const handleUsersModal = (e) => {
-      e.preventDefault();
+  const handleUsersModal = () => {
       setusersHidden(!users_hidden)
   }
   
-  const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
+  const usersModal = users_hidden ? null : <UsersInRoom setHidden={setHidden} setShowUser={setShowUser} channel={channel} users={users} handleUsersModal={handleUsersModal}/>
 
   const scrollToMessage = () => {
     activeMessageRef.current.focus();
@@ -131,7 +130,6 @@ function Room() {
 
   const scrollToBottom = () => {
     messageUlRef.current.scrollTop = messageUlRef.current.scrollHeight;
-    
   };
 
   // const setReaction = (id, reaction) => {
@@ -268,8 +266,8 @@ function Room() {
             </div>
           </div>
           <ul ref={messageUlRef} className="messages-box">
-            <li className='start'><h1>#{channel.name}</h1> <p className='p1'> {sessionUser.id === channel.authorId ? "You " : `${creator.firstName} ${creator.lastName} `}
-            created this channel on {months[date.getMonth()]} {date.getDate()}. This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
+            <li className='start'><h1>#{channel?.name}</h1> <p className='p1'> {sessionUser.id === channel?.authorId ? "You " : `${creator?.firstName} ${creator?.lastName} `}
+            created this channel on {months[date?.getMonth()]} {date?.getDate()}. This is the very beginning of the <span className='blue'># {channel?.name} </span> channel </p>
             <p className='p2'> This channel is for everything #{channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
             </li>
             {all_messages}

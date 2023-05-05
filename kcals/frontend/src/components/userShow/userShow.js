@@ -1,7 +1,6 @@
 import './userShow.css'
 import {useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import msg from '../../imgs/message.png'
 import { createDMChannel } from '../../store/dm_channels';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -52,7 +51,7 @@ function UserShowModal(props) {
             </div>
             <h1 id="show-name">{props.showUser?.firstName} {props.showUser?.lastName}</h1>
             <button className={`message-button ${sessionUser.darkMode ? 'message-button-dark' : ''}`} onClick={handleDm}> 
-            💬{/* <img id="msg-img" alt="Message Icon" src={msg}/> */}
+            💬
             Send Message </button>
         </div>
     );
