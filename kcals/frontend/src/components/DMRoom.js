@@ -140,7 +140,7 @@ function DMRoom() {
 
 
 
-  const all_messages = messages.map(message => message.id === edittingId ? <form className={`update-form ${sessionUser.darkMode ? 'update-dark' : ''}`}>
+  const all_messages = messages.map((message, index) => message.id === edittingId ? <form className={`update-form ${sessionUser.darkMode ? 'update-dark' : ''}`}>
     <textarea className={`send-chat ${sessionUser.darkMode ? 'send-chat-dark' : ''}`}
               rows={updateBody.split('\n').length}
               onChange={e => setUpdateBody(e.target.value)}
@@ -165,7 +165,13 @@ function DMRoom() {
       tabIndex={-1}
       > 
       <div className={`message-x`}>
-        <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/>
+      {((index===0 || message?.userId != messages[index-1]?.userId)) ? <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/> 
+        : 
+        <div className='message-2'>
+              {message.body}
+              <span id='editted'>{message.editted ? '(editted)' : null }</span>
+        </div>
+      }
         <div className='react-list'>
         {showEmojis === message.id && (
                   <EmojiList message={message} setShowEmojis={setShowEmojis}/>
