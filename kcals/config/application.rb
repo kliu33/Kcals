@@ -24,6 +24,7 @@ module Kcals
     config.load_defaults 7.0
     config.middleware.use ActionDispatch::Cookies
     config.autoloader = :classic
+    config.railties_order = [:all, :main_app]
     config.middleware.use ActionDispatch::Session::CookieStore,
     key: '_kcals_session',
     same_site: :lax, 
