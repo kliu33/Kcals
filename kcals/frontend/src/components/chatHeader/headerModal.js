@@ -35,6 +35,7 @@ function HeaderModal(props) {
                     <span id='name'>{sessionUser.firstName} {sessionUser.lastName}</span>
                 </div>
                 <div className="switch">
+                    <h2><strong>Lights</strong></h2>
                     <label className="theme-switch">
                         <input type="checkbox" id="checkbox" defaultChecked={sessionUser.darkMode} onClick={handleColor}/>
                         <div className="slider round"></div>
