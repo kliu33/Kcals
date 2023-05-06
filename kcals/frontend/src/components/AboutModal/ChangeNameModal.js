@@ -38,7 +38,7 @@ const ChangeNameModal = ({channel, setNameHidden}) => {
                         <input className={`update-text ${sessionUser.darkMode ? 'update-text-dark' : ''}`}
                         type='text'
                         onChange={e => setNewName(e.target.value)}
-                        placeholder={`Update ${channel?.body}`}
+                        placeholder={`Update channel name`}
                         value={newName}
                         onKeyDown={e => {
                             if (e.code === 'Enter' && !e.shiftKey) {
