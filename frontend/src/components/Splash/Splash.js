@@ -43,7 +43,7 @@ function Splash() {
       <div id='top-splash'>
         <div className='under-nav'>
           <div className='top-text'>
-            <h1 className='head-text'> Unlock your <span className='text-yellow'>productivity potential </span></h1>
+            <h1 className='head-text'> Unlock your <span className='text-yellow'>productivity potential. </span></h1>
             <p>
               Connect the right people, find anything you need and automate the rest. That's work in Kcals, your productivity platform.
             </p>
