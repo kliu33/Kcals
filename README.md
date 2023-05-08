@@ -110,7 +110,7 @@ Direct messaging channels also uses Action Cable to subscribe users to the direc
 ![image](https://user-images.githubusercontent.com/30753677/235472731-34fa0853-0e02-4144-8887-dbbe32eaed31.png)
 
 
-With our custum set of emojis users can react to messages in real time. As you can see from the code, the emoji list is very modifyable and can very easily be built upon to add more custom emojis!
+With our custom set of emojis users can react to messages in real time. As you can see from the code, the emoji list is very modifyable and can very easily be built upon to add more emojis!
 
 ### This project also includes:
 
