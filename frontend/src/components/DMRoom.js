@@ -200,15 +200,34 @@ function DMRoom() {
     setHidden(false)
     setShowUser(profile)
   }
+  const img = sessionUser.photoUrl ? sessionUser.photoUrl : "https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67"
+  const rec_img = profile?.photoUrl ? profile?.photoUrl : "https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67"
   const userShow = hidden ? null : <UserShowModal setHidden={setHidden} showUser={showUser}/>
-  const start = sessionUser.id === recipient.id ? 
-  <li className='start'> <p className='p1'> <strong> This is your space. </strong></p>
+  const start = sessionUser?.id === recipient?.id ? 
+  <li className='start'> 
+  <div className='start-dm'>
+      <img id='pfp10' src={img} alt=""/>
+      <div id='dm-name'>
+        <p id='stronger'>{recipient.firstName} {recipient.lastName}  🔘</p>
+        <p id='weaker'> {recipient.firstName} {recipient.lastName} </p>
+      </div>
+    </div>
+  <p className='p1'> <strong> This is your space. </strong></p>
     <p className={`p2 ${sessionUser.darkMode ? 'p2-dark': ''}`}>Draft messages, list your to-dos, or keep links and files handy. You can also talk to yourself here, but please bear in mind you’ll have to supply both sides of the conversation.</p> 
   </li>
   : 
-  <li className='start'> <p className='p1'>This conversation is just between <span className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
+  <li className='start'> 
+    <div className='start-dm'>
+      <img id='pfp10' src={rec_img} alt=""/>
+      <div id='dm-name'>
+        <p id='stronger'>{recipient.firstName} {recipient.lastName}  🔘</p>
+        <p id='weaker'> {recipient.firstName} {recipient.lastName} </p>
+      </div>
+    </div>
+    <p className='p1'>This conversation is just between <span className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
     <p className={`p2 ${sessionUser.darkMode ? 'p2-dark': ''}`}>Check out their profile to learn more about them. <span onClick={handleProfile} className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>View Profile </span></p> 
   </li>
+
   return (
     <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : ''}`}>
       <section className='room-home-section'>

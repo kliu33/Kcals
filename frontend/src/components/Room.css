@@ -408,3 +408,27 @@
     font-size: 13px;
     font-weight: 400;
 }
+
+#pfp10 {
+    border-radius: 10px;
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+.start-dm {
+    display: flex;
+}
+
+#dm-name{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+#stronger{
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+#weaker{
+    color: #444343;
+}
