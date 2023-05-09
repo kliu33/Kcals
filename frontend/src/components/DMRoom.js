@@ -201,18 +201,22 @@ function DMRoom() {
     setShowUser(profile)
   }
   const userShow = hidden ? null : <UserShowModal setHidden={setHidden} showUser={showUser}/>
-
+  const start = sessionUser.id === recipient.id ? 
+  <li className='start'> <p className='p1'> <strong> This is your space. </strong></p>
+    <p className={`p2 ${sessionUser.darkMode ? 'p2-dark': ''}`}>Draft messages, list your to-dos, or keep links and files handy. You can also talk to yourself here, but please bear in mind you’ll have to supply both sides of the conversation.</p> 
+  </li>
+  : 
+  <li className='start'> <p className='p1'>This conversation is just between <span className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
+    <p className={`p2 ${sessionUser.darkMode ? 'p2-dark': ''}`}>Check out their profile to learn more about them. <span onClick={handleProfile} className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>View Profile </span></p> 
+  </li>
   return (
     <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : ''}`}>
       <section className='room-home-section'>
         <div className={`border-under ${sessionUser.darkMode ? 'dark-chat' : ''}`}> 
-          <h1> {recipient?.firstName} {recipient?.lastName} </h1> 
-          {/* {channel?.description} */}
+          <h2 class='channel-name-top'> {recipient?.firstName} {recipient?.lastName}</h2> 
         </div>
         <ul ref={messageUlRef} className="messages-box">
-          <li className='start'> <p className='p1'>This conversation is just between <span className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
-          <p className='p2'>Check out their profile to learn more about them. <span onClick={handleProfile} className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>View Profile </span></p> 
-          </li>
+          {start}
           {all_messages}
         </ul>
         <form onSubmit={handleSubmit}>

@@ -127,6 +127,10 @@
     margin-top: 5px;
 }
 
+.p2-dark {
+    color :rgba(192, 192, 192, 0.842)
+}
+
 .start {
     margin-left: 20px;
     margin-top: auto;

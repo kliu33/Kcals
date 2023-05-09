@@ -268,7 +268,7 @@ function Room() {
           <ul ref={messageUlRef} className="messages-box">
             <li className='start'><h1>#{channel?.name}</h1> <p className='p1'> {sessionUser.id === channel?.authorId ? "You " : `${creator?.firstName} ${creator?.lastName} `}
             created this channel on {months[date?.getMonth()]} {date?.getDate()}. This is the very beginning of the <span className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}># {channel?.name} </span> channel </p>
-            <p className='p2'> This channel is for everything #{channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
+            <p className={`p2 ${sessionUser.darkMode ? 'p2-dark': ''}`}> This channel is for everything #{channel?.name}. Hold meetings, share docs, and make decisions together with your team.</p>
             </li>
             {all_messages}
           </ul>
