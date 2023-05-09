@@ -208,8 +208,8 @@ function DMRoom() {
   <div className='start-dm'>
       <img id='pfp10' src={img} alt=""/>
       <div id='dm-name'>
-        <p id='stronger'>{recipient.firstName} {recipient.lastName}  🔘</p>
-        <p id='weaker'> {recipient.firstName} {recipient.lastName} </p>
+        <p id='stronger'>{recipient?.firstName} {recipient?.lastName}  🔘</p>
+        <p id='weaker'> {recipient?.firstName} {recipient?.lastName} </p>
       </div>
     </div>
   <p className='p1'> <strong> This is your space. </strong></p>
@@ -220,8 +220,8 @@ function DMRoom() {
     <div className='start-dm'>
       <img id='pfp10' src={rec_img} alt=""/>
       <div id='dm-name'>
-        <p id='stronger'>{recipient.firstName} {recipient.lastName}  🔘</p>
-        <p id='weaker'> {recipient.firstName} {recipient.lastName} </p>
+        <p id='stronger'>{recipient?.firstName} {recipient?.lastName}  🔘</p>
+        <p id='weaker'> {recipient?.firstName} {recipient?.lastName} </p>
       </div>
     </div>
     <p className='p1'>This conversation is just between <span className={`blue ${sessionUser.darkMode ? 'blue-dark' : ''}`}>@{recipient?.firstName} {recipient?.lastName} </span> and you </p>
