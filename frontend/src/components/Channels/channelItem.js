@@ -4,15 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 const ChannelItem = (props) => {
     const channel = props.channel
-    
-    const handleRightClick = (e) => {
-        e.preventDefault()
-    }
-    
     return (
         <li className='channel-item'>
             <NavLink to={`/channels/${channel.id}`}>
-                <div className="channel-div channel-name" onContextMenu={handleRightClick}>
+                <div className={`channel-div channel-name ${props.selected === channel.id ? 'blue-chan' : ''}`}>
                     # {channel.name}
                 </div>
             </NavLink>

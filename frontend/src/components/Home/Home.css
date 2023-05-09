@@ -103,3 +103,7 @@
     color: white;
     font-size: 17px;
 }
+
+.selected-chan {
+    background-color: #c5c5c5;
+}

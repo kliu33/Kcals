@@ -29,10 +29,6 @@
     background-color: rgba(235, 235, 235, 0.116);
 }
 
-.channel-div:focus-within {
-    background-color: #1164A3;
-}
-
 .channel-name {
     text-decoration: none;
     font-size: 15px;
@@ -44,6 +40,15 @@
     line-height: 28px;
     font-weight: 400;
     cursor: pointer;
+}
+
+.blue-chan {
+    margin-right: 15px;
+    background-color: rgb(39, 102, 173);
+}
+
+.blue-chan:hover{
+    background-color: rgb(39, 102, 173);
 }
 
 

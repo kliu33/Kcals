@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { useSelector } from 'react-redux';
 
 
-const DMChannelItem = ({dm_channel}) => {
+const DMChannelItem = ({dm_channel, selected}) => {
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user);
     const recipient = dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1
@@ -15,7 +15,7 @@ const DMChannelItem = ({dm_channel}) => {
     return (
         <li>
             <NavLink to={`/dm_channels/${dm_channel.id}`}>
-                <div className="channel-div channel-name dm-channel-container">
+                <div className={`channel-div channel-name dm-channel-container ${selected === dm_channel.id ? 'blue-chan' : ''}`}>
                     <img id='pfp9' src={img} alt=""></img>
                     {recipient.firstName} {recipient.lastName} <span className='you'>{sessionUser.id === recipient.id ? 'you' : ''}</span>
                 </div>

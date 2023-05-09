@@ -14,15 +14,19 @@ import logo from '../../imgs/logo_copy.png'
 import DMRoom from "../DMRoom";
 import da from '../../imgs/down_arrow.png'
 import DMChannelItem from "../Channels/DMchannelItem";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchUsers, receiveUser } from "../../store/users";
 
 function Home() {
     const dispatch = useDispatch();
+    const {id} = useParams();
     const routeName = window.location.pathname.split('/')[1];
     const displayRoom = routeName === 'channels' ? <Room className='room'/> : <DMRoom className='room'/>
     const sessionUser = useSelector(state => state.session.user);
     const channels = useSelector(state => Object.values(state.channels))
     const dm_channels = sessionUser.directMessageChannels ? Object.values(sessionUser?.directMessageChannels) : []
+    const curr_channel = routeName === 'channels' ? channels.find(channel => channel.id === parseInt(id)) : null
+    const curr_dm_channel = routeName === 'channels' ?  null : dm_channels.find(dm_channel => dm_channel.id === parseInt(id))
     useEffect(()=> {
         dispatch(fetchChannels())
         dispatch(fetchUsers())
@@ -31,8 +35,12 @@ function Home() {
 
     const [showChannels, setShowChannels] = useState(true)
     const [showDMChannels, setShowDMChannels] = useState(true)
-    const channelIndexItems = showChannels ? channels?.map((channel) => <ChannelItem key={channel.id} channel={channel}/>) : null
-    const DMchannelIndexItems = showDMChannels ? dm_channels?.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel}/>) : null
+    const channelIndexItems = showChannels ? channels?.map((channel) => <ChannelItem key={channel.id} channel={channel} selected={routeName === 'channels' ? parseInt(id) : null}/>) 
+    : routeName === 'channels' ? 
+    <ChannelItem key={curr_channel?.id} channel={curr_channel} selected={parseInt(id)}/> : null
+    const DMchannelIndexItems = showDMChannels ? dm_channels?.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel} selected={routeName !== 'channels' ? parseInt(id) : null}/>) 
+    : routeName !== 'channels' ? 
+    <DMChannelItem key={curr_dm_channel.id} dm_channel={curr_dm_channel} selected={parseInt(id)}/> : null
     const [hidden, setHidden] = useState(true)
     const handleModal = (e) => {
         e.stopPropagation();
