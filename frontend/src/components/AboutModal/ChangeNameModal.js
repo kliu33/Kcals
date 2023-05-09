@@ -51,7 +51,7 @@ const ChangeNameModal = ({channel, setNameHidden}) => {
                     </div>
                     <div className='edit-buttons2'>
                         <button className={`cancel-channel-edit ${sessionUser.darkMode ? 'cancel-channel-edit-dark' : ''}`} onClick={handleModal}> Cancel </button>
-                        <button onClick={(e)=> handleSubmit(e)} className={`update-pfp ${channel.name !=  newName? "uploaded" : ''}`}> Save Changes</button>
+                        <button onClick={(e)=> handleSubmit(e)} className={`update-pfp ${channel.name !==  newName? "uploaded" : ''}`}> Save Changes</button>
                     </div>
                 </form>
             </div>

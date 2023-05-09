@@ -157,7 +157,6 @@ const sessionReducer = (state = initialState, action) => {
       const idx = dm_channel_messages2.findIndex(message => message.id === dm_id2)
       state.user.directMessageChannels[action.message.directMessageChannelId].messages[idx] = action.message
       return {...state}
-      break;
     case RECEIVE_DM_REACTION:
       const dm_channel_id = Object.values(state.user.directMessageChannels).find(channel => channel.messages.some(message => message.id === action.reaction.message_id)).id
       state.user.directMessageChannels[dm_channel_id].messages.find(message => message.id === action.reaction.message_id).reactions.push(action.reaction)

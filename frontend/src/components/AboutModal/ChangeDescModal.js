@@ -46,7 +46,7 @@ const ChangeDescModal = ({channel, setDescHidden}) => {
                     </div>
                     <div className='edit-buttons2'>
                         <button className={`cancel-channel-edit ${sessionUser.darkMode ? 'cancel-channel-edit-dark' : ''}`} onClick={handleModal}> Cancel </button>
-                        <button onClick={(e)=> handleSubmit(e)} className={`update-pfp ${channel?.description !=  newDesc? "uploaded" : ''}`}> Save Changes</button>
+                        <button onClick={(e)=> handleSubmit(e)} className={`update-pfp ${channel?.description !==  newDesc? "uploaded" : ''}`}> Save Changes</button>
                     </div>
                 </form>
             </div>

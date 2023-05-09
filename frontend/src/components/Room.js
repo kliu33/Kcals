@@ -220,7 +220,7 @@ function Room() {
       tabIndex={-1}
       > 
       <div className={`message-x`}>
-        {((index===0 || message?.userId != messages[index-1]?.userId)) ? <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/> 
+        {((index===0 || message?.userId !== messages[index-1]?.userId)) ? <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/> 
         : 
         <div className='message-2'>
               {message.body}
