@@ -63,7 +63,7 @@ function ChannelFormPage(props) {
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
-      <a className="close-modal" onClick = {closeModal}> X </a>
+      <p className="close-modal" onClick = {closeModal}> X </p>
       <h1> {props.channel ? "Update channel" : "Create a channel"} </h1>
       <p id="space"> Channels are where your team comminicates. They're best when organized around
         a topic -- #marketing, for example. </p>

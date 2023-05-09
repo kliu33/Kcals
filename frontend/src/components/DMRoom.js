@@ -34,7 +34,6 @@ function DMRoom() {
   const dm_channel = useSelector(state => state.session.user && state.session.user.directMessageChannels && state.session.user.directMessageChannels[id]);  
   const recipient = dm_channel ? (dm_channel.user1.id === sessionUser.id ? dm_channel.user2 : dm_channel.user1) : null
   const profile = users[recipient?.id]
-  const activeMessageRef = useRef(null);
   const messageUlRef = useRef(null);
   const prevRoom = useRef(null);
   const numMessages = useRef(0);
@@ -91,12 +90,6 @@ function DMRoom() {
 
 
 //   const usersModal = users_hidden ? null : <UsersInRoom channel={channel} users={users} handleUsersModal={handleUsersModal}/>
-
-
-  const scrollToMessage = () => {
-    activeMessageRef.current.focus();
-    activeMessageRef.current.scrollIntoView();
-  };
 
   const scrollToBottom = () => {
     messageUlRef.current.scrollTop = messageUlRef.current.scrollHeight;
@@ -165,7 +158,7 @@ function DMRoom() {
       tabIndex={-1}
       > 
       <div className={`message-x`}>
-      {((index===0 || message?.userId != messages[index-1]?.userId)) ? <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/> 
+      {((index===0 || message?.userId !== messages[index-1]?.userId)) ? <Message {...message} className='message' setHidden={setHidden} setShowUser={setShowUser}/> 
         : 
         <div className='message-2'>
               {message.body}
