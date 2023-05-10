@@ -18,7 +18,7 @@ import EmojiList from './Emoji/EmojiList.js';
 import AboutModal from './AboutModal/aboutModal.js';
 import { updateMessage } from '../store/messages.js';
 
-function Room() {
+function Room({hidden, setHidden, showUser, setShowUser}) {
   const months = [
     'January',
     'February',
@@ -37,9 +37,7 @@ function Room() {
   const history = useHistory();
   const [body, setBody] = useState('');
   const [updateBody, setUpdateBody] = useState('');
-  const [hidden, setHidden] = useState(true);
   const [aboutHidden, setAboutHidden] = useState(true)
-  const [showUser, setShowUser] = useState({})
   const [showEmojis, setShowEmojis] = useState(null)
   const [edittingId, setEdittingId] = useState(null)
   const { id } = useParams();
@@ -157,6 +155,7 @@ function Room() {
   const handleDelete = messageId => {
     destroyMessage(messageId)
   };
+
 
   // const generateReactions = (...reactions) => {
   //   return reactions.map(reaction => (

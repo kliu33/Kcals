@@ -21,7 +21,12 @@ function Home() {
     const dispatch = useDispatch();
     const {id} = useParams();
     const routeName = window.location.pathname.split('/')[1];
-    const displayRoom = routeName === 'channels' ? <Room className='room'/> : <DMRoom className='room'/>
+    const [hidden, setHidden] = useState(true);
+    const [showUser, setShowUser] = useState({})
+    const displayRoom = routeName === 'channels' ? 
+    <Room className='room' hidden={hidden} setHidden={setHidden} showUser={showUser} setShowUser={setShowUser}/> 
+    : 
+    <DMRoom className='room' hidden={hidden} setHidden={setHidden} showUser={showUser} setShowUser={setShowUser}/>
     const sessionUser = useSelector(state => state.session.user);
     const channels = useSelector(state => Object.values(state.channels))
     const dm_channels = sessionUser.directMessageChannels ? Object.values(sessionUser?.directMessageChannels) : []
@@ -41,11 +46,11 @@ function Home() {
     const DMchannelIndexItems = showDMChannels ? dm_channels?.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel} selected={routeName !== 'channels' ? parseInt(id) : null}/>) 
     : routeName !== 'channels' ? 
     <DMChannelItem key={curr_dm_channel.id} dm_channel={curr_dm_channel} selected={parseInt(id)}/> : null
-    const [hidden, setHidden] = useState(true)
+    const [formHidden, setFormHidden] = useState(true)
     const handleModal = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        setHidden(!hidden)
+        setFormHidden(!formHidden)
     }
 
     const [user_hidden, setuserHidden] = useState(true)
@@ -58,11 +63,11 @@ function Home() {
 
     const userInfo = user_hidden ? null : <HeaderModal handleUserModal={handleUserModal}/>
 
-    const form = hidden ? null : <ChannelFormPage setHidden={setHidden}/>
+    const form = formHidden ? null : <ChannelFormPage setHidden={setFormHidden}/>
     
     return (
         <main id='main'>
-                <ChatHeader handleUserModal={handleUserModal}/>
+                <ChatHeader handleUserModal={handleUserModal} setHidden={setHidden} setShowUser={setShowUser}/>
                 <div className={`channels ${sessionUser.darkMode ? 'dark-purple' : ''}`}>
                     <div className="logo-div">
                         <img src={logo} alt="" id="logo" />

@@ -411,6 +411,12 @@ input[type="file"] {
 .search-result-div{
     width: 100%;
     text-decoration: none;
+    color: black;
+}
+
+.search-result-div-dark{
+    width: 100%;
+    text-decoration: none;
     color: white;
 }
 

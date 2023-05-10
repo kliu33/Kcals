@@ -16,11 +16,9 @@ import EmojiList from './Emoji/EmojiList.js';
 import UserShowModal from './userShow/userShow.js';
 
 
-function DMRoom() {
+function DMRoom({hidden, setHidden, showUser, setShowUser}) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [hidden, setHidden] = useState(true);
-  const [showUser, setShowUser] = useState({})
   // const [showOptions, setShowOptions] = useState(false)
   const [edittingId, setEdittingId] = useState(null)
   const [showEmojis, setShowEmojis] = useState(null)
