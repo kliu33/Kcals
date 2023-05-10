@@ -336,13 +336,14 @@ input[type="file"] {
     background-color: white;
     border: 1px solid #ababab;
     position: absolute;
-    z-index: 100;
+    z-index: 98;
     width: 45%;
+    max-height: 50vh;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding-bottom: 4px;
-    overflow: hidden;
     overflow-y: scroll;
+    
 }
 
 .search-results-dark{
