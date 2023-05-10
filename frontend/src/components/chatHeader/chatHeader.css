@@ -18,16 +18,23 @@
 
 .searchBar{
     display:flex;
+    align-items: center;
     color: white;
     background-color: #603c5c;
-    border-radius: 5px;
+    border-radius: 4px;
     margin-left: 15%;
+    padding-left: 10px;
     width: 45%;
-    height: 22px;
+    height: 26px;
+    border-style: none;
+    cursor: pointer;
+}
+
+.searchBar:hover{
+    background-color: #adadad3b;
 }
 
 .searchBar::placeholder{
-    padding-left: 10px;
     font-family: 'Lato', sans-serif;
     color:white;
     font-weight: 500;
