@@ -124,7 +124,8 @@ With our custom set of emojis users can react to messages in real time. As you c
 - Functional search bar
 - Direct messaging between more than 2 users
 - Ability to add custom emojis
-- ~~Ability to edit messages ~~
+- User statuses
+- ~~Ability to edit messages~~
 
 ## Sources:
 
