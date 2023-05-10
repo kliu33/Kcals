@@ -190,3 +190,12 @@
     cursor: pointer;
     letter-spacing: 1.3px;
 }
+
+#splash-kcals{
+    color: white;
+    font-size: 20px;
+    margin-left: -10px;
+    font-weight: bold;
+    cursor: default;
+    margin-right: 15px;
+}

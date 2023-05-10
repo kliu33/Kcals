@@ -1,5 +1,5 @@
 import './Splash.css'
-import logo from '../../imgs/logo.png'
+import logo from '../../imgs/logo_copy.png'
 import tesla from '../../imgs/tesla.png'
 import amazon from '../../imgs/amazon.png'
 import cfa from '../../imgs/cfa.png'
@@ -30,6 +30,7 @@ function Splash() {
       <div id="nav">
         <div id="left-links">
           <img src={logo} alt="" id="logo" />
+          <span id='splash-kcals'> Kcals</span>
           <a href="https://github.com/kliu33/Kcals" target="_blank" rel="noreferrer" className="nav-link">GitHub</a>
           <a href="https://www.linkedin.com/in/kliu33/" target="_blank" rel="noreferrer" className="nav-link">LinkedIn</a>
           <a href="https://wellfound.com/u/kevin-liu-149" target="_blank" rel="noreferrer" className="nav-link">AngelList</a>
