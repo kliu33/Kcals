@@ -19,7 +19,7 @@ const ChatHeader = (props) => {
         <li key={channel.id} className='search-item'>
             <span id='hash'>#</span> 
             {channel.name} 
-            <span id='search-desc'>{channel.description.substring(0,20)}</span>
+            <span id='search-desc'>{channel.description.substring(0,40)}{channel.description.length > 40 ? '...' : ''}</span>
         </li>)
     let user_list = search_users.map(user => 
         <li key={user.id} className='search-item'>

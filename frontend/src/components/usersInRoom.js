@@ -22,7 +22,9 @@ function UsersInRoom({channel, users, handleUsersModal, setShowUser, setHidden})
                 <h1># {channel.name}</h1>
                 <p>Members: {usersArr.length}</p>
                 <br></br>
-                {usersinroom}
+                <div id='members-list'>
+                    {usersinroom}
+                </div>
             </div>
         </div>
     );
