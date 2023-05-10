@@ -5,6 +5,7 @@ import git from '../../imgs/github-logo.png'
 import logo from '../../imgs/logo_copy.png'
 import li from '../../imgs/linkedin.png'
 import al from '../../imgs/angellist.png'
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const ChatHeader = (props) => {
@@ -17,9 +18,13 @@ const ChatHeader = (props) => {
     const search_users = users?.filter(user => (user.firstName + user.lastName).toLowerCase().includes(search.toLowerCase()))
     let channel_list = search_channels.map(channel => 
         <li key={channel.id} className='search-item'>
-            <span id='hash'>#</span> 
-            {channel.name} 
-            <span id='search-desc'>{channel.description.substring(0,40)}{channel.description.length > 40 ? '...' : ''}</span>
+            <NavLink to={`/channels/${channel.id}`}>
+                <div className='search-result-div'> 
+                    <span id='hash'>#</span> 
+                    {channel.name} 
+                    <span id='search-desc'>{channel.description.substring(0,40)}{channel.description.length > 40 ? '...' : ''}</span>
+                </div>
+            </NavLink>
         </li>)
     let user_list = search_users.map(user => 
         <li key={user.id} className='search-item'>

@@ -359,11 +359,11 @@ input[type="file"] {
 
 .search-item{
     box-sizing: content-box;
-    padding: 4px 28px 4px 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     height: 40px;
+    padding: 4px 28px 8px 8px;
     border-radius: 4px;
 }
 
@@ -406,4 +406,14 @@ input[type="file"] {
 #active-circle{
     font-size: 10px;
     margin-left: 7px;
+}
+
+.search-result-div{
+    width: 100%;
+    text-decoration: none;
+    color: white;
+}
+
+.search-item a{
+    width: 100%;
 }
