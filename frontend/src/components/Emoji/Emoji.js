@@ -15,15 +15,15 @@ const Emoji = ({message}) => {
   const emoji_dict = (emoji) => {
     switch(emoji) {
       case 'smile':
-        return `🙂 ${Object.values(message.reactions).filter(emoj => emoj.emoji === 'smile').length}`
+        return `🙂 ${emoji_obj[emoji].length}`
       case 'heart':
-        return `💗 ${Object.values(message.reactions).filter(emoj => emoj.emoji === 'heart').length}`
+        return `💗 ${emoji_obj[emoji].length}`
       case 'thumbs-up':
-        return `👍 ${Object.values(message.reactions).filter(emoj => emoj.emoji === 'thumbs-up').length}`
+        return `👍 ${emoji_obj[emoji].length}`
       case 'thumbs-down':
-        return `👎 ${Object.values(message.reactions).filter(emoj => emoj.emoji === 'thumbs-down').length}`
+        return `👎 ${emoji_obj[emoji].length}`
       case 'laughing':
-        return `😂 ${Object.values(message.reactions).filter(emoj => emoj.emoji === 'laughing').length}`
+        return `😂 ${emoji_obj[emoji].length}`
       default:
         return null;
     }
