@@ -134,7 +134,9 @@ export const messagesReducer = (state = {}, action) => {
       const updatedMessage = action.message;
       return { ...state, [updatedMessage.id]: updatedMessage };
     case RECEIVE_REACTION:
-      newState[action.reaction.message_id].reactions.push(action.reaction)
+      if (!newState[action.reaction.message_id].reactions.find(react => react.emoji === action.reaction.emoji)){
+        newState[action.reaction.message_id].reactions.push(action.reaction)
+      }
       return newState
     case REMOVE_REACTION:
       const messageId = action.reaction.message_id;
