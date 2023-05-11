@@ -415,6 +415,10 @@ input[type="file"] {
     color: black;
 }
 
+.search-result-div:hover{
+    color: white;
+}
+
 .search-result-div-dark{
     width: 100%;
     text-decoration: none;
