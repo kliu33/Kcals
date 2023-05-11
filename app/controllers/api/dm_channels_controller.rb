@@ -15,6 +15,7 @@ class Api::DmChannelsController < ApplicationController
       @dm_channel = DirectMessageChannel.new(dm_channel_params)
   
       if @dm_channel.save
+        ActionCable.server.broadcast("home_page", {type: "RECEIVE_DM_CHANNEL", payload: @dm_channel})
         render :show
       else 
         render json: @dm_channel.errors.full_messages, status: 422

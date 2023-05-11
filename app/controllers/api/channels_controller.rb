@@ -15,6 +15,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
+      ActionCable.server.broadcast("home_page", {type: "RECEIVE_CHANNEL", payload: @channel})
       render :show
     else
       render json: @channel.errors.full_messages, status: 422

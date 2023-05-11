@@ -1,6 +1,5 @@
 import { receiveUsers } from './users';
 import { csrfAPIFetch } from './csrf';
-
 export const RECEIVE_CHANNELS = 'session/receiveChannels'
 export const RECEIVE_CHANNEL = 'session/receiveChannel';
 export const REMOVE_CHANNEL = 'session/removeChannel';
@@ -11,7 +10,7 @@ const receiveChannels = channels => ({
     channels
   });
 
-const receiveChannel = payload => ({
+export const receiveChannel = payload => ({
     type: RECEIVE_CHANNEL,
     payload
 })
@@ -58,10 +57,6 @@ export const createChannel = (channel) => async dispatch => {
         },
         body: JSON.stringify(channel)
     })
-    if (response.ok) {
-        const channel = await response.json();
-        dispatch(receiveChannel(channel))
-    }
 }
 
 export const updateChannel = (channel) => async dispatch => {

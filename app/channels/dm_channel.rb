@@ -3,4 +3,4 @@ class DmChannel < ApplicationCable::Channel
       @dm_channel = DirectMessageChannel.find_by(id: params[:id])
       stream_for @dm_channel
     end
-  end
+end

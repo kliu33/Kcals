@@ -6,16 +6,18 @@ import { useState } from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ChannelItem from '../Channels/channelItem';
-import { fetchChannels } from '../../store/channels';
+import { fetchChannels, fetchChannel } from '../../store/channels';
 import ChatHeader from '../chatHeader/chatHeader.js';
 import HeaderModal from "../chatHeader/headerModal";
 import Room from '../Room.js'
 import logo from '../../imgs/logo_copy.png'
 import DMRoom from "../DMRoom";
+import consumer from "../../consumer";
 import da from '../../imgs/down_arrow.png'
 import DMChannelItem from "../Channels/DMchannelItem";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchUsers, receiveUser } from "../../store/users";
+import { reload } from "../../store/session";
 
 function Home() {
     const dispatch = useDispatch();
@@ -38,6 +40,33 @@ function Home() {
         dispatch(receiveUser(sessionUser))
     }, [dispatch, sessionUser])
 
+
+    useEffect(() => {
+        const subscription = consumer.subscriptions.create(
+          { channel: 'KcalsChannel'},
+          {
+            received: ({ type, payload }) => {
+              switch (type) {
+                case 'RECEIVE_CHANNEL':
+                  dispatch(fetchChannel(payload.id))
+                  break;
+                case 'RECEIVE_DM_CHANNEL':
+                    dispatch(reload());
+                    break;
+                case 'RECEIVE_USER':
+                    dispatch(fetchUsers())
+                    break
+                default:
+                  console.log('Unhandled broadcast: ', type);
+                  break;
+              }
+            }
+          }
+        );
+    
+        return () => subscription?.unsubscribe();
+      }, [id, dispatch]);
+    
     const [showChannels, setShowChannels] = useState(true)
     const [showDMChannels, setShowDMChannels] = useState(true)
     const channelIndexItems = showChannels ? channels?.map((channel) => <ChannelItem key={channel.id} channel={channel} selected={routeName === 'channels' ? parseInt(id) : null}/>) 

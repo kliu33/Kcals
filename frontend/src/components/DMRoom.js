@@ -230,7 +230,7 @@ function DMRoom({hidden, setHidden, showUser, setShowUser}) {
     <div className={`room-home-div ${sessionUser.darkMode ? 'dark-chat' : ''}`}>
       <section className='room-home-section'>
         <div className={`border-under ${sessionUser.darkMode ? 'dark-chat' : ''}`}> 
-          <h2 class='channel-name-top' onClick={handleProfile}> {recipient?.firstName} {recipient?.lastName}</h2> 
+          <h2 className='channel-name-top' onClick={handleProfile}> {recipient?.firstName} {recipient?.lastName}</h2> 
         </div>
         <ul ref={messageUlRef} className="messages-box">
           {start}
