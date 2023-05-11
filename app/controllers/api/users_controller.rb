@@ -23,6 +23,7 @@ class Api::UsersController < ApplicationController
       @user = User.find_by(id: current_user.id)
       if params[:user].present?
         if @user.update(user_params)
+          ActionCable.server.broadcast("home_page", {type: "RECEIVE_USER", payload: @user})
           render :show
         end
       else
