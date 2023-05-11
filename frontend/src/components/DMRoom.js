@@ -6,7 +6,6 @@ import { receiveDMMessage, removeDMMessage, removeDMReaction, receiveDMReaction,
 import Message from './Message';
 import consumer from '../consumer.js';
 import './Room.css'
-import { receiveUser } from '../store/users.js';
 import react from '../imgs/react.png';
 import trash from '../imgs/trash.png';
 import edit from '../imgs/edit.png'
@@ -47,9 +46,9 @@ function DMRoom({hidden, setHidden, showUser, setShowUser}) {
 
   // Effect to run when entering a room
   useEffect(() => {
-    dispatch(getDMMessages(parseInt(id)))
+    getDMMessages(parseInt(id))
     scrollToBottom();
-  }, [id, dispatch]);
+  }, [id]);
   
   useEffect(() => {
     const subscription = consumer.subscriptions.create(
@@ -59,7 +58,6 @@ function DMRoom({hidden, setHidden, showUser, setShowUser}) {
           switch (type) {
             case 'RECEIVE_DM_MESSAGE':
               payload.message['direct_message_channel_id'] = payload.message.directMessageChannelId
-              dispatch(receiveUser(payload.user));
               dispatch(receiveDMMessage(payload.message));
               scrollToBottom();
               break;
