@@ -1,5 +1,5 @@
 import "./SplashVideo.css";
-import splashvideo from '../../imgs/splashvideo.mp4'
+import splashvideo from "../../imgs/splashvideo.mp4";
 import React, { useRef, useEffect } from "react";
 
 function SplashVideo() {
@@ -13,11 +13,7 @@ function SplashVideo() {
 
   return (
     <div id="video-container">
-      <video
-        ref={videoRef}
-        className="video"
-        src={splashvideo}
-      ></video>
+      <video ref={videoRef} className="video" src={splashvideo}></video>
     </div>
   );
 }

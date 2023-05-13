@@ -1,4 +1,4 @@
-import vid3 from '../../imgs/vid3.mp4'
+import vid3 from "../../imgs/vid3.mp4";
 import React, { useRef, useEffect } from "react";
 
 function Vid3() {
@@ -12,11 +12,7 @@ function Vid3() {
 
   return (
     <div id="video-container">
-      <video
-        ref={videoRef}
-        className="video-right"
-        src={vid3}
-      ></video>
+      <video ref={videoRef} className="video-right" src={vid3}></video>
     </div>
   );
 }
