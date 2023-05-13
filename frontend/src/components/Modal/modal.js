@@ -7,12 +7,9 @@ function ChannelFormPage(props) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [name, setName] = useState(def_name);
-  const [description, setDescription] = useState(def_description);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]);
-
-  const def_name = props.channel ? props.channel.name : "";
-  const def_description = props.channel ? props.channel.description : "";
 
   const closeModal = (e) => {
     e.preventDefault();
@@ -32,19 +29,10 @@ function ChannelFormPage(props) {
     const formDataObject = {
       name: name,
       description: description,
-      author_id: sessionUser.id,
-      id: props.channel ? props.channel.id : null,
+      author_id: sessionUser.id
     };
 
-    const formDataObject2 = {
-      name: name,
-      description: description,
-      author_id: sessionUser.id,
-    };
-
-    const act = props.channel
-      ? channelActions.updateChannel(formDataObject)
-      : channelActions.createChannel(formDataObject2);
+    const act =  channelActions.createChannel(formDataObject)
 
     return dispatch(act).catch(async (res) => {
       let data;
@@ -75,7 +63,7 @@ function ChannelFormPage(props) {
             {" "}
             X{" "}
           </p>
-          <h1> {props.channel ? "Update channel" : "Create a channel"} </h1>
+          <h1> {"Create a channel"} </h1>
           <p id="space">
             {" "}
             Channels are where your team comminicates. They're best when
@@ -108,7 +96,7 @@ function ChannelFormPage(props) {
             <br></br>
           </label>
           <button type="submit" id="create">
-            {props.channel ? "Update" : "Create"}
+            {"Create"}
           </button>
         </form>
       </div>

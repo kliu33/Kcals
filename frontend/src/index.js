@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './reset.css';
@@ -12,6 +12,7 @@ import * as channelActions from './store/channels.js'
 import { csrfFetch, restoreCSRF} from './store/csrf.js'
 
 const store = configureStore();
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
@@ -31,11 +32,10 @@ function Root() {
 }
 
 const initializeApp = () => {
-  ReactDOM.render(
+  root.render(
   <React.StrictMode>
     <Root />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
   );
 }
 
