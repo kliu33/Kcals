@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import './loginform.css'
+import React, { useState } from "react";
+import * as sessionActions from "../../store/session";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import "./loginform.css";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const sessionUser = useSelector((state) => state.session.user);
 
-  if (sessionUser) return <Redirect to="/channels/1" />;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ email, password }))
-      .catch(async (res) => {
+    return dispatch(sessionActions.login({ email, password })).catch(
+      async (res) => {
         let data;
         try {
           data = await res.clone().json();
@@ -27,25 +26,34 @@ function LoginFormPage() {
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
-      });
-  }
+      }
+    );
+  };
 
   const demoLogin = (e) => {
-    e.preventDefault()
-    dispatch(sessionActions.login({email: "demo@user.io", password: "password"}))
-  }
+    e.preventDefault();
+    dispatch(
+      sessionActions.login({ email: "demo@user.io", password: "password" })
+    );
+  };
+
+  if (sessionUser) return <Redirect to="/channels/1" />;
 
   return (
-    <div className='form-div'>
-    <button onClick={demoLogin} className='demo'>Demo Login</button>
-    <form onSubmit={handleSubmit} id = "form">
+    <div className="form-div">
+      <button onClick={demoLogin} className="demo">
+        Demo Login
+      </button>
+      <form onSubmit={handleSubmit} id="form">
         <div className="break">
           <hr className="hor_line" />
-            <div className="hor_content"> OR </div>
+          <div className="hor_content"> OR </div>
           <hr className="hor_line" />
         </div>
-        <ul className='errors'>
-          {errors.map(error => <li key={error}>{error}</li>)}
+        <ul className="errors">
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
         </ul>
         <input
           className="input"
@@ -63,8 +71,10 @@ function LoginFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      <button type="submit" id="submit">Sign In With Email</button>
-    </form>
+        <button type="submit" id="submit">
+          Sign In With Email
+        </button>
+      </form>
     </div>
   );
 }
