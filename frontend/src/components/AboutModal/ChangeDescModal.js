@@ -24,6 +24,7 @@ const ChangeDescModal = ({ channel, setDescHidden }) => {
     dispatch(updateChannel(newChannel));
     setDescHidden(true);
   };
+
   return (
     <div
       className={`modal-back-2 ${
