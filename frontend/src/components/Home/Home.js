@@ -72,7 +72,7 @@ function Home() {
     const channelIndexItems = showChannels ? channels?.map((channel) => <ChannelItem key={channel.id} channel={channel} selected={routeName === 'channels' ? parseInt(id) : null}/>) 
     : routeName === 'channels' ? 
     <ChannelItem key={curr_channel?.id} channel={curr_channel} selected={parseInt(id)}/> : null
-    const DMchannelIndexItems = showDMChannels ? dm_channels?.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel} selected={routeName !== 'channels' ? parseInt(id) : null}/>) 
+    const DMchannelIndexItems = showDMChannels ? dm_channels?.map((dm_channel) => <DMChannelItem key={dm_channel.id} dm_channel={dm_channel} selected={routeName !== 'channels' ? parseInt(id) : null} />) 
     : routeName !== 'channels' ? 
     <DMChannelItem key={curr_dm_channel.id} dm_channel={curr_dm_channel} selected={parseInt(id)}/> : null
     const [formHidden, setFormHidden] = useState(true)

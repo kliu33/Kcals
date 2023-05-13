@@ -141,6 +141,8 @@
 
 .bottom-about-container{
     margin-top: 20px;
+    height: 350px;
+    overflow-y: scroll !important;
 }
 
 .user-list-about {
