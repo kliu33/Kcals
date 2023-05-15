@@ -70,6 +70,9 @@
 
 #channels-bar {
     margin-top: 10px;
+    max-height: 80%;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .channel-item:focus{

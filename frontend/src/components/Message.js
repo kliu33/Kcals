@@ -4,15 +4,24 @@ import "./Message.css";
 const Message = (props) => {
   const formattedTime = getFormattedTime(props.createdAt);
   const users = useSelector((state) => state.users);
+  const user = users[props.userId];
+
+  const status_pics = {
+    "In a meeting": '📅',
+    "Commuting": '🚈',
+    "A04 Flu": '🤒',
+    "Vacationing": '🌴',
+    "Working remotely": '🏠'
+  }
 
   const handleShowModal = (e) => {
     e.preventDefault();
     props.setHidden(false);
     props.setShowUser(users[props.userId]);
   };
-
-  const img = users[props.userId]?.photoUrl
-    ? users[props.userId]?.photoUrl
+  
+  const img = user?.photoUrl
+    ? user?.photoUrl
     : "https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67";
 
   return Object.values(users).length > 0 ? (
@@ -22,7 +31,7 @@ const Message = (props) => {
       </div>
       <div className="message-content">
         <span className="message__author" onClick={handleShowModal}>
-          {users[props.userId]?.firstName} {users[props.userId]?.lastName}
+          {user?.firstName} {user?.lastName} <span title={user?.status}>{!user?.status ? null : (status_pics[user?.status] ? status_pics[user?.status] : '💬')}</span>
         </span>
         <span className="message__timestamp">{formattedTime}</span>
         <p className="message__body">

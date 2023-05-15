@@ -2,7 +2,6 @@ import "./chatHeader.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { updateColorMode } from "../../store/session";
 import UploadModal from "../UploadModal/uploadModal";
 
 function HeaderModal(props) {
@@ -16,10 +15,6 @@ function HeaderModal(props) {
 
   const stopProp = (e) => {
     e.stopPropagation();
-  };
-
-  const handleColor = () => {
-    dispatch(updateColorMode(sessionUser));
   };
 
   const handleSubmit = () => {
@@ -46,20 +41,6 @@ function HeaderModal(props) {
           <span id="name">
             {sessionUser.firstName} {sessionUser.lastName}
           </span>
-        </div>
-        <div className="switch">
-          <h2>
-            <strong>Lights</strong>
-          </h2>
-          <label className="theme-switch">
-            <input
-              type="checkbox"
-              id="checkbox"
-              defaultChecked={sessionUser.darkMode}
-              onClick={handleColor}
-            />
-            <div className="slider round"></div>
-          </label>
         </div>
         <div className="user-modal-options">
           <h2 id="logout" onClick={() => setHidden(false)}>

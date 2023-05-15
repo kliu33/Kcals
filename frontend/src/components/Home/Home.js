@@ -17,7 +17,7 @@ import da from "../../imgs/down_arrow.png";
 import DMChannelItem from "../Channels/DMchannelItem";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchUsers, receiveUser } from "../../store/users";
-import { reload } from "../../store/session";
+import { reload, updateColorMode } from "../../store/session";
 
 function Home() {
   const dispatch = useDispatch();
@@ -51,6 +51,10 @@ function Home() {
     e.stopPropagation();
     e.preventDefault();
     setFormHidden(!formHidden);
+  };
+  
+  const handleColor = () => {
+    dispatch(updateColorMode(sessionUser));
   };
 
   const handleUserModal = (e) => {
@@ -200,6 +204,21 @@ function Home() {
           </div>
           {DMchannelIndexItems}
         </ul>
+        
+        <div className="switch">
+            <h2>
+              <strong>Lights</strong>
+            </h2>
+            <label className="theme-switch">
+              <input
+                type="checkbox"
+                id="checkbox"
+                defaultChecked={sessionUser.darkMode}
+                onClick={handleColor}
+              />
+              <div className="slider round"></div>
+            </label>
+        </div>
       </div>
       {displayRoom}
       {form}

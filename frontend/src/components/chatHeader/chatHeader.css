@@ -139,17 +139,16 @@
 }
 
 .switch {
+    color: white;
     display: flex;
-    flex-direction: column;
-    align-items: center;    
-    position: fixed;
-    right: 40px;
-    top: 55px;
+    position: absolute;
+    align-items: center;   
+    bottom: 30px;
+    left: 30px;
 }
     
 .theme-switch {
   margin-top: 5px;
-  display: inline-block;
   height: 34px;
   position: relative;
   width: 60px;
