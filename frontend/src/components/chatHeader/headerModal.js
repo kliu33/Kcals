@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import * as sessionActions from "../../store/session";
 import UploadModal from "../UploadModal/uploadModal";
+import StatusModal from "../StatusModal/statusModal";
 
 function HeaderModal(props) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [hidden, setHidden] = useState(true);
+  const [statusHidden, setStatusHidden] = useState(true)
 
   const img = sessionUser.photoUrl
     ? sessionUser.photoUrl
@@ -28,6 +30,12 @@ function HeaderModal(props) {
     />
   );
 
+  const statusModal = statusHidden ? null : 
+    <StatusModal 
+    setHeaderHidden={props.setHeaderHidden}
+    setStatusHidden={setStatusHidden}/>
+  
+
   return (
     <div id="modal-back-users" onClick={props.handleUserModal}>
       <div
@@ -41,6 +49,10 @@ function HeaderModal(props) {
           <span id="name">
             {sessionUser.firstName} {sessionUser.lastName}
           </span>
+        </div>
+        
+        <div id='status-block'>
+          <button id='status-button' onClick={()=> setStatusHidden(false)}><span id='smiley'></span> Update your Status</button>
         </div>
         <div className="user-modal-options">
           <h2 id="logout" onClick={() => setHidden(false)}>
@@ -57,6 +69,7 @@ function HeaderModal(props) {
         </div>
       </div>
       {uploadModal}
+      {statusModal}
     </div>
   );
 }

@@ -1,0 +1,48 @@
+
+#status-block{
+    display: flex;
+    justify-content: center;
+}
+
+#status-button{
+    width: 90%;
+    color: gray;
+    background-color: white;
+    border: solid 1px rgb(197, 197, 197);
+    cursor: pointer;
+    padding: 8px 70px 8px 1px;
+    border-radius: 3px;
+}
+
+#smiley:after{
+    content: '😶';
+    margin-right: 15px;
+}
+
+#status-button:hover{
+    #smiley:after{
+        content: "😁";
+    }
+    border: solid 1px gray;
+    color: black;
+}
+
+#status-input{
+    width: 120%;
+    padding: 13px 13px 13px 13px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid gray
+}
+
+#status-input:focus{
+    outline: none;
+    box-shadow: 0 0 15px #719ECE;
+}
+
+#status-wrapper {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
