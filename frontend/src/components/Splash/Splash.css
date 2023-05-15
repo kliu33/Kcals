@@ -1,6 +1,6 @@
 .nav-link {
     display: inline-block;
-    color: white;
+    color: inherit;
     border: 1px solid transparent;
     text-decoration: none;
     font-weight: 700;
@@ -12,18 +12,38 @@
     text-decoration: underline;
 }
 
-#nav {
+.nav {
     display:flex;
     background-color: #541554;
     border-radius: 50px;
     margin-top: 5px;
-    position: fixed;
+    position: absolute;
     padding: 10px;
     align-items: center;
     justify-content: space-between;
-    min-width: 80%;
-    left: 50%;
-    transform: translateX(-50%);
+    min-width: 60%;
+    color:white;
+    left:20%;
+}
+
+@keyframes slide-down{
+    from{   
+        transform: translateY(-100px);
+    }
+
+    to{
+        transform: translateY(0px);
+    }
+}
+
+.scrolled{
+    background-color: white;
+    position: fixed;
+    color: black;
+    animation: slide-down 1s;
+    .demo-button {
+        border: 2px solid black;
+    }
 }
 
 #top-splash {
@@ -185,11 +205,12 @@
     border-radius: 5px;
     margin-left: 25px;
     margin-right: 25px;
-    color: white;
+    color: inherit;
     padding: 10px;
     cursor: pointer;
     letter-spacing: 1.3px;
 }
+
 
 #splash-kcals{
     color: white;

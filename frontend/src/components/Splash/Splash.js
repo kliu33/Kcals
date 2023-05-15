@@ -13,10 +13,12 @@ import Vid2 from "../Videos/Vid2";
 import Vid3 from "../Videos/Vid3";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
+import { useState, useEffect } from "react";
 
 function Splash() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const [scrolled, setScrolled] = useState(false)
 
   const handleDemo = (e) => {
     e.preventDefault();
@@ -24,12 +26,28 @@ function Splash() {
       sessionActions.login({ email: "demo@user.io", password: "password" })
     );
   };
+
+  const changeHeader = () => {
+    if(window.scrollY >= 400){
+      setScrolled(true)
+    } else{
+      setScrolled(false)
+    }
+  } 
+
+  useEffect(() => {
+    window.addEventListener('scroll', changeHeader);
+
+    return () => {
+      window.removeEventListener('scroll', changeHeader);
+    };
+  }, []);
   
   if (sessionUser) return <Redirect to="/channels/1" />;
 
   return (
     <>
-      <div id="nav">
+      <div className={`nav ${scrolled ? 'scrolled' : 'unscrolled'}`}>
         <div id="left-links">
           <img src={logo} alt="" id="logo" />
           <span id="splash-kcals"> Kcals</span>
