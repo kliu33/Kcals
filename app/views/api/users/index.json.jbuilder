@@ -4,6 +4,7 @@
         json.email user.email
         json.first_name user.first_name
         json.last_name user.last_name
+        json.status user.status
         json.photoUrl user.photo.attached? ? user.photo.url : nil
       end
   end

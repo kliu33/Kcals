@@ -1,5 +1,5 @@
 json.user do
-  json.extract! @user, :id, :email, :first_name, :last_name, :dark_mode, :created_at, :updated_at
+  json.extract! @user, :id, :email, :first_name, :last_name, :dark_mode, :status, :created_at, :updated_at
   json.photoUrl @user.photo.attached? ? @user.photo.url : nil
 
   json.set! :direct_message_channels do
@@ -7,10 +7,10 @@ json.user do
       json.set! channel.id do
         json.id channel.id
         json.set! :user1 do
-          json.extract! channel.user1, :id, :email, :first_name, :last_name
+          json.extract! channel.user1, :id, :email, :status, :first_name, :last_name
         end
         json.set! :user2 do
-          json.extract! channel.user2, :id, :email, :first_name, :last_name
+          json.extract! channel.user2, :id, :email, :status, :first_name, :last_name
         end
         json.messages channel.messages do |message|
           json.id message.id

@@ -47,7 +47,7 @@ function Splash() {
 
   return (
     <>
-      <div className={`nav ${scrolled ? 'scrolled' : 'unscrolled'}`}>
+      <div className={`nav ${scrolled ? 'scrolled' : ''}`}>
         <div id="left-links">
           <img src={logo} alt="" id="logo" />
           <span id="splash-kcals"> Kcals</span>
