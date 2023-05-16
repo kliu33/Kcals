@@ -140,6 +140,11 @@
     margin-top: 30px
 }
 
+
+.cancel-pfp:hover{
+    background-color: rgb(238, 238, 238);
+}
+
 .cancel-pfp-dark{
     background-color: rgb(39, 39, 39);
     color: white;
