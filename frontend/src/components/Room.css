@@ -190,6 +190,7 @@
     z-index: 1;
     background-color: white;
     height: 70%;
+    max-height: 800px;
     width: 50%;
     max-width: 520px;
     font-size: 15px;

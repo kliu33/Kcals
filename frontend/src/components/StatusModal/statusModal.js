@@ -83,16 +83,16 @@ function StatusModal({ setStatusHidden, setHeaderHidden }) {
                       </ul>
                     </div>
                     <div className="button-div2">
-              <button className="cancel-pfp" onClick={closeModal}>
-                Cancel
-              </button>
-              <button
-                className={`update-pfp ${status !== sessionUser.status ? "uploaded" : ""}`}
-                disabled={status !== '' ? false : true}
-              >
-                Save
-              </button>
-            </div>
+                      <button className="cancel-pfp" onClick={closeModal}>
+                        Cancel
+                      </button>
+                      <button
+                        className={`update-pfp ${status !== sessionUser.status ? "uploaded" : ""}`}
+                        disabled={status !== '' ? false : true}
+                      >     
+                        Save
+                      </button>
+                    </div>
                 </form>
             </div>
         </div>
