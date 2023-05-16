@@ -100,12 +100,12 @@
 }
 
 #email h2{
-    color: rgb(73, 73, 73);
+    color: rgb(143, 142, 142);
     font-size: 12px;
 }
 
 #email p{
-    color: blue;
+    color: #2296aa;
     cursor: pointer;
 }
 

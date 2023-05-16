@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-#status-button{
+.status-button{
     width: 90%;
     color: gray;
     background-color: white;
@@ -19,12 +19,18 @@
     border-radius: 3px;
 }
 
+.status-button-dark{
+    color: rgb(194, 193, 193);
+    background-color: rgb(36, 36, 36);
+    border-color: gray;
+}
+
 #smiley:after{
     content: '😶';
     margin-right: 15px;
 }
 
-#status-button:hover{
+.status-button:hover{
     #smiley:after{
         content: "😁";
     }
@@ -32,13 +38,26 @@
     color: black;
 }
 
-#status-input{
-    width: 70%;
+.status-button-dark:hover{
+    #smiley:after{
+        content: "😁";
+    }
+    border: solid 1px gray;
+    color: white;
+}
+
+.status-input{
+    width: 75%;
     padding: 13px 13px 13px 50px;
     font-size: 20px;
     margin-left: 30px;
     border-radius: 5px;
     border: 1px solid gray
+}
+
+.status-input-dark{
+    background-color: rgb(46, 46, 46);
+    color: white;
 }
 
 #status-input:focus{
@@ -68,8 +87,15 @@
     font-family: 'Lato', sans-serif;
     border-radius: 8px;
     padding-top:30px;
+    padding-right: 30px;
     padding-bottom: 30px;
     overflow: hidden;
+}
+
+.modal-status-dark {
+    color: white;
+    background-color: rgb(39, 39, 39);
+    transition: background-color .5s ease;
 }
 
 #emoji-preview{
@@ -83,7 +109,7 @@
 }
 
 #aa-status h2{
-    color: rgb(68, 68, 68);
+    color: rgb(143, 142, 142);
     font-size: 13px;
     font-weight: 700;
     line-height: 1.38563;
@@ -112,4 +138,13 @@
     justify-content: flex-end;
     margin-right: 15px;
     margin-top: 30px
+}
+
+.cancel-pfp-dark{
+    background-color: rgb(39, 39, 39);
+    color: white;
+}
+
+.cancel-pfp-dark:hover{
+    background-color: rgb(54, 54, 54);
 }

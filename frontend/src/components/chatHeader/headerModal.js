@@ -11,6 +11,14 @@ function HeaderModal(props) {
   const [hidden, setHidden] = useState(true);
   const [statusHidden, setStatusHidden] = useState(true)
 
+  const status_pics = {
+    "In a meeting": '📅',
+    "Commuting": '🚈',
+    "A04 Flu": '🤒',
+    "Vacationing": '🌴',
+    "Working remotely": '🏠'
+  }
+
   const img = sessionUser.photoUrl
     ? sessionUser.photoUrl
     : "https://camo.githubusercontent.com/eb6a385e0a1f0f787d72c0b0e0275bc4516a261b96a749f1cd1aa4cb8736daba/68747470733a2f2f612e736c61636b2d656467652e636f6d2f64663130642f696d672f617661746172732f6176615f303032322d3531322e706e67";
@@ -35,6 +43,7 @@ function HeaderModal(props) {
     setHeaderHidden={props.setHeaderHidden}
     setStatusHidden={setStatusHidden}/>
   
+  const stat_emoj = sessionUser.status? (status_pics[sessionUser?.status] ? status_pics[sessionUser?.status] : '💬') : <span id='smiley'></span>
 
   return (
     <div id="modal-back-users" onClick={props.handleUserModal}>
@@ -52,7 +61,9 @@ function HeaderModal(props) {
         </div>
         
         <div id='status-block'>
-          <button id='status-button' onClick={()=> setStatusHidden(false)}><span id='smiley'></span> Update your Status</button>
+          <button className={`status-button ${
+          sessionUser.darkMode ? "status-button-dark" : ""
+        }`} onClick={()=> setStatusHidden(false)}> {stat_emoj} { sessionUser.status ? sessionUser.status : 'Update your status'}</button>
         </div>
         <div className="user-modal-options">
           <h2 id="logout" onClick={() => setHidden(false)}>

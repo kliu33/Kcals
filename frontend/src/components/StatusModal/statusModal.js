@@ -69,7 +69,9 @@ function StatusModal({ setStatusHidden }) {
             <div id='status-wrapper'>
                 <form onSubmit={handleSubmit}>
                     <span id='emoji-preview'>
-                    {emoji}</span><input type='text' id='status-input' placeholder="What's your status?" 
+                    {emoji}</span><input type='text' className={`status-input ${
+          sessionUser.darkMode ? "status-input-dark" : ""
+        }`} placeholder="What's your status?" 
                     onChange={(e)=>setCheckStatus(e.target.value)}
                     value={status}></input>
                     <div id='aa-status'>
@@ -95,7 +97,9 @@ function StatusModal({ setStatusHidden }) {
                       </ul>
                     </div>
                     <div className="button-div2">
-                      <button className="cancel-pfp" onClick={closeModal}>
+                      <button className={`cancel-pfp ${
+          sessionUser.darkMode ? "cancel-pfp-dark" : ""
+        }`} onClick={closeModal}>
                         Cancel
                       </button>
                       <button
