@@ -31,7 +31,10 @@ const Message = (props) => {
       </div>
       <div className="message-content">
         <span className="message__author" onClick={handleShowModal}>
-          {user?.firstName} {user?.lastName} <span title={user?.status}>{!user?.status ? null : (status_pics[user?.status] ? status_pics[user?.status] : '💬')}</span>
+          {user?.firstName} {user?.lastName}  
+        </span>
+        <span id='user-status' title={user?.status}>
+          {!user?.status ? null : (status_pics[user?.status] ? status_pics[user?.status] : '💬')}
         </span>
         <span className="message__timestamp">{formattedTime}</span>
         <p className="message__body">

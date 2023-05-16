@@ -3,11 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createDMChannel } from "../../store/dm_channels";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import email from "../../imgs/email.png"
 
 function UserShowModal(props) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [redirectTo, setRedirectTo] = useState(null);
+  const status_pics = {
+    "In a meeting": '📅',
+    "Commuting": '🚈',
+    "A04 Flu": '🤒',
+    "Vacationing": '🌴',
+    "Working remotely": '🏠'
+  }
 
   const handleUserShow = (e) => {
     e.preventDefault();
@@ -69,6 +77,8 @@ function UserShowModal(props) {
       <h1 id="show-name">
         {props.showUser?.firstName} {props.showUser?.lastName}
       </h1>
+            {!props.showUser?.status ? null : (status_pics[props.showUser?.status] ? 
+      <span id='user-status-show' title={props.showUser?.status}> {status_pics[props.showUser?.status]} </span> : <span id='user-status-show' title={props.showUser?.status}>💬</span>)} {props.showUser?.status}
       <button
         className={`message-button ${
           sessionUser.darkMode ? "message-button-dark" : ""
@@ -77,6 +87,14 @@ function UserShowModal(props) {
       >
         💬 Send Message{" "}
       </button>
+      <h2 id='contact'> Contact Information: </h2>
+      <div id='email-container'>
+        <img src={email} id='email-logo' alt='email'/>
+        <div id='email'>
+          <h2>Email Address:</h2>
+          <p> {props.showUser?.email}</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -21,6 +21,13 @@ function AboutModal({ setAboutHidden, channel }) {
     "November",
     "December",
   ];
+  const status_pics = {
+    "In a meeting": '📅',
+    "Commuting": '🚈',
+    "A04 Flu": '🤒',
+    "Vacationing": '🌴',
+    "Working remotely": '🏠'
+  }
   const date = new Date(channel.createdAt);
 
   const [tab, setTab] = useState("about");
@@ -67,6 +74,10 @@ function AboutModal({ setAboutHidden, channel }) {
         {" "}
         {user.firstName} {user.lastName}
       </span>
+      
+      <span id='user-status' title={user?.status}>
+            {!user?.status ? null : (status_pics[user?.status] ? status_pics[user?.status] : '💬')}
+        </span>
     </div>
   ));
 

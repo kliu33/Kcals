@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./statusModal.css";
 
 function StatusModal({ setStatusHidden }) {
-  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [status, setStatus] = useState(sessionUser.status)
   const [emoji, setEmoji] = useState('💬')
@@ -37,12 +36,16 @@ function StatusModal({ setStatusHidden }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const new_status = {
+      ...sessionUser,
+      status: status
+    }
     const response = await fetch(`/api/users/${sessionUser.id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(status)
+      body: JSON.stringify(new_status)
     });
     if (response.ok){
       closeModal();
@@ -97,7 +100,7 @@ function StatusModal({ setStatusHidden }) {
                       </button>
                       <button
                         className={`update-pfp ${status !== sessionUser.status ? "uploaded" : ""}`}
-                        disabled={status !== '' ? false : true}
+                        disabled={status !== sessionUser.status ? false : true}
                       >     
                         Save
                       </button>

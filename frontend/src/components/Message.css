@@ -3,13 +3,19 @@
     cursor: pointer;
 }
 
+#user-status{
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 17px;
+}
+
 .message__author:hover{
     text-decoration: underline;
 }
 
 .message__timestamp{
     font-size: 10px;
-    margin-left: 10px;
+    margin-left: 5px;
     color: gray
 }
 

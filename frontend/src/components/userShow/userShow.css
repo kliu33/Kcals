@@ -41,6 +41,7 @@
 #show-name {
     margin-left: 20px;
     margin-top: 20px;
+    margin-bottom: 10px;
     font-size: 22px;
 }
 
@@ -69,4 +70,45 @@
 
 #msg-img{
     width: 30px;
+}
+
+#user-status-show{
+    margin-left: 15px;
+}
+
+#contact{
+    align-items: center;
+    display: flex;
+    font-size: 15px;
+    font-weight: 900;
+    margin-top: 25px;
+    margin-left: 20px
+}
+
+#email-logo{
+    height: 30px;
+}
+
+#email-container{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+#email{
+    margin-left: 10px;
+}
+
+#email h2{
+    color: rgb(73, 73, 73);
+    font-size: 12px;
+}
+
+#email p{
+    color: blue;
+    cursor: pointer;
+}
+
+#email p:hover{
+    text-decoration: underline;
 }

@@ -440,3 +440,8 @@
     overflow: hidden;
     overflow-y: scroll;
 }
+
+#user-list-modal{
+    display: flex;
+    align-items: center;
+}

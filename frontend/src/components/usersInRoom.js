@@ -10,6 +10,14 @@ function UsersInRoom({
 
   const sessionUser = useSelector((state) => state.session.user);
 
+  const status_pics = {
+    "In a meeting": '📅',
+    "Commuting": '🚈',
+    "A04 Flu": '🤒',
+    "Vacationing": '🌴',
+    "Working remotely": '🏠'
+  }
+
   const stopProp = (e) => {
     e.stopPropagation();
   };
@@ -27,6 +35,7 @@ function UsersInRoom({
       key={user.id}
       onClick={() => handleMember(user)}
       className={`user-list ${sessionUser.darkMode ? "user-list-dark" : ""}`}
+      id ='user-list-modal'
     >
       <img
         id="pfp3"
@@ -41,6 +50,9 @@ function UsersInRoom({
         {" "}
         {user.firstName} {user.lastName}
       </span>
+      <span id='user-status' title={user?.status}>
+            {!user?.status ? null : (status_pics[user?.status] ? status_pics[user?.status] : '💬')}
+         </span>
     </div>
   ));
 

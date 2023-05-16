@@ -9,6 +9,14 @@ const DMChannelItem = ({ dm_channel, selected }) => {
   const users = useSelector((state) => state.users);
   const sessionUser = useSelector((state) => state.session.user);
 
+  const status_pics = {
+    "In a meeting": '📅',
+    "Commuting": '🚈',
+    "A04 Flu": '🤒',
+    "Vacationing": '🌴',
+    "Working remotely": '🏠'
+  }
+
   const recipient =
     dm_channel.user1.id === sessionUser.id
       ? dm_channel.user2
@@ -35,6 +43,10 @@ const DMChannelItem = ({ dm_channel, selected }) => {
           <span className="you">
             {sessionUser.id === recipient?.id ? "you" : ""}
           </span>
+          
+          <span id='user-status' title={creator?.status}>
+            {!creator?.status ? null : (status_pics[creator?.status] ? status_pics[creator?.status] : '💬')}
+         </span>
         </div>
       </NavLink>
     </li>

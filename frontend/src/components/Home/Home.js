@@ -80,7 +80,7 @@ function Home() {
               dispatch(reload());
               break;
             case "RECEIVE_USER":
-              dispatch(fetchUsers());
+              dispatch(reload());
               break;
             default:
               console.log("Unhandled broadcast: ", type);
