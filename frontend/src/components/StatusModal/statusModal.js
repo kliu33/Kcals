@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./statusModal.css";
 
-function StatusModal({ setStatusHidden, setHeaderHidden }) {
+function StatusModal({ setStatusHidden }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [status, setStatus] = useState(sessionUser.status)
@@ -10,7 +10,6 @@ function StatusModal({ setStatusHidden, setHeaderHidden }) {
 
   const closeModal = () => {
     setStatusHidden(true);
-    setHeaderHidden();
   };
 
   const setCheckStatus = (stat) => {
@@ -36,8 +35,18 @@ function StatusModal({ setStatusHidden, setHeaderHidden }) {
     }
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`/api/users/${sessionUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(status)
+    });
+    if (response.ok){
+      closeModal();
+    }
   }
 
   const stopProp = (e) => {
