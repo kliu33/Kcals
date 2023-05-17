@@ -1,14 +1,15 @@
 .userInfo {
     height: 100%;
     width: 500px;
-    border-left: 1px rgb(202, 202, 202) solid;
+    border-left: 1px gray solid;
 }
 
 .show-head{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px rgb(202, 202, 202) solid;
+    height: 56px;
+    border-bottom: 1px gray solid;
     text-align:left;
     padding: 12px;
     font-weight: bold;

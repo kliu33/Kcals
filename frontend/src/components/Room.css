@@ -20,19 +20,17 @@
 .room-home-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
 }
 
 .border-under {
+    height: 56px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px rgb(202, 202, 202) solid;
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    border-bottom: 1px gray solid;
     position: sticky;
     top:0;
     background-color: white;
