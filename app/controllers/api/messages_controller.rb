@@ -32,7 +32,7 @@ class Api::MessagesController < ApplicationController
           end
           if @message.direct_message_channel_id
             DmChannel.broadcast_to @message.direct_message_channel,
-            type: 'UPDATE_MESSAGE',
+            type: 'UPDATE_DM_MESSAGE',
             payload: from_template('api/messages/show', message: @message)
             render :show, locals: { message: @message }
           end
@@ -47,7 +47,7 @@ class Api::MessagesController < ApplicationController
           id: @message.id
       elsif
         DmChannel.broadcast_to @message.direct_message_channel,
-          type: 'DESTROY_MESSAGE',
+          type: 'DESTROY_DM_MESSAGE',
           id: @message
       end
       @message.destroy

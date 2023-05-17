@@ -7,19 +7,19 @@ const Emoji = ({ message }) => {
   const sessionUser = useSelector((state) => state.session.user);
   
   const emoji_obj = {
-    "smile": message.reactions.filter(
+    "smile": message?.reactions?.filter(
       (reaction) => reaction.emoji === "smile"
     ),
-    "heart": message.reactions.filter(
+    "heart": message?.reactions?.filter(
       (reaction) => reaction.emoji === "heart"
     ),
-    "thumbs-up": message.reactions.filter(
+    "thumbs-up": message?.reactions?.filter(
       (reaction) => reaction.emoji === "thumbs-up"
     ),
-    "thumbs-down": message.reactions.filter(
+    "thumbs-down": message?.reactions?.filter(
       (reaction) => reaction.emoji === "thumbs-down"
     ),
-    "laughing": message.reactions.filter(
+    "laughing": message?.reactions?.filter(
       (reaction) => reaction.emoji === "laughing"
     ),
   };
@@ -59,7 +59,7 @@ const Emoji = ({ message }) => {
     <div className="emoji-list">
       {emoji_obj
         ? Object.keys(emoji_obj).map((k) =>
-            emoji_obj[k].length > 0 ? (
+            emoji_obj[k]?.length > 0 ? (
               <p
                 key={k}
                 className={`reaction ${

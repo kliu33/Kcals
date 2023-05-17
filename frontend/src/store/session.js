@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf'
 
 const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
+const RECEIVE_DM_CHANNEL = 'RECEIVE_DM_CHANNEL';
 const RECEIVE_DM_MESSAGE = 'RECEIVE_DM_MESSAGE';
 const REMOVE_DM_MESSAGE = 'REMOVE_DM_MESSAGE';
 const RECEIVE_DM_REACTION = 'RECEIVE_DM_REACTION';
@@ -14,6 +15,13 @@ export const receiveDMMessage = message => {
   return {
     type: RECEIVE_DM_MESSAGE,
     message
+  }
+}
+
+export const receiveDMChannel = channel => {
+  return {
+    type: RECEIVE_DM_CHANNEL,
+    channel
   }
 }
 
@@ -67,6 +75,14 @@ const removeCurrentUser = () => {
     type: REMOVE_CURRENT_USER
   };
 };
+
+export const fetchDMChannel = (dmChannelId) => async dispatch => {
+  const response = await fetch(`/api/dm_channels/${dmChannelId}`)
+  if (response.ok) {
+      const data = await response.json();
+      dispatch(receiveDMChannel(data))
+  }
+}
 
 
 export const updateColorMode = (userId) => async dispatch => {
@@ -145,11 +161,14 @@ const sessionReducer = (state = initialState, action) => {
     case RECEIVE_DM_MESSAGE:
       state.user.directMessageChannels[parseInt(action.message.direct_message_channel_id)].messages.push(action.message)
       return { ...state}
+    case RECEIVE_DM_CHANNEL:
+      state.user.directMessageChannels[action.channel.dmChannel.id].messages = action.channel.dmChannel.messages
+      return {...state}
     case REMOVE_DM_MESSAGE:
       const dm_id = action.message.id;
-      const dm_channel_messages = state.user.directMessageChannels[action.message.direct_message_channel_id].messages
+      const dm_channel_messages = state.user.directMessageChannels[action.message.directMessageChannelId].messages
       const updated_dm_channel_messages = dm_channel_messages.filter(message => message.id !== dm_id)
-      state.user.directMessageChannels[action.message.direct_message_channel_id].messages = updated_dm_channel_messages
+      state.user.directMessageChannels[action.message.directMessageChannelId].messages = updated_dm_channel_messages
       return {...state}
     case UPDATE_DM_MESSAGE:
       const dm_id2 = action.message.id;

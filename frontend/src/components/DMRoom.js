@@ -13,6 +13,7 @@ import {
   removeDMReaction,
   receiveDMReaction,
   patchDMMessage,
+  fetchDMChannel
 } from "../store/session.js";
 import Message from "./Message";
 import consumer from "../consumer.js";
@@ -64,9 +65,9 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
   }, [messages, id, history]);
 
   useEffect(() => {
-    getDMMessages(parseInt(id));
+    dispatch(fetchDMChannel(parseInt(id)));
     scrollToBottom();
-  }, [id]);
+  }, [id, dispatch]);
 
   useEffect(() => {
     const subscription = consumer.subscriptions.create(
@@ -79,10 +80,10 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
                 payload.message.directMessageChannelId;
               dispatch(receiveDMMessage(payload.message));
               break;
-            case "DESTROY_MESSAGE":
+            case "DESTROY_DM_MESSAGE":
               dispatch(removeDMMessage(id));
               break;
-            case "UPDATE_MESSAGE":
+            case "UPDATE_DM_MESSAGE":
               dispatch(patchDMMessage(payload.message));
               break;
             case "REMOVE_DM_REACTION":
@@ -224,7 +225,7 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
                 <img
                   id="trash"
                   alt="trash"
-                  onClick={() => handleDelete(message.id)}
+                  onClick={() => handleDelete(message)}
                   src={trash}
                 />
               )}
