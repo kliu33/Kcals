@@ -5,49 +5,51 @@ import { useSelector } from "react-redux";
 const Emoji = ({ message }) => {
 
   const sessionUser = useSelector((state) => state.session.user);
-  
-  const emoji_obj = {
-    "smile": message?.reactions?.filter(
-      (reaction) => reaction.emoji === "smile"
-    ),
-    "heart": message?.reactions?.filter(
-      (reaction) => reaction.emoji === "heart"
-    ),
-    "thumbs-up": message?.reactions?.filter(
-      (reaction) => reaction.emoji === "thumbs-up"
-    ),
-    "thumbs-down": message?.reactions?.filter(
-      (reaction) => reaction.emoji === "thumbs-down"
-    ),
-    "laughing": message?.reactions?.filter(
-      (reaction) => reaction.emoji === "laughing"
-    ),
-  };
+  let smile = []
+  let heart = []
+  let thumbsup = []
+  let thumbsdown = []
+  let laughing = []
 
-  const emoji_dict = (emoji) => {
-    switch (emoji) {
+  message.reactions.forEach(reaction => {
+    switch(reaction.emoji){
       case "smile":
-        return `🙂 ${emoji_obj[emoji].length}`;
+        if (!smile.some(obj => obj.id === reaction.id)) {
+          smile.push(reaction);
+        }
+        break;
       case "heart":
-        return `💗 ${emoji_obj[emoji].length}`;
+        if (!heart.some(obj => obj.id === reaction.id)) {
+          heart.push(reaction);
+        }
+        break;
       case "thumbs-up":
-        return `👍 ${emoji_obj[emoji].length}`;
+        if (!thumbsup.some(obj => obj.id === reaction.id)) {
+          thumbsup.push(reaction);
+        }
+        break;
       case "thumbs-down":
-        return `👎 ${emoji_obj[emoji].length}`;
+        if (!thumbsdown.some(obj => obj.id === reaction.id)) {
+          thumbsdown.push(reaction);
+        }
+        break;
       case "laughing":
-        return `😂 ${emoji_obj[emoji].length}`;
+        if (!laughing.some(obj => obj.id === reaction.id)) {
+          laughing.push(reaction);
+        }
+        break;
       default:
-        return null;
+        break;
     }
-  };
-
-  const handleRemoveReact = (k) => {
-    let react = emoji_obj[k].find((react) => react.user_id === sessionUser.id);
+  }
+)
+  const handleReact = (k) => {
+    let react = k.find((react) => react.user_id === sessionUser.id);
     if (react) {
       deleteReaction(react.id);
     } else {
       let new_react = {
-        emoji: k,
+        emoji: k[0].emoji,
         message_id: message.id,
         user_id: sessionUser.id,
       };
@@ -55,33 +57,73 @@ const Emoji = ({ message }) => {
     }
   };
 
-  function onlyUnique(value, index, array) {
-    return array.indexOf(value) === index;
-  }
-
   return (
     <div className="emoji-list">
-      {emoji_obj
-        ? Object.keys(emoji_obj).filter(onlyUnique).map((k) =>
-            emoji_obj[k]?.length > 0 ? (
-              <p
-                key={k}
+      {smile.length >= 1 ? <p
+                key='smile'
                 className={`reaction ${
                   sessionUser.darkMode ? "reaction-dark" : null
                 } ${
-                  emoji_obj[k].find((react) => react.user_id === sessionUser.id)
+                  smile.find((react) => react.user_id === sessionUser.id)
                     ? `react-hilight ${
                         sessionUser.darkMode ? "react-hilight-dark" : ""
                       }`
                     : ""
                 }`}
-                onClick={() => handleRemoveReact(k)}
-              >
-                {emoji_dict(k)}
-              </p>
-            ) : null
-          )
-        : null}
+                onClick={() => handleReact(smile)}
+              > 🙂 {smile.length}</p> : null}
+      {heart.length >= 1 ? <p
+                key='heart'
+                className={`reaction ${
+                  sessionUser.darkMode ? "reaction-dark" : null
+                } ${
+                  heart.find((react) => react.user_id === sessionUser.id)
+                    ? `react-hilight ${
+                        sessionUser.darkMode ? "react-hilight-dark" : ""
+                      }`
+                    : ""
+                }`}
+                onClick={() => handleReact(heart)}
+              > 💗 {heart.length}</p> : null}
+      {laughing.length >= 1 ? <p
+                key='laughing'
+                className={`reaction ${
+                  sessionUser.darkMode ? "reaction-dark" : null
+                } ${
+                  laughing.find((react) => react.user_id === sessionUser.id)
+                    ? `react-hilight ${
+                        sessionUser.darkMode ? "react-hilight-dark" : ""
+                      }`
+                    : ""
+                }`}
+                onClick={() => handleReact(laughing)}
+              > 😂 {laughing.length}</p> : null}
+        {thumbsup.length >= 1 ? <p
+                key='thumbsup'
+                className={`reaction ${
+                  sessionUser.darkMode ? "reaction-dark" : null
+                } ${
+                  thumbsup.find((react) => react.user_id === sessionUser.id)
+                    ? `react-hilight ${
+                        sessionUser.darkMode ? "react-hilight-dark" : ""
+                      }`
+                    : ""
+                }`}
+                onClick={() => handleReact(thumbsup)}
+              > 👍 {thumbsup.length}</p> : null}
+        {thumbsdown.length >= 1 ? <p
+                key='thumbsdown'
+                className={`reaction ${
+                  sessionUser.darkMode ? "reaction-dark" : null
+                } ${
+                  thumbsdown.find((react) => react.user_id === sessionUser.id)
+                    ? `react-hilight ${
+                        sessionUser.darkMode ? "react-hilight-dark" : ""
+                      }`
+                    : ""
+                }`}
+                onClick={() => handleReact(thumbsdown)}
+              > 👎 {thumbsdown.length}</p> : null}
     </div>
   );
 };
