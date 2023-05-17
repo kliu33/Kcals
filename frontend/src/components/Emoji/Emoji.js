@@ -55,10 +55,14 @@ const Emoji = ({ message }) => {
     }
   };
 
+  function onlyUnique(value, index, array) {
+    return array.indexOf(value) === index;
+  }
+
   return (
     <div className="emoji-list">
       {emoji_obj
-        ? Object.keys(emoji_obj).map((k) =>
+        ? Object.keys(emoji_obj).filter(onlyUnique).map((k) =>
             emoji_obj[k]?.length > 0 ? (
               <p
                 key={k}
