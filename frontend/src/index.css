@@ -1,8 +1,17 @@
 /* TODO Add site wide styles */
+@font-face {
+    font-family: Larsseit-Bold;
+    src: url('./fonts/Larsseit-Bold.otf');
+}
+
 body{
     font-family: 'Lato', sans-serif;
     height: 90vh;
 }
+
+/* h1, h2, h3, h4{
+    font-family: Larsseit-Bold
+} */
 
 #root{
     height: 100vh;

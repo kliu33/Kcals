@@ -31,6 +31,23 @@ function HeaderModal(props) {
     return dispatch(sessionActions.logout());
   };
 
+  const clearStatus = async (e) => {
+    const new_status = {
+      ...sessionUser,
+      status: ""
+    }
+    const response = await fetch(`/api/users/${sessionUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(new_status)
+    });
+    if (response.ok){
+      props.handleUserModal()
+    }
+  }
+
   const uploadModal = hidden ? null : (
     <UploadModal
       setHidden={setHidden}
@@ -43,7 +60,7 @@ function HeaderModal(props) {
     setHeaderHidden={props.setHeaderHidden}
     setStatusHidden={setStatusHidden}/>
   
-  const stat_emoj = sessionUser.status? (status_pics[sessionUser?.status] ? status_pics[sessionUser?.status] : '💬') : <span id='smiley'></span>
+  const stat_emoj = sessionUser.status ? (status_pics[sessionUser?.status] ? status_pics[sessionUser?.status] : '💬') : <span id='smiley'></span>
 
   return (
     <div id="modal-back-users" onClick={props.handleUserModal}>
@@ -66,6 +83,8 @@ function HeaderModal(props) {
         }`} onClick={()=> setStatusHidden(false)}> {stat_emoj} { sessionUser.status ? sessionUser.status : 'Update your status'}</button>
         </div>
         <div className="user-modal-options">
+          {sessionUser.status ? <h2 id='logout-2' onClick={clearStatus}> Clear status</h2> : null}
+
           <h2 id="logout" onClick={() => setHidden(false)}>
             Upload Profile Photo
           </h2>

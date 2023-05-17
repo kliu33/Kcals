@@ -206,7 +206,7 @@
 }
 
 .users-modal-dark{
-    background-color: rgb(39, 39, 39); 
+    background-color: #1A1D21;
     transition: background-color .5s ease;
 }
 
@@ -329,7 +329,7 @@
 
 
   .dark-chat {
-    background-color: rgb(29, 29, 29);
+    background-color: #1A1D21;
     color: rgb(216, 216, 216);
     transition: background-color .5s ease;
 }

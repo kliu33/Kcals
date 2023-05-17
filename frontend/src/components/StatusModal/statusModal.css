@@ -94,7 +94,7 @@
 
 .modal-status-dark {
     color: white;
-    background-color: rgb(39, 39, 39);
+    background-color: #1A1D21;
     transition: background-color .5s ease;
 }
 
@@ -164,4 +164,20 @@
 
 #clear-status:hover{
     background-color: rgb(194, 194, 194);
+}
+
+#logout-2{
+    cursor: pointer;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    text-align: left;
+    color: inherit;
+    margin-bottom: 7px;
+}
+
+#logout-2:hover{
+    background-color: #1864a4;
+    color: white;
 }

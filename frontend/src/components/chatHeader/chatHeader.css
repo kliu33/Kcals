@@ -9,7 +9,7 @@
 }
 
 .header-dark {
-    background-color: #1a1117;
+    background-color: #121016;
 }
 
 .links {
@@ -47,8 +47,6 @@
     width: 30px;
     height: 30px;
     border-radius: 5px;
-    position:absolute;
-    right: 20px;
     cursor: pointer;
     background-color: white;
 }
@@ -95,7 +93,7 @@
 }
 
 .modal-users-dark{
-    background-color: rgb(46, 46, 46);
+    background-color: #222529;
     color: rgb(216, 216, 216);
     transition: background-color 0.5s ease;
 }
@@ -283,7 +281,7 @@ input[type="file"] {
 
 
 .modal-upload-dark {
-    background-color: rgb(39, 39, 39); 
+    background-color:#1A1D21;
     color: rgb(216, 216, 216);
 }
 
@@ -426,4 +424,17 @@ input[type="file"] {
 
 .search-item a{
     width: 100%;
+}
+
+#stat-and-pfp-div{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 30px
+}
+
+#stat-and-pfp-div span{
+    font-size: 23px;
+    margin-right: 10px;
+    cursor: pointer;
 }
