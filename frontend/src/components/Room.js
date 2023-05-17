@@ -291,9 +291,9 @@ function Room({ hidden, setHidden, showUser, setShowUser }) {
                 className="channel-name-top"
                 onClick={() => setAboutHidden(false)}
               >
-                {" "}
-                #{channel?.name}
-                <span className="down-caret">▼</span>
+                <span id='hash-name'>
+                <span id='hashtag'>#</span>{channel?.name}
+                <span className="down-caret">▼</span></span>
               </h2>
               <h2 className="channel-description-top">
                 {channel?.description}

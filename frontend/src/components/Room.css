@@ -32,6 +32,7 @@
     align-items: center;
     border-bottom: 1px gray solid;
     position: sticky;
+    padding-left: 20px;
     top:0;
     background-color: white;
     transition: background-color .5s ease;
@@ -393,7 +394,7 @@
 }
 
 .channel-name-top:hover{
-    background-color: #adadad2d;
+    background-color: #63626221;
 }
 
 .down-caret{
@@ -442,4 +443,15 @@
 #user-list-modal{
     display: flex;
     align-items: center;
+}
+
+#hashtag{
+    font-size: 25px;
+    margin-right: 6px;
+}
+
+#hash-name{
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
 }
