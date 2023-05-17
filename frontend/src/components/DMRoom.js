@@ -315,8 +315,11 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
           className={`border-under ${sessionUser.darkMode ? "dark-chat" : ""}`}
         >
           <h2 className="channel-name-top" onClick={handleProfile}>
-            {" "}
-            {recipient?.firstName} {recipient?.lastName}
+            <span id='hash-name'> 
+              <img id="pfp12" src={rec_img} alt="" />
+              {recipient?.firstName} {recipient?.lastName}
+              <span className="down-caret">▼</span>
+            </span>
           </h2>
         </div>
         <ul ref={messageUlRef} className="messages-box">

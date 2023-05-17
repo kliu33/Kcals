@@ -26,7 +26,7 @@
 }
 
 .border-under {
-    height: 56px;
+    min-height: 56px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -90,7 +90,7 @@
 
 .right-div{
     float: right;
-    border: solid black 1px;
+    border: solid rgba(0, 0, 0, 0.24) 1px;
     cursor: pointer;
     border-radius: 5px;
     padding: 8px;
@@ -98,7 +98,11 @@
 }
 
 .right-div-dark{
-    border: solid white 1px;
+    border: solid rgba(255, 255, 255, 0.26) 1px;
+}
+
+.right-div:hover {
+    background-color: #63626221;
 }
 
 
@@ -454,4 +458,11 @@
     display: flex;
     align-items: center;
     font-weight: bolder;
+}
+
+#pfp12{
+    height: 25px;
+    width: 25px;
+    border-radius: 5px;
+    margin-right: 8px;
 }
