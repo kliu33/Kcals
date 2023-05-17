@@ -166,9 +166,9 @@ const sessionReducer = (state = initialState, action) => {
       return {...state}
     case REMOVE_DM_MESSAGE:
       const dm_id = action.message.id;
-      const dm_channel_messages = state.user.directMessageChannels[action.message.directMessageChannelId].messages
+      const dm_channel_messages = state.user.directMessageChannels[action.message.direct_message_channel_id].messages
       const updated_dm_channel_messages = dm_channel_messages.filter(message => message.id !== dm_id)
-      state.user.directMessageChannels[action.message.directMessageChannelId].messages = updated_dm_channel_messages
+      state.user.directMessageChannels[action.message.direct_message_channel_id].messages = updated_dm_channel_messages
       return {...state}
     case UPDATE_DM_MESSAGE:
       const dm_id2 = action.message.id;

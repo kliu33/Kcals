@@ -130,17 +130,18 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
 
   const handleDelete = (message) => {
     destroyMessage(message.id);
-    dispatch(removeDMMessage(message));
   };
 
   const handleUpdate = (e, message) => {
     e.preventDefault();
-    let updatedMessage = {
-      ...message,
-      body: updateBody,
-      editted: true,
-    };
-    dispatch(updateMessage(updatedMessage));
+    if (updateBody !== message.body) {
+      let updatedMessage = {
+        ...message,
+        body: updateBody,
+        editted: true,
+      };
+      dispatch(updateMessage(updatedMessage));
+    }
     setUpdateBody("");
     setEdittingId(null);
   };
@@ -149,7 +150,7 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
     message.id === edittingId ? (
       <form
         className={`update-form ${sessionUser.darkMode ? "update-dark" : ""}`}
-      >
+      key="form">
         <textarea
           className={`send-chat ${
             sessionUser.darkMode ? "send-chat-dark" : ""
