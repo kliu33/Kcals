@@ -175,7 +175,7 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
             onClick={(e) => handleUpdate(e, message)}
           >
             {" "}
-            Send
+            Save
           </button>
         </div>
       </form>

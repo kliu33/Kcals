@@ -181,7 +181,7 @@ function Room({ hidden, setHidden, showUser, setShowUser }) {
     message.id === edittingId ? (
       <form
         className={`update-form ${sessionUser.darkMode ? "update-dark" : ""}`}
-      >
+      key='form'>
         <textarea
           className={`send-chat ${
             sessionUser.darkMode ? "send-chat-dark" : ""
@@ -207,7 +207,7 @@ function Room({ hidden, setHidden, showUser, setShowUser }) {
             onClick={(e) => handleUpdate(e, message)}
           >
             {" "}
-            Send
+            Save
           </button>
         </div>
       </form>
@@ -317,7 +317,7 @@ function Room({ hidden, setHidden, showUser, setShowUser }) {
             </div>
           </div>
           <ul ref={messageUlRef} className="messages-box">
-            <li className="start">
+            <li className="start" key='start-message'>
               <h1>#{channel?.name}</h1>{" "}
               <p className="p1">
                 {" "}
