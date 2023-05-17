@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createDMChannel } from "../../store/dm_channels";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import email from "../../imgs/email.png"
+import email_dark from "../../imgs/email_dark.png"
 
 function UserShowModal(props) {
   const dispatch = useDispatch();
@@ -89,7 +90,7 @@ function UserShowModal(props) {
       </button>
       <h2 id='contact'> Contact Information: </h2>
       <div id='email-container'>
-        <img src={email} id='email-logo' alt='email'/>
+        <img src={sessionUser.darkMode? email_dark : email} id='email-logo' alt='email'/>
         <div id='email'>
           <h2>Email Address:</h2>
           <p> {props.showUser?.email}</p>
