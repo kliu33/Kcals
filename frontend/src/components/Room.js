@@ -95,7 +95,6 @@ function Room({ hidden, setHidden, showUser, setShowUser }) {
                 dispatch(receiveUser(payload.user));
               }
               dispatch(receiveMessage(payload.message));
-              scrollToBottom();
               break;
             case "DESTROY_MESSAGE":
               dispatch(removeMessage(id));
@@ -119,6 +118,10 @@ function Room({ hidden, setHidden, showUser, setShowUser }) {
 
     return () => subscription?.unsubscribe();
   }, [id, dispatch, users]);
+
+  useEffect(()=>
+    scrollToBottom(), [messages]
+  )
 
   const handleUsersModal = () => {
     setusersHidden(!users_hidden);

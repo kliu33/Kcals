@@ -78,7 +78,6 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
               payload.message["direct_message_channel_id"] =
                 payload.message.directMessageChannelId;
               dispatch(receiveDMMessage(payload.message));
-              scrollToBottom();
               break;
             case "DESTROY_MESSAGE":
               dispatch(removeDMMessage(id));
@@ -102,6 +101,10 @@ function DMRoom({ hidden, setHidden, showUser, setShowUser }) {
 
     return () => subscription?.unsubscribe();
   }, [id, dispatch]);
+
+  useEffect(()=>
+    scrollToBottom(), [messages]
+  )
 
   const scrollToBottom = () => {
     messageUlRef.current.scrollTop = messageUlRef.current.scrollHeight;
