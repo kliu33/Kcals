@@ -73,7 +73,7 @@ function StatusModal({ setStatusHidden }) {
           sessionUser.darkMode ? "status-input-dark" : ""
         }`} placeholder="What's your status?" 
                     onChange={(e)=>setCheckStatus(e.target.value)}
-                    value={status}></input> <span id='clear-status' title='Clear all' onClick={()=> setCheckStatus('')}> x</span>
+                    value={status}></input> <span className={`clear-status ${sessionUser.darkMode ? "clear-status-dark" : ""}`} title='Clear all' onClick={()=> setCheckStatus('')}> x</span>
                     <div id='aa-status'>
                       <h2>
                         For App Academy

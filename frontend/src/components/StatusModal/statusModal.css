@@ -154,16 +154,20 @@
     background-color: rgb(54, 54, 54);
 }
 
-#clear-status{
+.clear-status{
     cursor: pointer;
     margin-left: -40px;
     background-color: rgb(165, 161, 161);
     padding: 0px 6px 3px 6px;
     border-radius: 100px;
+    color: white;
+}
+
+.clear-status-dark{
     color: black;
 }
 
-#clear-status:hover{
+.clear-status:hover{
     background-color: rgb(194, 194, 194);
 }
 
@@ -175,7 +179,7 @@
     padding-left: 25px;
     text-align: left;
     color: inherit;
-    margin-bottom: 7px;
+    margin-bottom: 9px;
 }
 
 #logout-2:hover{
