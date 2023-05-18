@@ -33,7 +33,9 @@ function Root() {
 
 const initializeApp = () => {
   root.render(
-    <Root />
+    <React.StrictMode>
+      <Root />
+    </React.StrictMode>
   );
 }
 
